@@ -30,6 +30,7 @@ export default function HeroSection() {
 					
 				</div>
 				<SectionTitle
+				contained={true}
 					directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe'
 					run={(<> {'run >>'} <b>navigation</b>.bat </>)}
 				/>
