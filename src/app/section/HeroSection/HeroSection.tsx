@@ -1,3 +1,5 @@
+import 'react'
+import SectionTitle from '@/app/components/SectionTitle/SectionTitle'
 import './heroSection.scss'
 export default function HeroSection() {
 	return (
@@ -24,11 +26,20 @@ export default function HeroSection() {
 			</div>
 			
 			<header className='header'>
-				<div className="section-title">
-					<p>C:/Users/NikulasWraith/Project_Phantom/Nik.exe</p>
+				<div className="decor-stripe">
+					
 				</div>
-				<nav>
-
+				<SectionTitle
+					directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe'
+					run={(<> {'run >>'} <b>navigation</b>.bat </>)}
+				/>
+				<nav className='navigation'>
+						<a href="#about" className='selected'>About</a> ||
+						<a href="#showcase" >Showcase</a> ||
+						<a href="#schedules" >Schedules</a> ||
+						<a href="#artworks" >Artworks</a> ||
+						<a href="#setup" >Setup</a> ||
+						<a href="#socials" >Socials</a> 
 				</nav>
 			</header>
 		</section>

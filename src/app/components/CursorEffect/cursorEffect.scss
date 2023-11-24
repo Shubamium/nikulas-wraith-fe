@@ -1,11 +1,20 @@
 .shockwave{
-	outline: .5vw solid #8CE0F5;
+	outline: .5vw solid #b0d0ff;
 	width: 500px;
 	height: 500px;
 	position: fixed;
 	z-index: 1000;
+	background: radial-gradient(transparent 10%, #8cb6f5 100%);
 	animation: hologram-expand 1s ease forwards;
+	mix-blend-mode: hard-light;
+	backdrop-filter: blur(20%);
 	border-radius: 50%;
 	pointer-events: none;
 	user-select: none;
+	
+	&.green{
+		outline: .5vw solid rgb(176, 255, 196);
+		
+		background: radial-gradient(transparent 10%, #8cf5ab 100%);
+	}
 }

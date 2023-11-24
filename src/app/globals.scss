@@ -30,6 +30,10 @@ body{
 	
 }
 
+.container{
+	max-width: min(1000px,90%);
+	margin: .5em auto;
+}
 main{
 	min-height: 210vh;
 }
