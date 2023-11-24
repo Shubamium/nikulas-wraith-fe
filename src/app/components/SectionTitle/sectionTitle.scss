@@ -9,4 +9,20 @@
 			font-weight: bold;
 		}
 	}
+
+	.cursor{
+		animation: blink 800ms infinite  steps(1);
+	}
+}
+
+@keyframes blink {
+	0%{
+		opacity: 0;	
+	}
+	50%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
 }

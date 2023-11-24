@@ -16,5 +16,44 @@
 		outline: .5vw solid rgb(176, 255, 196);
 		
 		background: radial-gradient(transparent 10%, #8cf5ab 100%);
+		border-radius: 0;
+		animation: glitch 0.2s infinite alternate steps(2), hologram-expand 1s ease forwards;
+	}
+}
+@keyframes glitch {
+	0% {
+		translate: 0 0;
+		// filter: hue-rotate(0deg);
+	}
+	10% {
+		translate: 5px 0;
+	}
+	20% {
+		translate: -5px 0;
+	}
+	30% {
+		translate: 15px 0;
+	}
+	40% {
+		translate: 5px 0;
+	}
+	50% {
+		translate: -25px 0;
+	}
+	60% {
+		translate: -50px 0;
+	}
+	70% {
+		translate: 0 -20px;
+	}
+	80% {
+		translate: -60px -20px;
+	}
+	81% {
+		translate: 0 0;
+	}
+	100% {
+		transform: translate(0, 0);
+		filter: hue-rotate(-50deg);
 	}
 }
