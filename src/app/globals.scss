@@ -1,0 +1,55 @@
+// CSS Reset
+
+*{
+	border: none;
+	text-decoration: none;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	color: white;
+}
+
+body{
+	background: url('/background/background-main.png');
+
+	&::before{
+		content: '';
+		// background-color: #8EF58C;
+		background: radial-gradient(transparent 80%, #8ef58c 100%);
+		border: 5px solid #8EF58C;
+		opacity: 0.5;
+		position: fixed;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		animation: hologram-expand 4s infinite ease;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	
+	
+}
+
+
+@keyframes hologram-expand {
+	0%{
+		scale: 0;
+		opacity: 1;
+		aspect-ratio: 1/1;
+	}
+	50%{
+		scale: 1;
+	}
+	50%{
+		opacity: 0;
+	}
+	100%{
+		scale: 4;
+		opacity: 0;
+	}
+}
+
+
+
+
