@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Fira_Code, Inter } from 'next/font/google'
 import './globals.scss'
+import CursorEffect from './components/CursorEffect/CursorEffect'
 
 const fira = Fira_Code({ subsets: ['latin'] })
 
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={fira.className}>{children}</body>
+      <body className={fira.className}>
+				<CursorEffect />
+				{children}
+			</body>
     </html>
   )
 }

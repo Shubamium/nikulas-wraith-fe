@@ -1,0 +1,10 @@
+.shockwave{
+	outline: .5vw solid #8CE0F5;
+	width: 500px;
+	height: 500px;
+	position: fixed;
+	animation: hologram-expand 1s ease forwards;
+	border-radius: 50%;
+	pointer-events: none;
+	user-select: none;
+}
