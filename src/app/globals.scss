@@ -14,16 +14,14 @@ body{
 
 	&::before{
 		content: '';
-		// background-color: #8EF58C;
-		// background: radial-gradient(transparent 80%, #8ef58c 100%);
-		border: 5px solid #8EF58C;
-		// border-radius: 50%;
-		opacity: 0.5;
+		background: radial-gradient(transparent 50%, #8c93f5 100%);
+		border: .5vw solid #8e8cf56e;
+		opacity: 0.2;
 		position: fixed;
 		z-index: -100;
 		width: 100%;
 		height: 100%;
-		animation: hologram-expand 10s infinite ease;
+		animation: hologram-main 3s infinite linear;
 		user-select: none;
 		pointer-events: none;
 	}
@@ -46,6 +44,24 @@ main{
 	}
 	50%{
 		scale: 1;
+	}
+	50%{
+		opacity: 0;
+	}
+	100%{
+		scale: 4;
+		opacity: 0;
+	}
+}
+@keyframes hologram-main {
+	0%{
+		scale: 0;
+		opacity: 1;
+		aspect-ratio: 1/1;
+	}
+
+	15%{
+		opacity: 0.1;
 	}
 	50%{
 		opacity: 0;
