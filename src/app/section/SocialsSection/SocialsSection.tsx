@@ -34,7 +34,11 @@ export default function SocialsSection() {
         </div>
 
         <div className="socials-list">
-          <a className="socials" href="https://discord.gg/dpXAAuKgaG">
+          <a
+            className="socials"
+            target="_blank"
+            href="https://discord.gg/dpXAAuKgaG"
+          >
             <div className="icon">
               <FaDiscord />
             </div>
@@ -42,7 +46,11 @@ export default function SocialsSection() {
               <h2>Discord</h2>
             </div>
           </a>
-          <a className="socials" href="https://twitter.com/NikulasWraith">
+          <a
+            className="socials"
+            target="_blank"
+            href="https://twitter.com/NikulasWraith"
+          >
             <div className="icon">
               <BsTwitterX />
             </div>
@@ -51,7 +59,11 @@ export default function SocialsSection() {
             </div>
           </a>
 
-          <a className="socials" href="https://www.twitch.tv/nikulaswraith">
+          <a
+            className="socials"
+            target="_blank"
+            href="https://www.twitch.tv/nikulaswraith"
+          >
             <div className="icon">
               <FaTwitch />
             </div>
@@ -60,7 +72,11 @@ export default function SocialsSection() {
             </div>
           </a>
 
-          <a className="socials" href="ttps://www.youtube.com/@nikulaswraith">
+          <a
+            className="socials"
+            target="_blank"
+            href="ttps://www.youtube.com/@nikulaswraith"
+          >
             <div className="icon">
               <FaYoutube />
             </div>
@@ -70,6 +86,7 @@ export default function SocialsSection() {
           </a>
           <a
             className="socials"
+            target="_blank"
             href="ttps://www.youtube.com/@nikulaswraithextra"
           >
             <div className="icon">
@@ -79,7 +96,11 @@ export default function SocialsSection() {
               <h2>Youtube (Extra)</h2>
             </div>
           </a>
-          <a className="socials" href="https://vstream.com/c/@Nikulas_Wraith">
+          <a
+            className="socials"
+            target="_blank"
+            href="https://vstream.com/c/@Nikulas_Wraith"
+          >
             <div className="icon">
               <TbTriangleInvertedFilled />
             </div>
@@ -89,6 +110,7 @@ export default function SocialsSection() {
           </a>
           <a
             className="socials"
+            target="_blank"
             href="https://bsky.app/profile/nikulaswraith.bsky.social"
           >
             <div className="icon">
