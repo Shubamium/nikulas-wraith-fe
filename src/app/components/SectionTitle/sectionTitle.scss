@@ -10,6 +10,11 @@
 		}
 	}
 
+	.description{
+		margin: 1em;
+		opacity: .6;
+		font-size: 1rem;
+	}
 	.cursor{
 		animation: blink 800ms infinite  steps(1);
 	}
