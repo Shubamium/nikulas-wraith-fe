@@ -2,7 +2,8 @@
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(180deg, #1E1E1E 38.02%, rgba(30, 30, 30, 0.62) 86.46%);
-	filter: drop-shadow(-16px 13px 0px rgba(0, 0, 0, 0.114));
+	// filter: drop-shadow(-16px 13px 0px rgba(0, 0, 0, 0.114));
+	box-shadow: -10px 10px rgba(0, 0, 0, 0.185);
 	.window-header{
 		display: flex;
 		font-size: 2rem;
@@ -13,7 +14,9 @@
 		font-family: 'Nik';
 		color: white;
 		h2{
-			background-color: #C9E5FD;
+			box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.096) inset;
+			background-color: rgba(28, 23, 38, 0.64);
+			text-shadow: 3px 3px 2px rgba(24, 20, 27, 0.466);
 			padding: 0 .2em;
 			font-size: 3rem;
 			// background-clip: text;

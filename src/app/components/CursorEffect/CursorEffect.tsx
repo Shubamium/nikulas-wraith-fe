@@ -14,8 +14,8 @@ export default function CursorEffect() {
 				if(e.clientX > (window.innerWidth /2) ){
 					shockEl.classList.add('green')
 				}
-				shockEl.style.top = e.clientY - (250) + 'px'
-				shockEl.style.left = e.clientX - (250) +'px'
+				shockEl.style.top = e.clientY - (125) + 'px'
+				shockEl.style.left = e.clientX - (125) +'px'
 
 				spawnRef.current.appendChild(shockEl)
 				console.log('adding shockwave')

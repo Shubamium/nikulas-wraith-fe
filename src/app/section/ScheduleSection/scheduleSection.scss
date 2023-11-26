@@ -1,0 +1,53 @@
+#schedules{
+
+	margin: 200px 0;
+	background: url('/background/sched_stripe.png');
+	background-size: 100% 400px;
+	height: 400px;
+	display: flex;
+	align-items: center;
+	.sched-img{
+		transition: all 100ms ease;
+		// width: 500px;
+		&:hover{
+			scale: 1.6;
+		}
+		height: 100%;
+		background-color: rgb(43, 41, 51);
+		max-width: 1200px;
+		margin: 0 auto;
+		border: 2px solid #C9E5FD;
+		// width: 100%;
+		aspect-ratio: 16 / 9;
+		scale: 1.5;
+		position: relative;
+		box-shadow: -7px 7px black;
+		img{
+			width: 100%;
+			height: 100%;
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: cover;
+		}
+		&::before{
+			content: '';
+			position: absolute;
+			scale: 1.05 1.08;
+			border:1px solid rgba(255, 255, 255, 0.281);
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.header{
+		position: absolute;
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		width: 100%;
+		bottom: 105%;
+		img{
+			max-width: 200px;
+		}
+	}
+}

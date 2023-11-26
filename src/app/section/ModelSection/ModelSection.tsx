@@ -45,6 +45,7 @@ export default function ModelSection() {
           </div>
         </div>
       </Window>
+      <img src="/decor/Union.png" alt="" className="decor_union" />
     </section>
   );
 }
