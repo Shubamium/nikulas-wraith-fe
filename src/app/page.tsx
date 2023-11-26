@@ -4,7 +4,9 @@ import ContactSection from "./section/ContactSection/ContactSection";
 import HeroSection from "./section/HeroSection/HeroSection";
 import ModelSection from "./section/ModelSection/ModelSection";
 import ScheduleSection from "./section/ScheduleSection/ScheduleSection";
+import SetupSection from "./section/SetupSection/SetupSection";
 import SocialsSection from "./section/SocialsSection/SocialsSection";
+import SupportSection from "./section/SupportSection/SupportSection";
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
       <ModelSection />
       <ScheduleSection />
       <ArtworksSection />
+			<SetupSection/>
+			<SupportSection/>
     </main>
   );
 }

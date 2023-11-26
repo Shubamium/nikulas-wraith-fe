@@ -1,0 +1,41 @@
+#setup{
+	margin: 200px 0;
+	.decor{
+		margin: 20px 0;
+		width: 70%;
+		object-fit: contain;
+	}
+	.setup-container{
+		background:linear-gradient(180deg, #222226 54.17%, rgba(34, 34, 38, 0.00) 100%);
+		min-height: 300px;
+		padding: 1em 2em;
+		padding-bottom: 200px;
+		max-width: 900px;
+		margin: 0 auto;
+		transform: skew(200px);
+		
+		position: relative;
+		.decor_small_arrow{
+			position: absolute;
+			left: -20%;
+		}
+		.spec{
+			padding: 2em 0;
+			display: flex;
+			gap: .4em;
+			flex-direction: column;
+			.spec-text{
+				color: #7e7688;
+				transition: 250ms all ease;
+				&:hover{
+					transform: translateX(10px);
+					color: white;
+					text-shadow: 2px 2px 5px #C9E5FD;
+				}
+			}
+		}
+	}
+	
+
+	
+}
