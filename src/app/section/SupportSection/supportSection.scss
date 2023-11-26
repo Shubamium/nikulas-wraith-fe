@@ -12,12 +12,21 @@
 			width: 70%;
 		}
 	}
+	.bottom-connect{
+		max-height: 120px;
+		display: flex;
+		justify-content: end;
+		img{
+			max-width: 100%;
+			object-position: right;
+			object-fit: contain;
+		}
+	}
 
 	.support-container{
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 3em;
-
 		.support-part{
 			.window-body{
 				padding: 2em;

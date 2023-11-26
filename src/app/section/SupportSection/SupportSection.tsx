@@ -40,8 +40,8 @@ export default function SupportSection() {
 						</div>
 				</div>
 			</div>
-			<div className="decor">
-			<img src="/decor/connect3.png" alt="" className='' />
+			<div className="bottom-connect">
+				<img src="/decor/connect3.png" alt="" className='' />
 			</div>
 		</section>
 	)

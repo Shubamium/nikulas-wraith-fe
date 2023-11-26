@@ -19,6 +19,7 @@ export default function Home() {
       <ArtworksSection />
 			<SetupSection/>
 			<SupportSection/>
+			<ContactSection/>
     </main>
   );
 }
