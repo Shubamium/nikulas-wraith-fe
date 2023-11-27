@@ -8,19 +8,19 @@ export default function ContactSection() {
 	return (
 		<section id="contacts">
 				<Window header='Contacts'>
-					<SectionTitle directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe' run={<>{'run >>'} <b>contact-form</b>.bat</>}/>
-					<form className='contact-form'>
+					<SectionTitle contained={true} directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe' run={<>{'run >>'} <b>contact-form</b>.bat</>}/>
+					<form className='contact-form container'>
 						<div className="form-field">
 							<label htmlFor="name">Enter your Name:</label>
-							<input type="text" name="name" id="name" className='field' />
+							<input type="text" name="name" id="name" className='field'  placeholder='Your Name'/>
 						</div>
 						<div className="form-field">
 							<label htmlFor="email">Enter your e-mail:</label>
-							<input type="text" name="name" id="email" className='field' />
+							<input type="text" name="name" id="email" className='field'  placeholder='email@gmail.com'/>
 						</div>
 						<div className="form-field">
-							<label htmlFor="messages">Message {'->'}:</label>
-							<textarea name="messages" id="messages"></textarea>
+							<label htmlFor="messages">Message:</label>
+							<textarea name="messages" id="messages" placeholder='Write your message here'></textarea>
 						</div>
 						<button type='submit'>Send</button>
 					</form>
