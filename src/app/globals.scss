@@ -11,7 +11,7 @@
 }
 
 body{
-	background: url('/background/background-main.png');
+	background: #2A2731;
 	&::before{
 		content: '';
 		background: radial-gradient(transparent 50%, #8c93f5 100%);
@@ -25,6 +25,25 @@ body{
 		user-select: none;
 		pointer-events: none;
 	}
+	.bg-grid{
+		content: '';
+		background: url('/background/background-main.png');
+		position: fixed;
+		background-attachment: scroll;
+		z-index: -95;
+		width: 100%;
+		top: 0%;
+		left: 0%;
+
+		height: 100%;
+		user-select: none;
+		pointer-events: none;
+
+		animation: sway-visible 5s linear infinite;
+
+	
+	}
+
 
 	
 	
@@ -35,10 +54,26 @@ body{
 	margin: .5em auto;
 }
 main{
-	min-height: 1110vh;
+	// min-height: 1110vh;
+	padding-bottom: 200px;
 }
 .animate-hologram{
 		animation: hologram-expand 4s ease;
+}
+
+
+@keyframes sway-visible{
+	from{
+		opacity: 0.5;
+
+	}
+	50%{
+		opacity: 1;
+		filter: saturate(150%) brightness(120%);
+	}
+	to{
+		opacity: 0.5;
+	}
 }
 @keyframes hologram-expand {
 	0%{

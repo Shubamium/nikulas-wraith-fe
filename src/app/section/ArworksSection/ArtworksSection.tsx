@@ -6,7 +6,7 @@ import ArtDisplayer from "@/app/components/ArtDisplayer/ArtDisplayer";
 
 export default function ArtworksSection() {
   return (
-    <section id="artworks">
+    <section id="artwork">
       <h2 className="title">{'<<'} Artwork {'>>'}</h2>
       <div className="artwork-list">
         <div className="fanart">

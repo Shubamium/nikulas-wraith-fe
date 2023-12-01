@@ -38,7 +38,7 @@ export default function HeroSection() {
 						<a href="#about" className='selected'>About</a> ||
 						<a href="#showcase" >Showcase</a> ||
 						<a href="#schedules" >Schedules</a> ||
-						<a href="#artworks" >Artworks</a> ||
+						<a href="#artwork" >Artwork</a> ||
 						<a href="#setup" >Setup</a> ||
 						<a href="#socials" >Socials</a> 
 				</nav>

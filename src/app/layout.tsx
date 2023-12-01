@@ -20,6 +20,7 @@ export default function RootLayout({
       <body className={fira.className}>
 				<CursorEffect />
 				{children}
+				<div className="bg-grid"></div>
 			</body>
     </html>
   )

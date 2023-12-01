@@ -12,15 +12,15 @@ export default function ContactSection() {
 					<form className='contact-form container'>
 						<div className="form-field">
 							<label htmlFor="name">Enter your Name:</label>
-							<input type="text" name="name" id="name" className='field'  placeholder='Your Name'/>
+							<input type="text" name="name" id="name" className='field'  placeholder='Your Name' required/>
 						</div>
 						<div className="form-field">
 							<label htmlFor="email">Enter your e-mail:</label>
-							<input type="text" name="name" id="email" className='field'  placeholder='email@gmail.com'/>
+							<input type="text" name="name" id="email" className='field'  placeholder='email@gmail.com' required/>
 						</div>
 						<div className="form-field">
 							<label htmlFor="messages">Message:</label>
-							<textarea name="messages" id="messages" placeholder='Write your message here'></textarea>
+							<textarea name="messages" id="messages" placeholder='Write your message here' required></textarea>
 						</div>
 						<button type='submit'>Send</button>
 					</form>
