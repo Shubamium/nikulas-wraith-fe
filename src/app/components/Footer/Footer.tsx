@@ -1,21 +1,23 @@
 import { BsArrowUp } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
+import './Footer.scss';
 
 export default function Footer() {
 	return (
-		<footer>
+		<footer id="footer">
+			<div className="container">
 			<div className="footer-side">
-					<img src="/decor/main_logo.png" alt="" />
+					<img src="/decor/main_logo.png" alt="" className="logo" />
 					<nav className="footer-nav">
-							<div className="left">
+							<div className="section left">
 								<a href="#about">About </a>
 								<a href="#schedules">Schedules </a>
 								<a href="#setup">Setup </a>
 							</div>
-							<div className="right">
-								<a href="#showcases">Showcases</a>
-								<a href="#showcases">Artworks</a>
-								<a href="#showcases">Socials</a>
+							<div className="section right">
+								<a href="#showcase">Showcases</a>
+								<a href="#artwork">Artworks</a>
+								<a href="#socials">Socials</a>
 							</div>
 					</nav>
 					<img src="decor/connect-footer.png" alt="" className="decor_footer" />
@@ -50,16 +52,92 @@ export default function Footer() {
 								<FaDiscord/>
 							</a>
 						</div>
-						<button><BsArrowUp/> Back to the top <BsArrowUp/></button>
+						<a href="#top" className="top-button"><BsArrowUp/> Back to the top <BsArrowUp/></a>
+						<a href="https://www.youtube.com/@minrxa" target="_blank" className="special-credit"><img src="decor/minrxa.png" alt="" /></a>
 				</div>
 				<div className="people">
 					<div className="credits">
-
+							<div className="head">
+									<h2> {'>>'} Credits</h2>
+							</div>
+							<div className="list">
+								<a className="credit" href="#" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">@their_handle</p>
+								</a>
+								<a className="credit" href="#" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">@their_handle</p>
+								</a>
+								<a className="credit" href="#" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">@their_handle</p>
+								</a>
+								<a className="credit" href="#" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">@their_handle</p>
+								</a>
+								<a className="credit" href="#" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">@their_handle</p>
+								</a>
+							</div>
 					</div>
 					<div className="vip">
-						
+							<div className="head">
+							<h2> {'>>'} VIP</h2>
+							</div>
+							<div className="list">
+								<a className="ppl" href="#" >
+									<div className="pfp">
+										<img src="" alt="" />
+									</div>
+									<div className="detail">
+										<p className="name">Person name</p>
+										<p className="handle">@their_handle</p>
+									</div>
+								</a>
+								<a className="ppl" href="#" >
+									<div className="pfp">
+										<img src="" alt="" />
+									</div>
+									<div className="detail">
+										<p className="name">Person name</p>
+										<p className="handle">@their_handle</p>
+									</div>
+								</a>
+								<a className="ppl" href="#" >
+									<div className="pfp">
+										<img src="" alt="" />
+									</div>
+									<div className="detail">
+										<p className="name">Person name</p>
+										<p className="handle">@their_handle</p>
+									</div>
+								</a>
+								<a className="ppl" href="#" >
+									<div className="pfp">
+										<img src="" alt="" />
+									</div>
+									<div className="detail">
+										<p className="name">Person name</p>
+										<p className="handle">@their_handle</p>
+									</div>
+								</a>
+								<a className="ppl" href="#" >
+									<div className="pfp">
+										<img src="" alt="" />
+									</div>
+									<div className="detail">
+										<p className="name">Person name</p>
+										<p className="handle">@their_handle</p>
+									</div>
+								</a>
+								
+							</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</footer>
 	)

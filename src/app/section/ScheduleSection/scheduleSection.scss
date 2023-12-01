@@ -1,8 +1,13 @@
 #schedules{
 
 	margin: 200px 0;
-	background: url('/background/sched_stripe.png');
-	background-size: 100% 400px;
+	background: url('/background/sched_stripe.png'), rgb(207, 207, 207);
+	// background-size: 100% 70%;
+	// background-position: 20% 20%;
+	background-blend-mode: multiply;
+	// backdrop-filter: ;
+	// background-repeat: no-repeat;
+	animation: stripe 20s linear infinite;
 	height: 400px;
 	display: flex;
 	align-items: center;
@@ -49,5 +54,14 @@
 		img{
 			max-width: 200px;
 		}
+	}
+}
+
+@keyframes stripe {
+	0%{
+		background-position: 0px 0px;
+	}
+	100%{
+		background-position: 1000px 500px;
 	}
 }

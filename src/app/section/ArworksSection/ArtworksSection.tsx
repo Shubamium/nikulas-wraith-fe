@@ -7,7 +7,7 @@ import ArtDisplayer from "@/app/components/ArtDisplayer/ArtDisplayer";
 export default function ArtworksSection() {
   return (
     <section id="artwork">
-      <h2 className="title">{'<<'} Artwork {'>>'}</h2>
+      <h2 className="title glowText">{'<<'} Artwork {'>>'}</h2>
       <div className="artwork-list">
         <div className="fanart">
           <Window>

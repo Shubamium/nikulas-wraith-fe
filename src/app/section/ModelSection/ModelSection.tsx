@@ -6,7 +6,7 @@ import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 
 export default function ModelSection() {
   return (
-    <section id="models" className="container">
+    <section id="showcase" className="container">
       <Window header="Models">
         <SectionTitle
           description="What is it about"

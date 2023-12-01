@@ -18,7 +18,7 @@ export default function SupportSection() {
 					</Window>
 				</div>
 				<div className="media-part">
-						<div className="media">
+						<a className="media" href="https://ko-fi.com/nikulaswraith" target='_blank'>
 							<img src="/decor/support_text.png" alt="" className='decor_text' />
 							<div className="media-logo">
 								<img src="decor/ko-fi_logo.png" alt="" />
@@ -27,17 +27,17 @@ export default function SupportSection() {
 							<h2>Ko-Fi</h2>
 							<p>{'>>'} <a href="https://ko-fi.com/nikulaswraith" target='_blank'>https://ko-fi.com/nikulaswraith</a></p>
 							</div>
-						</div>
-						<div className="media">
+						</a>
+						<a className="media"  href="https://ko-fi.com/nikulaswraith" target='_blank'>
 							<img src="/decor/support_text.png" alt="" className='decor_text' />
 							<div className="media-logo">
 								<img src="decor/throne_logo.png" alt="" />
 							</div>
 							<div className="details">
 							<h2>Ko-Fi</h2>
-							<p>{'>>'} <a href="https://ko-fi.com/nikulaswraith" target='_blank'>https://ko-fi.com/nikulaswraith</a></p>
+							<p>{'>>'} <a>https://ko-fi.com/nikulaswraith</a></p>
 							</div>
-						</div>
+						</a>
 				</div>
 			</div>
 			<div className="bottom-connect">

@@ -7,8 +7,8 @@ export default function SetupSection() {
 	return (
 		<section id="setup">
 			<img src="/decor/connect1.png" alt="" className='decor' />
-			<div className="setup-container">
-				<img src="/decor/arrow_small.png" alt="" className='decor_small_arrow' />
+			<div className="setup-container glowHover ">
+				<img src="/decor/arrow_small.png" alt="" className='decor_small_arrow'   />
 				<SectionTitle directory='' run={"View >> System/Specs/Hardware_Software"} description={'Some text here about this section'}/>
 				<div className="spec">
 					<p className='spec-text'> <b>{'O/S >>'}</b> Windows 11 x64</p>

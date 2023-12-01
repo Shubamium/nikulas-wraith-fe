@@ -6,7 +6,7 @@ export default function HeroSection() {
 		<section id="container_hero">
 			<h1 style={{display:'none'}}>Nikulas Wraith</h1>
 
-			<div className="display">
+			<div className="display" id='top'>
 				<div className="bg-binary"></div>
 				<div className="niks">
 					<img src="/art/nik-art-center.png" alt="" className='nik-center' />

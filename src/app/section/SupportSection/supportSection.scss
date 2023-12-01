@@ -63,6 +63,7 @@
 					position: relative;
 					max-width: 200px;
 					padding: 2em;
+					color: black;
 					&::before{
 						content: '';
 						position: absolute;
@@ -79,7 +80,8 @@
 					}
 					img{
 						max-width: 100%;
-						// width: 100%;
+						opacity: .7;
+					// width: 100%;
 					}
 				}
 				.details{

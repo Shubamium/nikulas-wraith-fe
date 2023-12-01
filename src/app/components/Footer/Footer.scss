@@ -1,0 +1,235 @@
+#footer{
+	background: #222327;
+	.container{
+		max-width: 1200px;
+		display: grid;
+		grid-template-columns:  1fr 3fr;
+		height: 100%;
+
+	}
+	
+	.footer-side{
+		height: 100%;
+		img{
+			max-width: 100%;
+		}
+		.logo{
+			max-height: 150px;
+		}
+
+		.footer-nav{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			.section{
+				display: flex;
+				flex-direction: column;
+				border-left: 2px solid rgba(255, 255, 255, 0.253);
+				padding-left: 10px;
+				a{
+					opacity: .4;
+					&:hover{
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+	
+	.footer-content{
+		height: 100%;
+	// padding-top: 1em;
+		background-color: #1A1B1F;
+		 display: grid;
+		 grid-template-columns: 1fr 1.5fr;
+		 .people{
+				// background-color: red;
+				margin-top: 1em;
+				.credits{
+					.head{
+						background-color: #565684;
+						h2{
+							font-size: .8rem;
+							padding: 0 .5em;
+							color: #20204A;
+						}
+					}
+					.list{
+						border: 2px solid #565684;
+						display: grid;
+						// flex-wrap: wrap;
+						grid-template-columns: 1fr 1fr;
+						padding:.5em;
+						gap: 1vw;
+						.credit{
+							display: block;
+							.name{
+								font-size: 1rem;
+								color: #E8E8FF;
+								transition: all 100ms ease;
+							}
+							.role{
+								font-size: .8rem;
+								opacity: .4;
+							}
+
+							&:hover{
+								.name{
+									padding-inline: .5em;
+									scale: 1.04;
+								}
+							}
+							
+						}
+					}
+				}
+				.vip{
+					margin-top: 1em;
+					margin-bottom: 50px;
+					.head{
+						background-color: #3B693F;
+						h2{
+							font-size: .8rem;
+							padding: 0 .5em;
+							color: #20204A;
+						}
+					}
+					.list{
+						border: 2px solid #3B693F;
+						display: grid;
+						// flex-wrap: wrap;
+						
+						grid-template-columns: 1fr 1fr;
+						padding:.5em;
+						padding-bottom: 30px;
+						gap: 1vw;
+						.ppl{
+							background-color: #343846;
+							display: grid;
+							grid-template-columns: 50px 1fr;
+							gap: .2em;
+
+							&:hover{
+								border: 1px solid white;
+							}
+							.pfp{
+								img{
+									width: 100%;
+									height: 100%;
+									object-fit: cover;
+								}
+							}
+							.detail{
+								padding: .2em;
+								.handle{
+									font-size: .8rem;
+									transition: all 100ms ease;
+									opacity: .4;
+								}
+								.name{
+									font-size: 1rem;
+									color: #E8E8FF;
+								}
+							}
+
+							&:hover{
+								.handle{
+									padding-inline: .5em;
+									scale: 1.04;
+								}
+							}
+							
+						}
+					}
+				}
+		 }
+		 .footer-data{
+			padding:1em;
+			.command{
+				font-size: 1.2rem;
+				
+			}
+			.comments{
+				font-size: .7rem;
+				opacity: .3;
+				font-weight: 200;
+			}
+
+			.about{
+				padding: 1rem 0;
+				font-size: .8rem;
+				opacity: .8;
+			}
+
+			.footer-socials{
+				display: flex;
+				gap: .25em;
+				a{
+					background-color: #2A2D33;
+					color: white;
+					aspect-ratio: 1 / 1;
+					padding: .15em;
+					font-size: 1.2rem;
+					width: 35px ;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					&:hover{
+						scale: 1.1;
+						border: 1px solid white;
+					}
+				}
+			}
+
+			.top-button{
+				display: flex;
+				background: #565684;
+				align-items: center;
+				justify-content: center;
+				gap: .5em;
+				padding: .25em;
+				margin: 1em 0;
+
+				transition:  all 100ms ease;
+				svg{
+					rotate: 45deg;
+					transition: all 200ms ease;
+				}
+				&:hover{
+					scale: 1.05;
+					border: 1px solid white;
+					svg{
+						rotate: 0deg;
+					}
+				}
+				&:active{
+					scale: .95;
+				}
+			}
+
+			.special-credit{
+				height: 50px;
+				display: block;
+				// font-size: .8rem;
+				transform-origin: left;
+				transition: all 250ms ease;
+				background-color: rgba(77, 218, 136, 0.322);
+				opacity: .8;
+				img{
+					height: 100%;
+					width: 100%;
+					object-fit: contain;
+					object-position: left;
+				}
+				&:hover{
+					scale: 1.02;
+					opacity: 1;
+					background-color: rgba(77, 218, 136, 0.322);
+
+					filter: brightness(120%);
+				}
+			}			
+		 }
+	}
+
+}

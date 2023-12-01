@@ -51,6 +51,19 @@ body{
 	
 }
 
+.glow{
+	box-shadow: 0px 0px 54px 0px rgba(88, 153, 211, 0.15);
+
+}
+.glowText{
+	text-shadow: 0px 0px 54px 0px rgba(88, 154, 211, 0.678);
+}
+.glowHover{
+	transition: box-shadow 250ms ease;
+	&:hover{
+		@extend .glow;
+	}
+}
 .container{
 	max-width: min(1000px,90%);
 	margin: .5em auto;
