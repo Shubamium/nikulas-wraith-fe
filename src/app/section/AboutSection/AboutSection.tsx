@@ -39,12 +39,12 @@ export default function AboutSection() {
               <p>
                 My favorite Anime to watch is Inuyasha, Cowboy Bebop, Big O,
                 Neon Genesis Evangelion and plenty more. I also collect too many
-                microphones, do Voice Overs and Foley Art
+                microphones, do Voice Overs and Foley Art.
               </p>
 
               <p>
                 Ask me anything, I’m always open to telling you about myself,
-                because I’m one chatty Phantom
+                because I’m one chatty Phantom!
               </p>
 
               <p>

@@ -75,7 +75,7 @@ export default function SocialsSection() {
           <a
             className="socials"
             target="_blank"
-            href="ttps://www.youtube.com/@nikulaswraith"
+            href="https://www.youtube.com/@nikulaswraith"
           >
             <div className="icon">
               <FaYoutube />
@@ -87,7 +87,7 @@ export default function SocialsSection() {
           <a
             className="socials"
             target="_blank"
-            href="ttps://www.youtube.com/@nikulaswraithextra"
+            href="https://www.youtube.com/@nikulaswraithextra"
           >
             <div className="icon">
               <FaYoutubeSquare />

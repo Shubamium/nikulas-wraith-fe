@@ -9,7 +9,7 @@ export default function SetupSection() {
 			<img src="/decor/connect1.png" alt="" className='decor' />
 			<div className="setup-container glowHover ">
 				<img src="/decor/arrow_small.png" alt="" className='decor_small_arrow'   />
-				<SectionTitle directory='' run={"View >> System/Specs/Hardware_Software"} description={'Some text here about this section'}/>
+				<SectionTitle directory='' run={"View >> System/Specs/Hardware_Software"} description={`Want to know what I'm running in my build, give it a check out!`}/>
 				<div className="spec">
 					<p className='spec-text'> <b>{'O/S >>'}</b> Windows 11 x64</p>
 					<p className='spec-text'> <b>{'CPU >>'}</b> Intel Core i9 13900 24 Cores 5.20 GHz</p>

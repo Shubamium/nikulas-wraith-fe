@@ -8,7 +8,7 @@ export default function ContactSection() {
 	return (
 		<section id="contacts">
 				<Window header='Contacts'>
-					<SectionTitle contained={true} directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe' run={<>{'run >>'} <b>contact-form</b>.bat</>}/>
+					<SectionTitle contained={true} directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe' description='Write your message here to me Spirit, and I shall respond' run={<>{'run >>'} <b>contact-form</b>.bat</>}/>
 					<form className='contact-form container'>
 						<div className="form-field">
 							<label htmlFor="name">Enter your Name:</label>
