@@ -1,3 +1,15 @@
+.footer-decor{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	position: relative;
+	top: 20px;
+	z-index: -20;
+	img{
+		max-width: 100%;
+	}
+}
+
 #footer{
 	background: #222327;
 	.container{
@@ -10,6 +22,10 @@
 	
 	.footer-side{
 		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 1vw;
+		padding: 1vw;
 		img{
 			max-width: 100%;
 		}

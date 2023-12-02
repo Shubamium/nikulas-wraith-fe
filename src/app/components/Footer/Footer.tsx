@@ -4,7 +4,12 @@ import './Footer.scss';
 
 export default function Footer() {
 	return (
-		<footer id="footer">
+		<>
+			<div className="footer-decor">
+				<img src="decor/header_l.png" alt="" className="l" />
+				<img src="decor/header_r.png" alt=""  className="r"/>
+			</div>
+			<footer id="footer">
 			<div className="container">
 			<div className="footer-side">
 					<img src="/decor/main_logo.png" alt="" className="logo" />
@@ -21,6 +26,7 @@ export default function Footer() {
 							</div>
 					</nav>
 					<img src="decor/connect-footer.png" alt="" className="decor_footer" />
+					<img src="decor/footer_decor_thingy.png" alt="" />
 			</div>
 			<div className="footer-content">
 				<div className="footer-data">
@@ -140,5 +146,6 @@ export default function Footer() {
 			</div>
 			</div>
 		</footer>
+		</>
 	)
 }
