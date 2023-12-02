@@ -3,8 +3,40 @@ import "./artworksSection.scss";
 import Window from "@/app/components/Window/Window";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import ArtDisplayer from "@/app/components/ArtDisplayer/ArtDisplayer";
+import { fetchData, urlFor } from "@/db/client";
 
-export default function ArtworksSection() {
+type FanArtType = {
+  _id: string;
+  artwork: any;
+  name: string;
+  link: string; // Assuming 'link' is of type 'string'. Change it to the correct type.
+};
+
+type NikArtType = {
+  _id: string;
+  artwork: any;
+};
+export default async function ArtworksSection() {
+
+	const fanArtData = await fetchData(`
+	*[_type == 'fan-art']{
+		_id,
+		artwork,
+		name,
+		link
+	}	
+	`) as FanArtType[]
+
+	const nikArtData = await fetchData(
+		`
+		*[_type == 'nik-art']{
+			_id,
+			artwork
+		}
+		
+		`
+	) as NikArtType[]
+
   return (
     <section id="artwork">
       <h2 className="title glowText">{'<<'} Artwork {'>>'}</h2>
@@ -20,7 +52,13 @@ export default function ArtworksSection() {
                 </>
               }
             />
-						<ArtDisplayer images={['a','b','s']}/>
+							<ArtDisplayer images={fanArtData.map((art)=>{
+								return { 
+									url:urlFor(art.artwork).url(),
+									link:art.link,
+									name: art.name,
+								}
+							})}/>
           </Window>
         </div>
         <div className="nikart">
@@ -34,7 +72,11 @@ export default function ArtworksSection() {
                 </>
               }
             />
-							<ArtDisplayer images={['a','b','s']}/>
+							<ArtDisplayer images={nikArtData.map((art)=>{
+								return { 
+									url:urlFor(art.artwork).url(),
+								}
+							})}/>
 
             <div className="art-displayer"></div>
           </Window>

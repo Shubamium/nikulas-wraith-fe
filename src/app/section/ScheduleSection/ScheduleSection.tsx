@@ -1,7 +1,7 @@
 import React from "react";
 import "./scheduleSection.scss";
 
-export default function ScheduleSection() {
+export default function ScheduleSection({url}:any) {
   return (
     <section id="schedules">
       <div className="sched-img">
@@ -9,7 +9,7 @@ export default function ScheduleSection() {
           <img src="decor/sched_heading.png" alt="" />
           <img src="decor/sched_text.png" alt="" />
         </div>
-        <img src="/art/schedule_placeholder.png" alt="" />
+        <img src={url ?? "/art/schedule_placeholder.png"} alt="" />
       </div>
     </section>
   );
