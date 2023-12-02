@@ -14,7 +14,9 @@
 			&:hover,&.active{
 				color: #C9E5FD;
 				scale: 1.05;
+				font-weight: bold;
 			}
+			
 		}
 	}
 
@@ -28,6 +30,10 @@
 				a{
 					font-weight: bold;
 					color: #C9E5FD;
+
+					&:hover{
+						text-decoration: underline;
+					}
 				}
 			}
 		}
@@ -46,6 +52,10 @@
 				max-width: 100%;
 				height: 350px;
 				display: block;
+
+				&:hover{
+					object-fit: contain;
+				}
 			}
 		}
 	}

@@ -14,11 +14,20 @@ import { groq } from "next-sanity";
 type GeneralType = {
   _id: string;
   preset: string;
-  schedules: any; // Assuming 'schedules' is of type 'string'. Change it to the correct type.
+  schedules: any;
   stats: {
     bad: number;
     good: number;
   };
+};
+
+type ModelsType = {
+  _id: string;
+  type: string;
+  name: string;
+  link: string; 
+  artwork_large: any; 
+  artwork_small: any; 
 };
 export default async function Home() {
 
@@ -31,13 +40,32 @@ export default async function Home() {
 	}
 	`) as GeneralType[])[0]
 
+
+	const modelsData = await fetchData(`
+	*[_type == 'models']{
+		_id,
+		type,
+		name,
+		link,
+		artwork_large,
+		artwork_small
+	}
+	`) as ModelsType[]
   return (
     <>
 				<main id="container_home">
 					<HeroSection />
 					<AboutSection />
 					<SocialsSection />
-					<ModelSection />
+					<ModelSection models={modelsData.map((model)=>{
+						return {
+							link:model.link,
+							name:model.name,
+							type:model.type,
+							large:urlFor(model.artwork_large).url(),
+							small: urlFor(model.artwork_small).url(),
+						}
+					})} />
 					<ScheduleSection url={urlFor(generalData.schedules).url()} />
 					<ArtworksSection />
 					<SetupSection/>
