@@ -35,8 +35,8 @@ export default function SupportSection() {
 								<img src="decor/throne_logo.png" alt="" />
 							</div>
 							<div className="details">
-							<h2>Ko-Fi</h2>
-							<p>{'>>'} <a href="https://throne.com/nikulaswraith" target='_blank'>https://ko-fi.com/nikulaswraith</a></p>
+							<h2>Throne</h2>
+							<p>{'>>'} <a href="https://throne.com/nikulaswraith" target='_blank'>https://throne.com/nikulaswraith</a></p>
 							</div>
 						</div>
 				</div>

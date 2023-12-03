@@ -16,7 +16,7 @@ export default function ContactSection() {
 						</div>
 						<div className="form-field">
 							<label htmlFor="email">Enter your e-mail:</label>
-							<input type="text" name="name" id="email" className='field'  placeholder='email@gmail.com' required/>
+							<input type="text" name="email" id="email" className='field'  placeholder='email@gmail.com' required/>
 						</div>
 						<div className="form-field">
 							<label htmlFor="messages">Message:</label>

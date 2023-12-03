@@ -1,0 +1,59 @@
+.path-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	text-align: center;
+	.paths{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+
+		.path{
+			cursor: pointer;
+			width: 100%;
+			// min-width: 0%;
+			// background-color: red;
+			.path-button{
+				display: flex;
+				width: 100%;
+				&:hover{
+					svg{
+						scale: 1;
+					}
+				}
+				// font-family: 'Lato', sans-serif;
+				background: none;
+				border: none;
+				position: absolute;
+				align-items: center;
+				svg{
+					transition: all 150ms ease;
+					position: absolute;
+					margin: -2em 0;
+					margin-right: -5em;
+					scale: .7;
+					z-index: -10;
+				}
+				p{
+					color: #C9E5FD;
+					font-size: 1.2rem;
+					text-align: center;
+				}
+			}
+			.path-art{
+				// margin: 0 auto;
+				// margin-bottom: -500px;
+				max-width: 100%;
+			}
+
+			&.good{
+
+			}
+
+			&.corruption{
+			}
+		}
+	}
+}

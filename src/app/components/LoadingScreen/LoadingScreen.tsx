@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './loadingScreen.scss'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import PathChooser from '../PathChooser/PathChooser'
 
 export default function LoadingScreen({}) {
 
@@ -9,7 +10,12 @@ export default function LoadingScreen({}) {
 	const [canPower, setCanPower] = useState(false)
 	const [isSplashing , setIsSplashing] = useState(false)
 	const [remove , setRemove] = useState(false)
+
+	const [pathChoosen, setPathChoosen] = useState(false)
+	const [choosingPath, setChoosingPath] = useState(false)
 	const audioRef = useRef<HTMLAudioElement>(null)
+	const hasChoosenPath = window !== undefined && Boolean(localStorage.getItem('hasChoosenPath'))
+
 	useEffect(()=>{
 		window.addEventListener('DOMContentLoaded',()=>{
 			console.log('load')
@@ -28,14 +34,25 @@ export default function LoadingScreen({}) {
 		audioRef.current?.play()
 		setTimeout(()=>{
 			setIsLoaded(true)
-			setTimeout(()=>{
-				document.body.classList.add('loaded')
-				setRemove(true)
-			},1000)
+			
+			if(!hasChoosenPath){
+				setTimeout(()=>{
+					document.body.classList.add('loaded')
+					setRemove(true)
+				},1000)
+			}else{
+				setTimeout(()=>{
+					setChoosingPath(true)
+				},1000)
+			}
 		},1000)
 	}
-
+	
+	if(choosingPath) return (
+		<PathChooser onPathChosen={handleClearLoading}/>
+	)
 	if(remove) return <></>
+
 	return (
 		<div className={`loading-screen ${isLoaded ? 'loaded' : ''}`}>
 			<div className="decor_frame top">

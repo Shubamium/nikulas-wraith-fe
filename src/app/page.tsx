@@ -73,7 +73,7 @@ export default async function Home() {
 					<SetupSection/>
 					<SupportSection/>
 					<ContactSection/>
-			<Footer/>
+					<Footer/>	
 			</main>
 		</>
   );
