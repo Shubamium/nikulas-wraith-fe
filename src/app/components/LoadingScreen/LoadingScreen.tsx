@@ -14,7 +14,7 @@ export default function LoadingScreen({}) {
 	const [pathChoosen, setPathChoosen] = useState(false)
 	const [choosingPath, setChoosingPath] = useState(false)
 	const audioRef = useRef<HTMLAudioElement>(null)
-	const hasChoosenPath = window !== undefined && Boolean(localStorage.getItem('hasChoosenPath'))
+	const hasChoosenPath = Boolean(localStorage.getItem('hasChoosenPath'))
 
 	useEffect(()=>{
 		window.addEventListener('DOMContentLoaded',()=>{
