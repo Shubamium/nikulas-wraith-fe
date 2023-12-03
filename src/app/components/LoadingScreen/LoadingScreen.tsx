@@ -70,6 +70,9 @@ export default function LoadingScreen({}) {
 							<div className="fill"></div>
 							<div className="fill"></div>
 							<div className="fill"></div>
+							<div className="fill"></div>
+							<div className="fill"></div>
+							<div className="fill"></div>
 						</div>
 					</div>
 				</div>

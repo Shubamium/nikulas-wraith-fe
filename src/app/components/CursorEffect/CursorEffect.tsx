@@ -7,7 +7,7 @@ export default function CursorEffect() {
 	const spawnRef = useRef<HTMLDivElement | null>(null)
 	useEffect(() => {
 		
-		window.addEventListener('mousedown',(e) => {
+		window.addEventListener('click',(e) => {
 			if(spawnRef.current){
 				const shockEl = document.createElement('div');
 				shockEl.classList.add('shockwave');
