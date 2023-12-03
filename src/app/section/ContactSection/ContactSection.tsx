@@ -9,7 +9,7 @@ export default function ContactSection() {
 		<section id="contacts">
 				<Window header='Contacts'>
 					<SectionTitle contained={true} directory='C:/Users/NikulasWraith/Project_Phantom/Nik.exe' description='Write your message here to me Spirit, and I shall respond' run={<>{'run >>'} <b>contact-form</b>.bat</>}/>
-					<form className='contact-form container' method='POST' action={''} >
+					<form className='contact-form container' method='POST' action={'https://formspree.io/f/mqkvvvkb'} >
 						<div className="form-field">
 							<label htmlFor="name">Enter your Name:</label>
 							<input type="text" name="name" id="name" className='field'  placeholder='Your Name' required/>
