@@ -82,10 +82,13 @@ body{
 main{
 	// min-height: 1110vh;
 	pointer-events: none;
-	padding-bottom: 200px;
+	// margin-bottom: 200px;
 	opacity: .002;
 	transition: opacity 2s;
-
+	height: 100%;
+	// footer{
+		// margin-top: 200px;
+	// }
 }
 .animate-hologram{
 		animation: hologram-expand 4s ease;

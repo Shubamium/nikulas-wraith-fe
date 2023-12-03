@@ -55,7 +55,7 @@ export default async function Home() {
   return (
     <>
 
-				<main id="container_home">
+			<main id="container_home">
 					<HeroSection />
 					<AboutSection />
 					<SocialsSection />
@@ -73,8 +73,8 @@ export default async function Home() {
 					<SetupSection/>
 					<SupportSection/>
 					<ContactSection/>
-				</main>
 			<Footer/>
+			</main>
 		</>
   );
 }

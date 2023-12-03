@@ -8,6 +8,7 @@ export default function LoadingScreen({}) {
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [canPower, setCanPower] = useState(false)
 	const [isSplashing , setIsSplashing] = useState(false)
+	const [remove , setRemove] = useState(false)
 	const audioRef = useRef<HTMLAudioElement>(null)
 	useEffect(()=>{
 		window.addEventListener('DOMContentLoaded',()=>{
@@ -29,9 +30,12 @@ export default function LoadingScreen({}) {
 			setIsLoaded(true)
 			setTimeout(()=>{
 				document.body.classList.add('loaded')
+				setRemove(true)
 			},1000)
 		},1000)
 	}
+
+	if(remove) return <></>
 	return (
 		<div className={`loading-screen ${isLoaded ? 'loaded' : ''}`}>
 			<div className="decor_frame top">
