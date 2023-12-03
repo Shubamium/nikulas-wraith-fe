@@ -57,7 +57,6 @@ export default async function Footer() {
 								<a href="#socials">Socials</a>
 							</div>
 					</nav>
-					<img src="decor/connect-footer.png" alt="" className="decor_footer" />
 					<img src="decor/footer_decor_thingy.png" alt="" />
 			</div>
 			<div className="footer-content">

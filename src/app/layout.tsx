@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Fira_Code, Inter } from 'next/font/google'
 import './globals.scss'
 import CursorEffect from './components/CursorEffect/CursorEffect'
+import { Suspense } from 'react'
+import LoadingScreen from './components/LoadingScreen/LoadingScreen'
 
 const fira = Fira_Code({ subsets: ['latin'] })
 
@@ -50,7 +52,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={fira.className}>
 				<CursorEffect />
-				{children}
+				<LoadingScreen/>
+					{children}
 				<div className="bg-grid"></div>
 			</body>
     </html>

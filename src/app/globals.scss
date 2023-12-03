@@ -68,10 +68,24 @@ body{
 	max-width: min(1000px,90%);
 	margin: .5em auto;
 }
+body{
+	overflow: hidden;
+	&.loaded{
+		overflow: visible;
+
+		main{
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+}
 main{
 	// min-height: 1110vh;
+	pointer-events: none;
 	padding-bottom: 200px;
-	// opacity: .002;
+	opacity: .002;
+	transition: opacity 2s;
+
 }
 .animate-hologram{
 		animation: hologram-expand 4s ease;

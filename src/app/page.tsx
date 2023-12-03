@@ -10,6 +10,7 @@ import SetupSection from "./section/SetupSection/SetupSection";
 import SocialsSection from "./section/SocialsSection/SocialsSection";
 import SupportSection from "./section/SupportSection/SupportSection";
 import { groq } from "next-sanity";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
 type GeneralType = {
   _id: string;
@@ -53,6 +54,7 @@ export default async function Home() {
 	`) as ModelsType[]
   return (
     <>
+
 				<main id="container_home">
 					<HeroSection />
 					<AboutSection />

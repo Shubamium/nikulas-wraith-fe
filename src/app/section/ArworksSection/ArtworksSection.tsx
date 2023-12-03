@@ -31,11 +31,13 @@ export default async function ArtworksSection() {
 		`
 		*[_type == 'nik-art']{
 			_id,
-			artwork
+			artwork,
+			name,
+			link
 		}
 		
 		`
-	) as NikArtType[]
+	) as FanArtType[]
 
   return (
     <section id="artwork">
@@ -75,6 +77,8 @@ export default async function ArtworksSection() {
 							<ArtDisplayer images={nikArtData.map((art)=>{
 								return { 
 									url:urlFor(art.artwork).url(),
+									link:art.link,
+									name:art.name,
 								}
 							})}/>
 
