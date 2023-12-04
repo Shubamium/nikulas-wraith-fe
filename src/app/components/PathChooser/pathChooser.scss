@@ -1,33 +1,69 @@
 .path-container{
 	display: flex;
+	// position: absolute;
+	// top: 0;
+	// left: 0;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	height: 100vh;
 	width: 100vw;
 	text-align: center;
+	padding-bottom: 40vh;
+	.title{
+		margin-bottom: 3em;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	
+		h2,p{
+			white-space: nowrap;
+			overflow: hidden;
+			border-right: 2px solid #C9E5FD;
+			animation: typewriter 2s forwards,
+			blink-caret .75s step-end infinite;
+			width: 0%;
+		}
+		h2{
+			font-size: 2rem;
+			font-weight: normal;
+		}
+		p{
+			color: #5960B5;
+			animation: typewriter 5s forwards,
+			blink-caret .75s step-end infinite;
+			animation-delay: 2s;
+			border-width: 0px;
+		}
+	}
 	.paths{
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-
+		width: 100%;
+		align-items: center;
+		gap: 10em;
+		display: flex;
+		justify-content: center;
+		
 		.path{
 			cursor: pointer;
-			width: 100%;
-			// min-width: 0%;
-			// background-color: red;
+			position: relative;
+			opacity: 0;
+			animation: fade-in 1.5s forwards;
 			.path-button{
 				display: flex;
 				width: 100%;
+				margin: 2em 0;
+				transition: all 250ms ease;
 				&:hover{
 					svg{
-						scale: 1;
+						scale: .8;
 					}
 				}
-				// font-family: 'Lato', sans-serif;
+				&:active{
+					scale: .8;
+				}
 				background: none;
 				border: none;
-				position: absolute;
-				align-items: center;
 				svg{
 					transition: all 150ms ease;
 					position: absolute;
@@ -39,6 +75,7 @@
 				p{
 					color: #C9E5FD;
 					font-size: 1.2rem;
+					margin: 0 2em;
 					text-align: center;
 				}
 			}
@@ -49,11 +86,115 @@
 			}
 
 			&.good{
-
+				svg{
+					left: -5%;
+				}
+				animation-delay: 5s;
 			}
 
 			&.corruption{
+				animation-delay: 6s;
+				p{
+					color: #228329;
+				}
+				svg{
+					right: 20%;
+					circle{
+						&:first-of-type{
+							fill:#324918;
+						}
+						stroke:#324918;
+					}
+					// transform-origin: left;
+				}
 			}
 		}
+	}
+	
+			.path-art{
+				position: relative;
+				width: 100%;
+				justify-content: center;
+				z-index: -100;
+				height: 0;
+				// filter: saturate(0%);
+				// align-items: center;
+				.nik{
+					position: absolute;
+					// left: 0%;
+					// left: 50%;
+					top: 0%;
+					width: 400px;
+					height: auto;
+					object-fit: contain;
+					object-position: top;
+					
+				}
+				.good-nik{
+					right: 50%;
+					animation: good-nik 2s ease forwards,
+					fade-in 1s ease forwards;
+					animation-delay: 7s;
+					right: 0;
+					opacity: 0;
+				}
+				.bad-nik{
+					left: 50%;
+					animation: bad-nik 2s ease forwards,
+					fade-in 1s ease forwards;
+					animation-delay: 7s;
+					left: 0%;
+					opacity: 0;
+				}
+			}
+}
+@keyframes good-nik {
+	0%{
+		right: 0%;
+		filter: saturate(0%);
+	}
+	100%{
+		right: 50%;
+		filter: saturate(100%);
+	}
+}
+@keyframes bad-nik {
+	0%{
+		filter: saturate(0%);
+		left: 0%;
+	}
+	100%{
+		filter: saturate(100%);
+		left: 50%;
+	}
+}
+@keyframes typewriter {
+	0%{
+		width: 0%;
+		border-width: 4px;
+	}
+	80%{
+		border-width: 4px;
+	}
+	90%{
+		border-width: 0px;
+	}
+	100%{
+		width: 100%; border-width: 0px;
+	}
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+	from, to { border-color: transparent }
+	50% { border-color: #AFD9FD; }
+}
+
+@keyframes fade-in {
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
 	}
 }

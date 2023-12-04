@@ -7,9 +7,10 @@ type Props = {
 export default function PathChooser({onPathChosen}: Props) {
 	return (
 		<div className='path-container'>
-				<h2>Welcome To The Phantom Realm, Spirit!</h2>
-				<p>A choice for you to make before you enter.</p>
-
+				<div className="title">
+					<h2>Welcome To The <b>Phantom Realm</b>, Spirit!</h2>
+					<p>A choice for you to make before you enter.</p>
+				</div>
 				<div className="paths">
 					
 					<div className="path good">
@@ -31,6 +32,11 @@ export default function PathChooser({onPathChosen}: Props) {
 							</svg>
 						</div>
 					</div>
+					
+				</div>
+				<div className="path-art">
+					<img src="art/nik.png" alt="" className='nik good-nik' />
+					<img src="art/cor_nik.png" alt="" className='nik bad-nik' />
 				</div>
 		</div>
 	)

@@ -24,7 +24,7 @@ export default function LoadingScreen({}) {
 		})
 		setTimeout(()=>{
 			setCanPower(true)
-		},6000)
+		},60)
 		// setTimeout(()=>{
 			// setIsLoaded(true)
 		// },10000)
@@ -36,7 +36,7 @@ export default function LoadingScreen({}) {
 		setTimeout(()=>{
 			setIsLoaded(true)
 			
-			if(hasChoosenPath){
+			if(!hasChoosenPath){
 				setTimeout(()=>{
 					document.body.classList.add('loaded')
 					setRemove(true)
