@@ -4,43 +4,49 @@ import './loadingScreen.scss'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import PathChooser from '../PathChooser/PathChooser'
 
-export default function LoadingScreen({}) {
+
+export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [canPower, setCanPower] = useState(false)
 	const [isSplashing , setIsSplashing] = useState(false)
+	const [hasChoosenPath , setHasChoosenPath] = useState(false)
 	const [remove , setRemove] = useState(false)
 
 	const [pathChoosen, setPathChoosen] = useState(false)
 	const [choosingPath, setChoosingPath] = useState(false)
 	const audioRef = useRef<HTMLAudioElement>(null)
-	const hasChoosenPath = true
+	// const hasChoosenPath = true
 	//Boolean(localStorage.getItem('hasChoosenPath')) 
 
 	useEffect(()=>{
-		window.addEventListener('DOMContentLoaded',()=>{
-			console.log('load')
-			console.error('hey')
-		})
+		setHasChoosenPath(Boolean(localStorage.getItem('hasChoosenPath')))
 		setTimeout(()=>{
 			setCanPower(true)
-		},60)
-		// setTimeout(()=>{
+		},6000)
+
+		// If it lags 60s will automatically skip everything
+		setTimeout(()=>{
 			// setIsLoaded(true)
-		// },10000)
+			handleClear()
+		},60000)
 	},[])
 
+	const showWebsite = ()=>{
+		console.log('showing website')
+		setTimeout(()=>{
+			setIsLoaded(true)
+			document.body.classList.add('loaded')
+			setRemove(true)
+		},1000)
+	}
 	const handleClearLoading = () => {
 		setIsSplashing(true)
 		audioRef.current?.play()
 		setTimeout(()=>{
-			setIsLoaded(true)
-			
-			if(!hasChoosenPath){
-				setTimeout(()=>{
-					document.body.classList.add('loaded')
-					setRemove(true)
-				},1000)
+			if(hasChoosenPath){
+				console.log('has choosen path')
+				showWebsite()
 			}else{
 				setTimeout(()=>{
 					setChoosingPath(true)
@@ -49,8 +55,12 @@ export default function LoadingScreen({}) {
 		},1000)
 	}
 	
+	const handleClear = () =>{
+		showWebsite()
+	}
+	console.log(bad,good)
 	if(choosingPath) return (
-		<PathChooser onPathChosen={handleClearLoading}/>
+		<PathChooser onPathChosen={handleClear} bad={bad} good={good}/>
 	)
 	if(remove) return <></>
 

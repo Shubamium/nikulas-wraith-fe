@@ -12,7 +12,7 @@ import SupportSection from "./section/SupportSection/SupportSection";
 import { groq } from "next-sanity";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
-type GeneralType = {
+export type GeneralType = {
   _id: string;
   preset: string;
   schedules: any;
@@ -52,9 +52,10 @@ export default async function Home() {
 		artwork_small
 	}
 	`) as ModelsType[]
+	console.log(generalData.stats)
   return (
     <>
-
+			<LoadingScreen bad={generalData.stats.bad} good={generalData.stats.good}/>
 			<main id="container_home">
 					<HeroSection />
 					<AboutSection />

@@ -1,5 +1,6 @@
 import {createClient} from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
+import { GeneralType } from '@/app/page'
 
 export const client = createClient({
 	projectId:'6l12l23f',
@@ -24,7 +25,7 @@ export function fetchData<T>(grocQuery:string){
 	return client.fetch<T>(grocQuery,undefined,{...config});
 }
 
-export function mutateData(documentType:string, data:any){
+export function createData(documentType:string, data:any){
 	const mutation = {
 			_type: documentType,
 			...data
@@ -33,3 +34,15 @@ export function mutateData(documentType:string, data:any){
 	return client.create(mutation)
 	
 }
+
+export async function mutateData(data:any){
+	const idQuery = `*[_type == 'general' && preset == 'main']{
+		_id,
+		preset,
+	}`
+
+	const generalData = await client.fetch(idQuery) as GeneralType[]
+	const selectedDocument = generalData[0]
+	return client.patch(selectedDocument._id).set(data).commit()
+}
+
