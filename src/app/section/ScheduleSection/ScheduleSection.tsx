@@ -7,7 +7,7 @@ export default function ScheduleSection({url}:any) {
       <div className="sched-img">
         <div className="header">
           <img src="decor/sched_heading.png" alt="" />
-          <img src="decor/sched_text.png" alt="" />
+          <img src="decor/sched_text.png" alt="" className="decor" />
         </div>
         <img src={url ?? "/art/schedule_placeholder.png"} alt="" />
       </div>
