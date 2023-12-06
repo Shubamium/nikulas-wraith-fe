@@ -31,3 +31,25 @@
 		opacity: 0;
 	}
 }
+
+
+@media screen and (width <= 768px) {
+	.section-title .directory{
+		font-size: 1rem;
+		opacity: .5;
+	}
+
+	.section-title .run-command{
+		font-size: 1.3rem;
+	}
+}
+@media screen and (width <= 425px){
+	.section-title .directory{
+		font-size: .65rem;
+		opacity: .5;
+	}
+
+	.section-title .run-command{
+		font-size: 1rem;
+	}
+}
