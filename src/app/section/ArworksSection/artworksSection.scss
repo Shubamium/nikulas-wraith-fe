@@ -24,3 +24,27 @@
 		}
 	}
 }
+
+
+@media screen and (width <= 670px){
+	#artwork .artwork-list{
+		
+	}
+	.art-displayer .art-container{
+		height: auto;
+		max-height: 100%;
+	}
+	#artwork .title{
+		font-size: 3rem;
+	}
+	#artwork .artwork-list .window-body{
+		width: 100%;
+	}
+}
+
+@media screen and (width <= 425px) {
+	.art-displayer .credit{
+		flex-direction: column;
+		align-items: center;
+	}
+}
