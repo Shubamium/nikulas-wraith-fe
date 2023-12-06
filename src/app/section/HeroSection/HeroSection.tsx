@@ -8,6 +8,10 @@ export default function HeroSection() {
 
 			<div className="display" id='top'>
 				<div className="bg-binary"></div>
+				<div className="window">
+					<img src="decor/window_n.png" alt="" className="popup normal" />
+					<img src="decor/window_c.gif" alt="" className='popup corrupt' />
+				</div>
 				<div className="niks">
 					<img src="/art/nik-art-center.png" alt="" className='nik-center' />
 					{/* <img src="art/nik.png" alt="" className='nik' /> */}
@@ -22,6 +26,17 @@ export default function HeroSection() {
 				<div className="header-frame">
 					<img src="/decor/header_l.png" alt="" />
 					<img src="/decor/header_r.png" alt="" />
+				</div>
+
+			
+				<div className="connection">
+					<img src="decor/top_connect_l.png" alt="" className="line l" />
+					<img src="decor/top_connect_r.png" alt="" className='line r' />
+				</div>
+
+				<div className="arrows">
+					<img src="decor/arrow_small.png" alt="" className='arrow l' />
+					<img src="decor/arrow_small.png" alt="" className='arrow r' />
 				</div>
 			</div>
 			

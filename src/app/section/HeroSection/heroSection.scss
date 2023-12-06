@@ -60,6 +60,40 @@
 				// width:20px;
 			}
 		}
+
+		.window{
+			position: absolute;
+			// background: red;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			// height:100%;
+			gap: 600px;
+			z-index: -10;
+			padding-top: 120px;
+			.popup{
+				scale: .7;
+				opacity: .5;
+				&.corrupt{
+					position: relative;
+					top: 80px;
+				}
+			}
+		}
+
+		.connection{
+			display: flex;
+			justify-content: center;
+			align-items: end;
+			z-index: -100;
+			width: 100%;
+			gap: 950px;
+			padding-top: 100px;
+			position: absolute;
+		}
 		.header-frame{
 			position: absolute;
 			display: flex;
@@ -68,6 +102,24 @@
 			z-index: -2;
 			justify-content: space-between;
 		
+		}
+
+		.arrows{
+			position: absolute;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1350px;
+			height: 550px;
+			.arrow{
+				transition: all 100ms ease;
+
+				&.r{
+					rotate: 180deg;
+				}
+			}
+
 		}
 	}
 
