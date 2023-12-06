@@ -1,7 +1,8 @@
 #container_hero{
 
 	.display{
-
+		overflow: hidden;
+		max-width: 100vw;
 		.bg-binary{
 			width: 100%;
 			height: 100%;
@@ -152,6 +153,79 @@
 
 	
 			}
+		}
+	}
+}
+
+
+@media screen and (width <= 1024px){
+	#container_hero .display .niks .frame-main{
+		width: 900px;
+		bottom: 30%;
+		scale: .8 1;
+	}
+	#container_hero .display .header-frame img{
+		width: 35%;
+		// scale: .7;
+	}
+	#container_hero .display .window{
+		scale: .8;
+		gap: 500px;
+	}
+	#container_hero .display .connection{
+		gap: 650px;
+		padding-top: 200px;
+		img{
+			scale: .5;
+		}
+	}
+}
+
+@media screen and (width <= 768px) {
+	#container_hero .display .niks{
+		height: 300px;
+	}
+	#container_hero .display .logo-container{
+		.main-logo{
+			max-width: 350px;
+		}
+	}
+	#container_hero .display .window{
+		// scale: .5;
+		// padding-top: 10px;
+		// gap: 600px;
+		padding-top: 0px;
+		img{
+			scale: .4;
+		}
+	}
+	#container_hero .display{
+		min-height: 400px;
+	}
+	#container_hero .display .connection{
+		gap: 500px;
+		padding-top:20px;
+		// scale: -1 1;
+		img{
+			scale: .5;
+			// max-height: 200px;
+		}
+	}
+}
+
+@media screen and (width <= 425px){
+	#container_hero .display{
+		min-height: 300px;
+	}
+	#container_hero .display .niks{
+		height: 230px;
+		img{
+			
+		}
+	}
+	#container_hero .display .logo-container{
+		.main-logo{
+			max-width: 250px;
 		}
 	}
 }

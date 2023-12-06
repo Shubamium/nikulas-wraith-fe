@@ -14,9 +14,7 @@ export default function HeroSection() {
 				</div>
 				<div className="niks">
 					<img src="/art/nik-art-center.png" alt="" className='nik-center' />
-					{/* <img src="art/nik.png" alt="" className='nik' /> */}
 					<img src="decor/frame-main.png" alt="" className='frame-main' />
-					{/* <img src="art/cor_nik.png" alt="" className='cor-nik' /> */}
 				</div>
 
 
