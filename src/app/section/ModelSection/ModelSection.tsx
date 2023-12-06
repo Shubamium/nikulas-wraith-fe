@@ -34,9 +34,8 @@ export default function ModelSection({models}:ModelSectionType) {
           }
         />
         <nav className="models-navigation">
-    
 					{models.map((model,index)=>{
-						return <p key={model.name} className={index === activeImg ? 'active' : '' } onClick={()=>{changeImage(index)}}>{model.type}{ index !== models.length - 1 ? " || " : ""}</p>
+						return <p key={model.name} className={index === activeImg ? 'active' : '' } onClick={()=>{changeImage(index)}}>{model.type}<span>{ index !== models.length - 1 ? " || " : ""}</span></p>
 					})}
         </nav>
         <div className="model-showcase">

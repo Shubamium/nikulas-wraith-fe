@@ -56,3 +56,12 @@
 		}
 	}
 }
+
+@media screen and (width <= 425px) {
+	#socials .socials-header .container{
+		font-size: 1.4rem;
+	}
+	.section-title .run-command{
+		font-size: .7rem;
+	}
+}

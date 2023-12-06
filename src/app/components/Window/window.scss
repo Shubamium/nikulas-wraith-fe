@@ -36,3 +36,13 @@
 	
 	
 }
+
+@media screen and (width <= 425px) {
+	.window-container .window-header h2{
+		font-size: 1.4rem;
+		padding: .3em;
+	}
+	.window-container .window-header{
+		padding:0.15em;
+	}
+}

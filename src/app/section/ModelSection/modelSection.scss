@@ -13,6 +13,10 @@
 		p{
 			&:hover,&.active{
 				color: #C9E5FD;
+				& span{
+					color: #C9E5FD;
+
+				}
 				scale: 1.05;
 				font-weight: bold;
 			}
@@ -78,5 +82,52 @@
 	100%{
 		filter: drop-shadow(2px 2px 20px #c9e5fd7e);
 
+	}
+}
+
+
+@media screen and (width <= 680px) {
+	#showcase .model-showcase .model-image{
+		display: flex;
+		flex-direction: column;
+	}
+	#showcase .model-showcase .model-info .credit{
+		// padding: 1rem;
+		font-size: 1.2rem;
+		margin: 0;
+	}
+	#showcase .model-showcase .model-info{
+		margin: .25em 0;
+		margin-top: 2em;
+	}
+
+	#showcase .models-navigation{
+		font-size: 1rem;
+	}
+}
+
+
+@media screen and (width <= 425px) {
+
+	#showcase .models-navigation{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 1em;
+		p{
+			background-color: #171a1d;
+			display: flex;
+			width: 100%;
+			font-size: 1.5rem;
+			padding: .25em;
+			justify-content: space-around;
+			span{
+				display: none;
+			}
+			&.active{
+				background-color: #C9E5FD;
+				color: #171a1d;
+			}
+		}
 	}
 }
