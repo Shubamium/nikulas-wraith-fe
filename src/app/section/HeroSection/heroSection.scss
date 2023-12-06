@@ -179,6 +179,9 @@
 			scale: .5;
 		}
 	}
+	#container_hero .header .navigation{
+		font-size: 1.2rem;
+	}
 }
 
 @media screen and (width <= 768px) {
@@ -211,6 +214,10 @@
 			// max-height: 200px;
 		}
 	}
+
+	#container_hero .header .navigation{
+		font-size: 1.1rem;
+	}
 }
 
 @media screen and (width <= 425px){
@@ -226,6 +233,24 @@
 	#container_hero .display .logo-container{
 		.main-logo{
 			max-width: 250px;
+		}
+	}
+
+	
+	#container_hero .header .navigation{
+		font-size: 1.1rem;
+		display: grid;
+		gap: 0.45em;
+		grid-template-columns: 3fr 4px;
+	}
+	#container_hero .header .navigation a{
+		background-color: #0e0d0d42;
+		padding: 0.5em .5em;
+		border-radius: .25em;
+		color: white;
+
+		&.selected{
+			background-color: #36434e;
 		}
 	}
 }
