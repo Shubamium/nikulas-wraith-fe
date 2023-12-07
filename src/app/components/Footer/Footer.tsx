@@ -98,17 +98,18 @@ export default async function Footer() {
 									<h2> {'>>'} Credits</h2>
 							</div>
 							<div className="list">
+							
 								<a className="credit" href="#" >
-									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@Shubamium</p>
-								</a>
-								<a className="credit" href="#" >
-									<p className="role">{'>'} Mdoel</p>
+									<p className="role">{'>'} Model</p>
 									<p className="handle">Yoruhare</p>
 								</a>
 								<a className="credit" href="#" >
 									<p className="role">{'>'} Rigging</p>
 									<p className="handle">Adhle</p>
+								</a>
+								<a className="credit" href="https://twitter.com/Shubamium2" >
+									<p className="role">{'>'} Website Design</p>
+									<p className="handle">Shubamium</p>
 								</a>
 							</div>
 					</div>

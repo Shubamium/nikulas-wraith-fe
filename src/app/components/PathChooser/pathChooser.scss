@@ -272,7 +272,6 @@
 	display: block;
 	height: 100vh;
 	width: 100vw;
-	// height: 0vh;
 	position: fixed;
 }
 .thepaths.done{
@@ -347,5 +346,88 @@
 	}
 	100%{
 		opacity: 1;
+	}
+}
+
+@media screen and (width <= 730px){
+	.path-container .path-picker .title h2{
+		font-size: 1.2rem;
+	}
+	.path-container .path-picker .paths{
+		gap: 2em;
+	}
+	.path-container .path-picker .path-art .good-nik{
+		transform: translateX(70px);
+	}
+	.path-container .path-picker .path-art .bad-nik{
+		transform: translateX(-70px) translateY(-30px);
+	}
+}
+
+@media screen and (width <= 600px) {
+	.path-result.choosen .arrow{
+		display: none;
+	}
+	.path-result .bar{
+		width: 80%;
+	}
+	.path-container .path-picker .paths .path .path-button p{
+		font-size: 1rem;
+	}
+	.path-container .path-picker .path-art .good-nik{
+		transform: translateX(70px) scale(0.8);
+	}
+	.path-container .path-picker .path-art .bad-nik{
+		transform: translateX(-70px) translateY(-30px) scale(0.8);
+	}
+}
+
+@media screen and (width <= 520px) {
+	.path-container{
+		padding-bottom: 70vh;
+	}
+	.path-container .path-picker .title{
+		margin-bottom: 0;
+	}
+	.path-container .path-picker .paths .path .path-button p{
+		font-size: .7rem;
+	}
+	.path-container .path-picker .paths .path.good svg,.path-container .path-picker .paths .path.corruption svg{
+		scale: .3;
+		opacity: 0;
+	}
+	.path-container .path-picker .paths .path.corruption .path-button{
+		background-color: #324918ad;
+	}
+	.path-container .path-picker .paths .path.good .path-button{
+		background-color: #181f49;
+	}
+	.path-container .path-picker .path-art .good-nik{
+		transform: translateX(70px) scale(0.8);
+	}
+	.path-container .path-picker .path-art .bad-nik{
+		transform: translateX(-70px) translateY(-30px) scale(0.8);
+	}
+}
+
+@media screen and (width <= 425px) {
+	.path-result{
+		display: flex;
+		flex-direction: column;
+		& .bar{
+			width: 90%;
+		}
+	}
+	.path-container .path-picker .title{
+		font-size: .6rem;
+	}
+	.path-container .path-picker .title h2{
+		font-size: .8rem;
+	}
+	.path-container .path-picker .path-art .nik{
+		width: 300px;
+	}
+	.path-container .path-picker .paths{
+		gap: .25em;
 	}
 }

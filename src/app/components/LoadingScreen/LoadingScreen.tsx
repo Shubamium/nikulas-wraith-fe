@@ -12,7 +12,7 @@ export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 	const [isSplashing , setIsSplashing] = useState(false)
 	const [hasChoosenPath , setHasChoosenPath] = useState(false)
 	const [remove , setRemove] = useState(false)
-
+	const [timeouted,setTimeouted] = useState(false)
 	const [pathChoosen, setPathChoosen] = useState(false)
 	const [choosingPath, setChoosingPath] = useState(false)
 	const audioRef = useRef<HTMLAudioElement>(null)
@@ -29,6 +29,7 @@ export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 		setTimeout(()=>{
 			// setIsLoaded(true)
 			handleClear()
+			setTimeouted(true)
 		},60000)
 	},[])
 
@@ -59,7 +60,7 @@ export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 		showWebsite()
 	}
 	console.log(bad,good)
-	if(choosingPath) return (
+	if(choosingPath && !timeouted) return (
 		<PathChooser onPathChosen={handleClear} bad={bad} good={good}/>
 	)
 	if(remove) return <></>
