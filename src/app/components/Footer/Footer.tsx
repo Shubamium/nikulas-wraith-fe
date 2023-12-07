@@ -57,7 +57,7 @@ export default async function Footer() {
 								<a href="#socials">Socials</a>
 							</div>
 					</nav>
-					<img src="decor/footer_decor_thingy.png" alt="" />
+					<img src="decor/footer_decor_thingy.png" alt="" className="decor" />
 			</div>
 			<div className="footer-content">
 				<div className="footer-data">
@@ -100,23 +100,15 @@ export default async function Footer() {
 							<div className="list">
 								<a className="credit" href="#" >
 									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@their_handle</p>
+									<p className="handle">@Shubamium</p>
 								</a>
 								<a className="credit" href="#" >
-									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@their_handle</p>
+									<p className="role">{'>'} Mdoel</p>
+									<p className="handle">Yoruhare</p>
 								</a>
 								<a className="credit" href="#" >
-									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@their_handle</p>
-								</a>
-								<a className="credit" href="#" >
-									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@their_handle</p>
-								</a>
-								<a className="credit" href="#" >
-									<p className="role">{'>'} Website Design</p>
-									<p className="handle">@their_handle</p>
+									<p className="role">{'>'} Rigging</p>
+									<p className="handle">Adhle</p>
 								</a>
 							</div>
 					</div>

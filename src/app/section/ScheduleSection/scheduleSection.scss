@@ -63,6 +63,9 @@
 @media screen and (width <= 1200px) {
 	#schedules .sched-img{
 		scale: 1.2;
+		&:hover{
+			scale: initial;
+		}
 	}
 }
 
@@ -96,3 +99,4 @@
 		}
 	}
 }
+

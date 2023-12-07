@@ -28,7 +28,7 @@ export default function ArtDisplayer({images}:artDisplayerProps) {
 			</div>
 			{images[imgId].link && images[imgId].name && (
 				<div className="credit">
-					<p>Artwork by </p><a href={images[imgId].link}>{images[imgId].name}</a>
+					<p>Artwork by </p><a href={images[imgId].link} target='_blank'>{images[imgId].name}</a>
 				</div>
 			)}
 			<div className="controls">

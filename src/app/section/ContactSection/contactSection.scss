@@ -59,3 +59,9 @@
 		}
 	}
 }
+
+@media screen and (width <= 425px) {
+	#contacts .section-title .description{
+		margin: 1.5em 0.25em;
+	}
+}

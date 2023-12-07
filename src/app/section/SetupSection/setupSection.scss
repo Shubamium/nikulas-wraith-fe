@@ -41,3 +41,23 @@
 
 	
 }
+
+@media screen and (width <= 768px) {
+	#setup .setup-container .spec{
+		gap: 2em;
+		& .spec-text{
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+
+}
+
+@media screen and (width <= 425px) {
+	#setup .setup-container .decor_small_arrow{
+		rotate: 90deg;
+		left: 70%;
+		top: -15%;	
+	}
+}

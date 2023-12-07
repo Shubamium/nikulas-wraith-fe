@@ -251,3 +251,66 @@
 	}
 
 }
+
+@media screen and (width <= 1024px){
+		.footer-decor{
+			img{
+				max-width:40%;
+			}
+		}
+	
+}
+@media screen and (width <= 869px) {
+	#footer .footer-content{
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (width < 550px) {
+	#footer .footer-content .people .credits .list{
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	#footer .footer-content .footer-data .footer-socials{
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		a{
+			width: 100%;
+			// font-size: 1.2rem;
+			svg{
+				width: 1.5em;
+				height: 1.5em;
+			}
+		}
+	}
+	#footer .footer-content .people .vip .list{
+		display: flex;
+		flex-direction: column;
+		grid-area: 1em;
+	}
+}
+
+@media screen and (width <= 425px){
+	#footer .container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#footer .footer-side .decor{
+		display: none;
+	}
+	#footer .footer-content{
+		flex-direction: column-reverse;
+	}
+	#footer .footer-side{
+		margin: 1em 0;
+	}
+	.footer-decor{
+		img{
+			max-width:50%;
+		}
+	}
+}
