@@ -73,8 +73,8 @@ body{
 body{
 	overflow: hidden;
 	&.loaded{
-		overflow: visible;
-
+		overflow-y: visible;
+		overflow-x: hidden;
 		main{
 			max-width: 100vw;
 			overflow: hidden;
