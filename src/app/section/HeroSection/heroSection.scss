@@ -1,5 +1,31 @@
 #container_hero{
 
+	.path-counter{
+		position: absolute;
+		top: 10px;
+		width: 100%;
+		// background-color: green;
+		display: flex;
+		justify-content: center;
+		opacity: .7;
+		p{
+			color: #565684;
+			border: 2px solid #565684;
+			padding: 0 1em;
+			font-size:2rem;
+
+			.bad{
+				font-weight: bold;
+				
+				color: #228329;
+			}
+			
+			.good{
+				font-weight: bold;
+				color: #C9E5FD;
+			}
+		}
+	}
 	.display{
 		overflow: hidden;
 		max-width: 100vw;
@@ -182,6 +208,13 @@
 	#container_hero .header .navigation{
 		font-size: 1.2rem;
 	}
+
+	#container_hero .path-counter{
+		p{
+			font-size: .95rem;
+		}
+	}
+
 }
 
 @media screen and (width <= 768px) {
@@ -251,6 +284,12 @@
 
 		&.selected{
 			background-color: #36434e;
+		}
+	}
+	#container_hero .path-counter{
+		padding-top: 5px;
+		p{
+			font-size: 1rem;
 		}
 	}
 }

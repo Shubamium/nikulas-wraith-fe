@@ -1,11 +1,13 @@
 import 'react'
 import SectionTitle from '@/app/components/SectionTitle/SectionTitle'
 import './heroSection.scss'
-export default function HeroSection() {
+export default function HeroSection({bad,good}: {bad:number,good:number}) {
 	return (
 		<section id="container_hero">
 			<h1 style={{display:'none'}}>Nikulas Wraith</h1>
-
+			<div className='path-counter'>
+				<p> {'>>>'} <span className='good'>{good}</span>-<span className='bad'>{bad}</span>{'<<<'}</p>
+			</div>
 			<div className="display" id='top'>
 				<div className="bg-binary"></div>
 				<div className="window">

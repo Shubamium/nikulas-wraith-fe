@@ -57,7 +57,7 @@ export default async function Home() {
     <>
 			<LoadingScreen bad={generalData.stats.bad} good={generalData.stats.good}/>
 			<main id="container_home">
-					<HeroSection />
+					<HeroSection bad={generalData.stats.bad} good={generalData.stats.good} />
 					<AboutSection />
 					<SocialsSection />
 					<ModelSection models={modelsData.map((model)=>{
