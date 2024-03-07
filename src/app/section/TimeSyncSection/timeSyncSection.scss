@@ -16,7 +16,16 @@
 		}
 	}
 
-
+	.connection-lost{
+		text-align: center;
+		font-size: 3rem;
+		p{
+			color: #93F4FD;
+			background: linear-gradient(to left, #c9e5fd3a, #93f4fd8b,#c9e5fd3a);
+			animation: blink 2s infinite linear;
+			
+		}
+	}
 	.user-time{
 		text-align: center;
 		margin: 2em 0;

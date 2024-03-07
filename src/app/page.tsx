@@ -16,6 +16,10 @@ export type GeneralType = {
   _id: string;
   preset: string;
   schedules: any;
+	time:{
+		date:string;
+		active:boolean;
+	}
   stats: {
     bad: number;
     good: number;
