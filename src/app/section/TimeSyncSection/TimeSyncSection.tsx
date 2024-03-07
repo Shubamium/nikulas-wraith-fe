@@ -18,15 +18,10 @@ type Props = {
 }
 export default function TimeSyncSection({targetTime,isActive}: Props) {
 	const [userCurrentLocalTime, setUserCurrentLocalTime] = useState(dayjs());
-	const [userTzOffset, setUserTzOffset] = useState(0);
 	const [streamDate,setStreamDate] = useState(dayjs())
 	useEffect(()=>{
 		const now = new Date()
-		const userTimezoneOffset = now.getTimezoneOffset()
-		setUserTzOffset(userTimezoneOffset)
 
-		// const date = new Date(targetTime);
-			
 		if(targetTime !== null){
 
 			const target = dayjs(targetTime)

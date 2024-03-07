@@ -18,12 +18,14 @@ export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 	const audioRef = useRef<HTMLAudioElement>(null)
 	// const hasChoosenPath = true
 	//Boolean(localStorage.getItem('hasChoosenPath')) 
-	const skip = new URL(window.location.href.replaceAll('#',''));
-	const  urlParam = new URLSearchParams(skip.searchParams);
-	const shouldSkip = urlParam.get('skip')
 	useEffect(()=>{
+		const skip = new URL(window.location.href.replaceAll('#',''));
+		const  urlParam = new URLSearchParams(skip.searchParams);
+		const shouldSkip = urlParam.get('skip')
 		
 		if(shouldSkip){
+			handleClear()
+
 			return;
 		}
 		setHasChoosenPath(Boolean(localStorage.getItem('hasChoosenPath')))
@@ -67,10 +69,7 @@ export default function LoadingScreen({bad,good}:{bad:number,good:number}) {
 	const handleClear = () =>{
 		showWebsite()
 	}
-	if(shouldSkip){
-		handleClear()
-		return;
-	}
+
 
 	console.log(bad,good)
 	if(choosingPath && !timeouted) return (
