@@ -1,0 +1,130 @@
+#time-sync{
+	background: linear-gradient(180deg, #1e1b22 38.02%, #17161d 86.46%);
+	margin: 100px 0;
+
+	.confine{
+		max-width: 1200px;
+		margin:  0 auto;
+	}
+	.heading{
+		background: #565684;
+		h2{
+			text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.329);
+			font-family: 'Nik';
+			text-align: center;
+			font-size: 3rem;
+		}
+	}
+
+
+	.user-time{
+		text-align: center;
+		margin: 2em 0;
+		h2{
+			color: #C9E5FD;
+			font-size: 1.2rem;
+			margin: 1em;
+		}
+		.user-time-detail{
+			display: flex;
+			justify-content: space-evenly;
+			flex-wrap: wrap;
+			p{
+				color: #565684;
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	.next-stream-time{
+		background: linear-gradient(180deg, rgba(26.01, 120.06, 35.87, 0.59) 0%, rgba(48.11, 222.06, 66.34, 0) 100%);
+		text-align: center;
+		padding: 2em;
+		h2{
+			font-size: 1.2rem;
+			font-family: 'Nik';
+			
+			letter-spacing: .25em;
+			color: white;
+			text-shadow: 2px 2px white, 2px 2px 3px black;
+			color: transparent;
+		}
+		.ctd-timer{
+			padding: .15em 0;
+			margin: .2em 0;
+			color: #3B8046;
+			background-color: rgba(72, 253, 133, 0.068);
+			text-shadow: 2px 3px rgba(0, 0, 0, 0.322);
+			border-radius: 2em 0 2em 0;
+			font-size: 5rem;
+			font-weight: bold;
+			letter-spacing: .15em;
+			span{
+				// font-weight: normal;
+				color: #3B8046;
+				opacity: .5;
+				animation: blink 1s infinite linear;
+			}
+			
+		}
+
+		.ctd-detail{
+			// display: 1.25em;
+			.time{
+				color: #3B8046;
+				font-size: 1.2rem;
+			}
+			.tz{
+				color: #3B8046;
+				letter-spacing: -1px;
+				font-weight: bold;
+			}
+		}
+	}
+	
+
+	.flight-time{
+		margin: .4em;
+		padding: 2.5em 1em;
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		flex-wrap: wrap;
+
+		.area{
+			background:linear-gradient(180deg, #3A3A65 0%, #211F27 100%);
+			padding: .55em 1em;
+			border-radius: .5em;
+			outline: 1px solid  transparent;
+			border: 2px solid #5E5E81 ;
+			transition: all 500ms ease;
+			box-shadow: 2px 3px 1px rgba(19, 15, 54, 0.651);
+			&:hover{
+				scale: 1.05;
+				outline-color: #93F4FD;
+				outline-offset: 5px;
+			}
+
+			.area-time{
+				font-size: 2.1rem;
+				text-align: right;
+				padding-left: 2em;
+				font-weight: bold;
+				color: #93F4FD;
+			}
+			.area-detail{
+				.country{
+					font-family: 'Nik';
+					color: transparent;
+					text-shadow: 1px 1px white;
+					font-size: 1.2rem;
+					margin-top: 1em;
+					text-transform: uppercase;
+				}
+				.date{
+					opacity: .5;
+				}
+			}
+		}
+	}
+}

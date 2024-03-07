@@ -1,12 +1,13 @@
 import 'react'
 import SectionTitle from '@/app/components/SectionTitle/SectionTitle'
 import './heroSection.scss'
-export default function HeroSection({bad,good}: {bad:number,good:number}) {
+import Link from 'next/link'
+export default function HeroSection({bad,good,activeNav}: {bad?:number,good?:number,activeNav:string}) {
 	return (
 		<section id="container_hero">
 			<h1 style={{display:'none'}}>Nikulas Wraith</h1>
 			<div className='path-counter'>
-				<p> {'>>>'} <span className='good'>{good}</span>-<span className='bad'>{bad}</span>{'<<<'}</p>
+			{bad && good && 	<p> {'>>>'} <span className='good'>{good}</span>-<span className='bad'>{bad}</span>{'<<<'}</p>}
 			</div>
 			<div className="display" id='top'>
 				<div className="bg-binary"></div>
@@ -50,12 +51,13 @@ export default function HeroSection({bad,good}: {bad:number,good:number}) {
 					run={(<> {'run >>'} <b>navigation</b>.bat </>)}
 				/>
 				<nav className='navigation'>
-						<a href="#about" className='selected'>About</a> ||
-						<a href="#showcase" >Showcase</a> ||
-						<a href="#schedules" >Schedules</a> ||
-						<a href="#artwork" >Artwork</a> ||
-						<a href="#setup" >Setup</a> ||
-						<a href="#socials" >Socials</a> 
+						<Link href="/?skip=1#about"  className={`${activeNav === 'home' ? 'selected' : ''}`}>About</Link> ||
+						<Link href="/?skip=1#showcase"  className={`${activeNav === '' ? 'selected' : ''}`}>Showcase</Link> ||
+						<Link href="/?skip=1#schedules"  className={`${activeNav === '' ? 'selected' : ''}`}>Schedules</Link> ||
+						<Link href="/?skip=1#artwork"  className={`${activeNav === '' ? 'selected' : ''}`}>Artwork</Link> ||
+						<Link href="/?skip=1#setup"  className={`${activeNav === '' ? 'selected' : ''}`}>Setup</Link> ||
+						<Link href="/?skip=1#socials"  className={`${activeNav === '' ? 'selected' : ''}`}>Socials</Link> ||
+						<Link href="/stream?skip=1" className={`${activeNav === 'stream' ? 'selected' : ''}`}>Stream</Link> 
 				</nav>
 			</header>
 		</section>
