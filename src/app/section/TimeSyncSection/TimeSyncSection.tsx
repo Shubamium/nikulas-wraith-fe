@@ -11,7 +11,7 @@ import duration from 'dayjs/plugin/duration'
 dayjs.extend(tz)
 dayjs.extend(utc)
 dayjs.extend(duration)
-
+const streamDateFormat = "HH:mm A - DD MMMM YYYY"
 type Props = {
 	targetTime: string,
 	isActive: boolean
@@ -24,23 +24,23 @@ export default function TimeSyncSection({targetTime,isActive}: Props) {
 
 		if(targetTime !== null){
 
-			const target = dayjs(targetTime)
-			// console.log(streamDate.toISOString())
+			const target = dayjs(targetTime).tz('America/Chicago')
+			// console.log(streamDate.toISOString(),streamDate.format(streamDateFormat))
 			setStreamDate(target)
+			console.log(target)
 		}
 		setInterval(()=>{
 			setUserCurrentLocalTime(dayjs())
 		},1000)
 	},[])
 	
-	const centralUsTime = dayjs().utc().tz('America/Chicago');
+	const centralUsTime = dayjs().tz('America/Chicago');
 
-	const streamDateFormat = "HH:mm A - DD MMMM YYYY"
-	console.log(streamDate.toISOString())
-	// let streamDate = dayjs('11:30 PM 20 March 2024',streamDateFormat).tz('America/Chicago');
+
+	// let streamDate = dayjs('11:30 PM 20 March 2024',strex amDateFormat).tz('America/Chicago');
 
 	const dateFormat = "DD MMMM YYYY"
-	const timeFormat = 'HH:mm A '
+	const timeFormat = 'hh:mm A '
 	// centralUsTime.d
 	const dateFormatter = new Intl.DateTimeFormat();
 	const resolvedOptions = dateFormatter.resolvedOptions();
