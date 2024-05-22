@@ -93,8 +93,8 @@ export default function PathChooser({ onPathChosen, bad, good }: Props) {
             </div>
           </div>
           <div className="path-art">
-            <img src="art/nik.png" alt="" className="nik good-nik" />
-            <img src="art/cor_nik.png" alt="" className="nik bad-nik" />
+            <img src="art/nik2.png" alt="" className="nik good-nik" />
+            <img src="art/cor_nik2.png" alt="" className="nik bad-nik" />
           </div>
         </div>
       </div>

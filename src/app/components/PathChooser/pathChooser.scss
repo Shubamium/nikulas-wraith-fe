@@ -143,7 +143,7 @@
         opacity: 0;
       }
       .bad-nik {
-        left: 50%;
+        left: 70%;
         animation: bad-nik 2s ease forwards, fade-in 1s ease forwards;
         animation-delay: 7s;
         left: 0%;
@@ -300,7 +300,7 @@
     filter: saturate(0%);
   }
   100% {
-    right: 50%;
+    right: 55%;
     filter: saturate(100%);
   }
 }
@@ -311,7 +311,7 @@
   }
   100% {
     filter: saturate(100%);
-    left: 50%;
+    left: 57%;
   }
 }
 @keyframes typewriter {
