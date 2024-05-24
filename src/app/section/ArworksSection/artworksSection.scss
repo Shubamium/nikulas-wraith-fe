@@ -1,56 +1,61 @@
+#artwork {
+  .title {
+    text-align: center;
+    font-size: 4.5rem;
+    background: linear-gradient(
+      to bottom,
+      rgb(168, 179, 214),
+      rgba(255, 255, 255, 0)
+    );
+    background-clip: text;
+    color: transparent;
+    margin: 1em 0;
+  }
+  .artwork-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10em 4em;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin: 0 auto;
+    .window-body {
+      padding: 1em 2em;
+      min-height: 700px;
+      width: 600px;
+    }
+  }
 
-#artwork{
-	.title{
-		text-align: center;
-		font-size: 4.5rem;
-		background: linear-gradient(to bottom,rgb(168, 179, 214),rgba(255, 255, 255, 0));
-		background-clip: text;
-		color: transparent;
-		margin: 1em 0;
-	}
-	.artwork-list{
-	
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10em 4em;
-		flex-wrap: wrap;
-		max-width: 1300px;
-		margin: 0 auto;
-		.window-body{
-			padding: 1em 2em;
-			min-height: 700px;
-			width: 600px;
-		}
-	}
+  .staff {
+    max-width: min(90%, 800px);
+    margin: 100px auto;
+  }
 }
 
-
-@media screen and (width <= 670px){
-	#artwork .artwork-list{
-		
-	}
-	.art-displayer .art-container{
-		height: auto;
-		max-height: 100%;
-	}
-	#artwork .title{
-		font-size: 3rem;
-	}
-	#artwork .artwork-list .window-body{
-		width: 100%;
-	}
+@media screen and (width <= 670px) {
+  #artwork .artwork-list {
+  }
+  .art-displayer .art-container {
+    height: auto;
+    max-height: 100%;
+  }
+  #artwork .title {
+    font-size: 3rem;
+  }
+  #artwork .artwork-list .window-body {
+    width: 100%;
+  }
 }
 
 @media screen and (width <= 425px) {
-	.art-displayer .credit{
-		flex-direction: column;
-		align-items: center;
-	}
+  .art-displayer .credit {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media screen and (width <= 375px) {
-	#artwork .title{
-		font-size: 2.3rem;
-	}
+  #artwork .title {
+    font-size: 2.3rem;
+  }
 }

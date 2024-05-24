@@ -5,27 +5,27 @@ import Window from "@/app/components/Window/Window";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 
 type ModelSectionType = {
-	models:{
-		type:string,
-		name:string,
-		link:string,
-		small:any,
-		large:any,
-	}[]
-}
-export default function ModelSection({models}:ModelSectionType) {
-	const [activeImg,setActiveImg] = useState(0)
-	
-	if(models === undefined || models.length < 0) return <></> 
+  models: {
+    type: string;
+    name: string;
+    link: string;
+    small: any;
+    large: any;
+  }[];
+};
+export default function ModelSection({ models }: ModelSectionType) {
+  const [activeImg, setActiveImg] = useState(0);
 
-	const changeImage = (index:number)=>{
-		setActiveImg(index)
-	}
+  if (models === undefined || models.length < 0) return <></>;
+
+  const changeImage = (index: number) => {
+    setActiveImg(index);
+  };
   return (
     <section id="showcase" className="container">
       <Window header="Models">
         <SectionTitle
-          description="What is it about"
+          description="-------------------------------------"
           directory="C:/Users/NikulasWraith/Project_Phantom/Nik.exe"
           run={
             <>
@@ -34,9 +34,20 @@ export default function ModelSection({models}:ModelSectionType) {
           }
         />
         <nav className="models-navigation">
-					{models.map((model,index)=>{
-						return <p key={model.name} className={index === activeImg ? 'active' : '' } onClick={()=>{changeImage(index)}}>{model.type}<span>{ index !== models.length - 1 ? " || " : ""}</span></p>
-					})}
+          {models.map((model, index) => {
+            return (
+              <p
+                key={model.name}
+                className={index === activeImg ? "active" : ""}
+                onClick={() => {
+                  changeImage(index);
+                }}
+              >
+                {model.type}
+                <span>{index !== models.length - 1 ? " || " : ""}</span>
+              </p>
+            );
+          })}
         </nav>
         <div className="model-showcase">
           <div className="model-info">
@@ -49,11 +60,7 @@ export default function ModelSection({models}:ModelSectionType) {
           </div>
           <div className="model-image">
             <div className="left">
-              <img
-                src={models[activeImg].large}
-                alt=""
-                className="left-img"
-              />
+              <img src={models[activeImg].large} alt="" className="left-img" />
             </div>
             <div className="right">
               <img src={models[activeImg].small} alt="" className="right-img" />

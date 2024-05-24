@@ -96,7 +96,7 @@ export default function SocialsSection() {
               <h2>Youtube (Extra)</h2>
             </div>
           </a>
-          <a
+          {/* <a
             className="socials"
             target="_blank"
             href="https://vstream.com/c/@Nikulas_Wraith"
@@ -107,7 +107,7 @@ export default function SocialsSection() {
             <div className="text">
               <h2>VStream</h2>
             </div>
-          </a>
+          </a> */}
           <a
             className="socials"
             target="_blank"
