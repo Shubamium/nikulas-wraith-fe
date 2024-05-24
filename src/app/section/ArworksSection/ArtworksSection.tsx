@@ -1,9 +1,11 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import "./artworksSection.scss";
 import Window from "@/app/components/Window/Window";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import ArtDisplayer from "@/app/components/ArtDisplayer/ArtDisplayer";
 import { fetchData, urlFor } from "@/db/client";
+import { FaExternalLinkAlt, FaLink } from "react-icons/fa";
 
 type FanArtType = {
   _id: string;
@@ -91,7 +93,9 @@ export default async function ArtworksSection() {
           </Window>
         </div>
       </div>
-
+      <h2 className="title staff glowText" id={"staff"}>
+        {"<<"} Staff {">>"}
+      </h2>
       <div className="staff">
         <Window header="Staff">
           <SectionTitle
@@ -107,11 +111,23 @@ export default async function ArtworksSection() {
             images={[
               {
                 url: "/art/staff.png",
-                link: "a",
+                link: "https://x.com/MynervaMythos",
                 name: "staff",
               },
             ]}
-            description="Mynerva Mythos is a retired succubus who got sick and tired of committing lewd acts and decided to suck at something else -- like video games. She stumbled upon Nik's stream on the now defunct V-Stream (RIP) because she has a weakness to white-haired anime men and Christmas Tree hair."
+            description={
+              <p className="desc">
+                <a href="https://x.com/MynervaMythos" target="_blank">
+                  Mynerva Mythos
+                </a>{" "}
+                <FaExternalLinkAlt />| ----------- is a retired succubus who got
+                sick and tired of committing lewd acts and decided to suck at
+                something else -- like video games. She stumbled upon Nik's
+                stream on the now defunct V-Stream (RIP) because she has a
+                weakness to white-haired anime men and Christmas Tree hair.
+                {/* <a href="https://x.com/MynervaMythos">More info ---</a> */}
+              </p>
+            }
             hideControl={true}
           />
 

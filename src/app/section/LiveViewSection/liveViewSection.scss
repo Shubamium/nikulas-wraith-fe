@@ -1,22 +1,21 @@
-#live-view{
-	margin: 200px 10%;
+#live-view {
+  margin: 200px 10%;
 
-	.confine{
-		max-width: 1000px;
-		margin:  0 auto;
-		.window{
-			padding-bottom: 200px;
+  .confine {
+    max-width: 1000px;
+    margin: 0 auto;
+    .window {
+      padding-bottom: 200px;
+    }
+    .description {
+      font-size: small;
 
-		}
-		.description{
-			font-size: small;
+      padding: 1.25em;
+      opacity: 0.55;
+    }
 
-			padding: 1.25em;
-			opacity: .55;
-		}
-
-		.twitch-view{
-			height: 700px;
-		}
-	}
+    .twitch-view {
+      height: 700px;
+    }
+  }
 }

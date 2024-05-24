@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./artDisplayer.scss";
 
 type artDisplayerProps = {
@@ -9,7 +9,7 @@ type artDisplayerProps = {
     name?: string;
   }[];
   hideControl?: boolean;
-  description?: string;
+  description?: React.ReactNode;
 };
 export default function ArtDisplayer({
   images,

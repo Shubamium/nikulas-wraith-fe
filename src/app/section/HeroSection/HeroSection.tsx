@@ -79,6 +79,13 @@ export default function HeroSection({
           </Link>{" "}
           ||
           <Link
+            href="/?skip=1#socials"
+            className={`${activeNav === "" ? "selected" : ""}`}
+          >
+            Socials
+          </Link>{" "}
+          ||
+          <Link
             href="/?skip=1#showcase"
             className={`${activeNav === "" ? "selected" : ""}`}
           >
@@ -89,7 +96,7 @@ export default function HeroSection({
             href="/?skip=1#schedules"
             className={`${activeNav === "" ? "selected" : ""}`}
           >
-            Schedules
+            Schedule
           </Link>{" "}
           ||
           <Link
@@ -100,17 +107,17 @@ export default function HeroSection({
           </Link>{" "}
           ||
           <Link
+            href="/?skip=1#staff"
+            className={`${activeNav === "" ? "selected" : ""}`}
+          >
+            Staff
+          </Link>{" "}
+          ||
+          <Link
             href="/?skip=1#setup"
             className={`${activeNav === "" ? "selected" : ""}`}
           >
             Setup
-          </Link>{" "}
-          ||
-          <Link
-            href="/?skip=1#socials"
-            className={`${activeNav === "" ? "selected" : ""}`}
-          >
-            Socials
           </Link>{" "}
           ||
           <Link

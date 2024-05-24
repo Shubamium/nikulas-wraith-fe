@@ -29,6 +29,9 @@
   .staff {
     max-width: min(90%, 800px);
     margin: 100px auto;
+    .desc a {
+      font-size: 2rem;
+    }
   }
 }
 
