@@ -222,7 +222,7 @@
   }
   &.choosen {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: none;
     .arrow {
       transform: translateX(0);
     }
