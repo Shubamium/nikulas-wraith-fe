@@ -64,6 +64,7 @@ export default function TimeSyncSection({
   const cetDiff = streamDate.tz("America/Chicago");
 
   const ranOut = dst.asMilliseconds() < 0;
+  const shouldShowcConnectionLost = onlyTime ? true : !ranOut && isActive;
   return (
     <section id="time-sync" className={onlyTime ? "only-time" : ""}>
       {!onlyTime && (
@@ -98,7 +99,7 @@ export default function TimeSyncSection({
           </div>
         </>
       )}
-      {!ranOut && isActive ? (
+      {shouldShowcConnectionLost ? (
         <>
           {!onlyTime && (
             <div className="next-stream-time">
