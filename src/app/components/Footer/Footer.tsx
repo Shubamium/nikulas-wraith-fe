@@ -8,6 +8,7 @@ import {
 import "./Footer.scss";
 import { TbRectangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
 import { fetchData, urlFor } from "@/db/client";
+import AlertsSubmission from "./alertsSubmission/AlertsSubmission";
 
 type VIPData = {
   _id: string;
@@ -143,6 +144,7 @@ export default async function Footer() {
               </a>
             </div>
             <div className="people">
+              <AlertsSubmission />
               <div className="credits">
                 <div className="head">
                   <h2> {">>"} Credits</h2>
@@ -162,6 +164,7 @@ export default async function Footer() {
                   </a>
                 </div>
               </div>
+
               <div className="vip">
                 <div className="head">
                   <h2> {">>"} VIP</h2>
