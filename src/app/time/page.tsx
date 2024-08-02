@@ -5,6 +5,7 @@ import LiveViewSection from "../section/LiveViewSection/LiveViewSection";
 import LoadingSkip from "../components/LoadingSkip/LoadingSkip";
 import { fetchData } from "@/db/client";
 import { GeneralType } from "../page";
+import Footer from "../components/Footer/Footer";
 type Props = {};
 
 export default async function Stream({}: Props) {
@@ -25,6 +26,7 @@ export default async function Stream({}: Props) {
         isActive={generalData[0].time.active}
         onlyTime={true}
       />
+      <Footer />
     </main>
   );
 }
