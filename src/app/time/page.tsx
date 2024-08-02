@@ -26,7 +26,6 @@ export default async function Stream({}: Props) {
         isActive={generalData[0].time.active}
         onlyTime={true}
       />
-      <Footer />
     </main>
   );
 }
