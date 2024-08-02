@@ -115,14 +115,7 @@ export default async function Footer() {
                 >
                   <FaYoutubeSquare />
                 </a>
-                <a
-                  href="https://vstream.com/c/@Nikulas_Wraith"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social"
-                >
-                  <TbTriangleInvertedFilled />
-                </a>
+
                 <a
                   href="https://bsky.app/profile/nikulaswraith.bsky.social"
                   target="_blank"
