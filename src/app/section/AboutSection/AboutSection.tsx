@@ -3,10 +3,20 @@ import "./aboutSection.scss";
 
 import React from "react";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
+import TimeSyncSection from "../TimeSyncSection/TimeSyncSection";
 
-export default function AboutSection() {
+export default async function AboutSection() {
   return (
     <section id="about">
+      <div className="wc">
+        <TimeSyncSection
+          targetTime={new Date().toString()}
+          isActive={false}
+          onlyTime={true}
+          onlyWC={true}
+          // noBg={true}
+        />
+      </div>
       <div className="container">
         <div className="art-container">
           <img src="/art/nik-about.png" alt="" className="about-art" />

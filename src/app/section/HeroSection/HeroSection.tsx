@@ -2,6 +2,9 @@ import "react";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import "./heroSection.scss";
 import Link from "next/link";
+import TimeSyncSection from "../TimeSyncSection/TimeSyncSection";
+import { GeneralType } from "@/app/page";
+import { fetchData } from "@/db/client";
 export default function HeroSection({
   bad,
   good,
@@ -14,6 +17,7 @@ export default function HeroSection({
   return (
     <section id="container_hero">
       <h1 style={{ display: "none" }}>Nikulas Wraith</h1>
+
       <div className="path-counter">
         {bad && good && (
           <p>
@@ -127,6 +131,7 @@ export default function HeroSection({
             Stream
           </Link>
         </nav>
+        <div className="wc"></div>
       </header>
     </section>
   );

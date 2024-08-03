@@ -22,6 +22,7 @@ export default async function Stream({}: Props) {
         targetTime={generalData[0].time.date}
         isActive={generalData[0].time.active}
         onlyTime={true}
+        noBg={true}
       />
     </main>
   );

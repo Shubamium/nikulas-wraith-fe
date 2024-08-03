@@ -15,11 +15,15 @@ type Props = {
   targetTime: string;
   isActive: boolean;
   onlyTime?: boolean;
+  noBg?: boolean;
+  onlyWC?: boolean;
 };
 export default function TimeSyncSection({
   targetTime,
   isActive,
   onlyTime,
+  noBg,
+  onlyWC,
 }: Props) {
   const [userCurrentLocalTime, setUserCurrentLocalTime] = useState(dayjs());
   const [londonCR, setLondonCR] = useState(dayjs());
@@ -81,10 +85,10 @@ export default function TimeSyncSection({
   const shouldShowcConnectionLost = onlyTime ? true : !ranOut && isActive;
 
   useEffect(() => {
-    if (onlyTime) {
+    if (noBg) {
       document.body.classList.add("nothing");
     }
-  }, [onlyTime]);
+  }, [noBg]);
   return (
     <section id="time-sync" className={onlyTime ? "only-time" : ""}>
       {!onlyTime && (
@@ -202,45 +206,51 @@ export default function TimeSyncSection({
             </div>
           ) : (
             <div className="confine">
-              <div className="flight-time">
-                <div className="area">
-                  <p className="area-time">{jpDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">JAPAN</p>
-                    <p className="date">{jpDiff.format(dateFormat)}</p>
+              {!onlyWC && (
+                <div className="flight-time">
+                  <div className="area">
+                    <p className="area-time">{jpDiff.format(timeFormat)}</p>
+                    <div className="area-detail">
+                      <p className="country">JAPAN</p>
+                      <p className="date">{jpDiff.format(dateFormat)}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="area">
-                  <p className="area-time">{pacificDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">Pacific</p>
-                    <p className="date">{pacificDiff.format(dateFormat)}</p>
+                  <div className="area">
+                    <p className="area-time">
+                      {pacificDiff.format(timeFormat)}
+                    </p>
+                    <div className="area-detail">
+                      <p className="country">Pacific</p>
+                      <p className="date">{pacificDiff.format(dateFormat)}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="area">
-                  <p className="area-time">{cetDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">Central US</p>
-                    <p className="date">{cetDiff.format(dateFormat)}</p>
+                  <div className="area">
+                    <p className="area-time">{cetDiff.format(timeFormat)}</p>
+                    <div className="area-detail">
+                      <p className="country">Central US</p>
+                      <p className="date">{cetDiff.format(dateFormat)}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="area">
-                  <p className="area-time">{londonDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">London</p>
-                    <p className="date">{londonDiff.format(dateFormat)}</p>
+                  <div className="area">
+                    <p className="area-time">{londonDiff.format(timeFormat)}</p>
+                    <div className="area-detail">
+                      <p className="country">London</p>
+                      <p className="date">{londonDiff.format(dateFormat)}</p>
+                    </div>
+                  </div>
+                  <div className="area">
+                    <p className="area-time">
+                      {germanyDiff.format(timeFormat)}
+                    </p>
+                    <div className="area-detail">
+                      <p className="country">Germany</p>
+                      <p className="date">{germanyDiff.format(dateFormat)}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="area">
-                  <p className="area-time">{germanyDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">Germany</p>
-                    <p className="date">{germanyDiff.format(dateFormat)}</p>
-                  </div>
-                </div>
-              </div>
+              )}
               <div className="flight-time active">
                 <div className="area">
                   <p className="area-time">{japanCR.format(timeFormatS)}</p>

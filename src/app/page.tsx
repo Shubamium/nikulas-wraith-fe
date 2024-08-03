@@ -16,10 +16,10 @@ export type GeneralType = {
   _id: string;
   preset: string;
   schedules: any;
-	time:{
-		date:string;
-		active:boolean;
-	}
+  time: {
+    date: string;
+    active: boolean;
+  };
   stats: {
     bad: number;
     good: number;
@@ -30,23 +30,23 @@ type ModelsType = {
   _id: string;
   type: string;
   name: string;
-  link: string; 
-  artwork_large: any; 
-  artwork_small: any; 
+  link: string;
+  artwork_large: any;
+  artwork_small: any;
 };
 export default async function Home() {
-
-	const generalData = (await fetchData(`
+  const generalData = (
+    (await fetchData(`
 	*[_type == 'general' && preset == 'main']{
 		_id,
 		preset,
 		schedules,
 		stats
 	}
-	`) as GeneralType[])[0]
+	`)) as GeneralType[]
+  )[0];
 
-
-	const modelsData = await fetchData(`
+  const modelsData = (await fetchData(`
 	*[_type == 'models']{
 		_id,
 		type,
@@ -55,31 +55,40 @@ export default async function Home() {
 		artwork_large,
 		artwork_small
 	}
-	`) as ModelsType[]
-	console.log(generalData.stats)
+	`)) as ModelsType[];
+  console.log(generalData.stats);
   return (
     <>
-			<LoadingScreen bad={generalData.stats.bad} good={generalData.stats.good}/>
-			<main id="container_home">
-					<HeroSection bad={generalData.stats.bad} good={generalData.stats.good} activeNav="home" />
-					<AboutSection />
-					<SocialsSection />
-					<ModelSection models={modelsData.map((model)=>{
-						return {
-							link:model.link,
-							name:model.name,
-							type:model.type,
-							large:urlFor(model.artwork_large).url(),
-							small: urlFor(model.artwork_small).url(),
-						}
-					})} />
-					<ScheduleSection url={urlFor(generalData.schedules).url()} />
-					<ArtworksSection />
-					<SetupSection/>
-					<SupportSection/>
-					<ContactSection/>
-					<Footer/>	
-			</main>
-		</>
+      <LoadingScreen
+        bad={generalData.stats.bad}
+        good={generalData.stats.good}
+      />
+      <main id="container_home">
+        <HeroSection
+          bad={generalData.stats.bad}
+          good={generalData.stats.good}
+          activeNav="home"
+        />
+        <AboutSection />
+        <SocialsSection />
+        <ModelSection
+          models={modelsData.map((model) => {
+            return {
+              link: model.link,
+              name: model.name,
+              type: model.type,
+              large: urlFor(model.artwork_large).url(),
+              small: urlFor(model.artwork_small).url(),
+            };
+          })}
+        />
+        <ScheduleSection url={urlFor(generalData.schedules).url()} />
+        <ArtworksSection />
+        <SetupSection />
+        <SupportSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   );
 }
