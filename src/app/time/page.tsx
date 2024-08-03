@@ -18,7 +18,7 @@ export default async function Stream({}: Props) {
 
   console.log(generalData[0]);
   return (
-    <main id="container_home">
+    <main id="container_home" className="isOverlay">
       <LoadingSkip />
       {/* <HeroSection activeNav='stream' /> */}
       <TimeSyncSection

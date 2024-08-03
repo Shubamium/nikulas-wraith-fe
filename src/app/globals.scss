@@ -103,6 +103,14 @@ main {
   // margin-top: 200px;
   // }
 }
+body:has(#container_home.isOverlay) {
+  &::before {
+    display: none;
+  }
+  .bg-grid {
+    display: none;
+  }
+}
 .animate-hologram {
   animation: hologram-expand 4s ease;
 }
