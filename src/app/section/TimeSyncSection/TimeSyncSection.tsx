@@ -45,7 +45,7 @@ export default function TimeSyncSection({
         setGermanyCR(dayjs().tz("Europe/Berlin"));
         setCentralCR(dayjs().tz("America/Chicago"));
         setJapanCR(dayjs().tz("Asia/Tokyo"));
-        setPacificCR(dayjs().tz("Pacific/Auckland"));
+        setPacificCR(dayjs().tz("America/Los_Angeles"));
       }
     }, 1000);
   }, []);
@@ -69,7 +69,7 @@ export default function TimeSyncSection({
 
   // Timezone list
   const jpDiff = streamDate.tz("Asia/Tokyo");
-  const pacificDiff = streamDate.tz("Pacific/Auckland");
+  const pacificDiff = streamDate.tz("America/Los_Angeles");
   const italyDiff = streamDate.tz("Europe/Rome");
   const londonDiff = streamDate.tz("Europe/London");
   const germanyDiff = streamDate.tz("Europe/Berlin");
@@ -198,28 +198,6 @@ export default function TimeSyncSection({
             <div className="confine">
               <div className="flight-time">
                 <div className="area">
-                  <p className="area-time">{londonDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">London</p>
-                    <p className="date">{londonDiff.format(dateFormat)}</p>
-                  </div>
-                </div>
-                <div className="area">
-                  <p className="area-time">{germanyDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">Germany</p>
-                    <p className="date">{germanyDiff.format(dateFormat)}</p>
-                  </div>
-                </div>
-
-                <div className="area">
-                  <p className="area-time">{cetDiff.format(timeFormat)}</p>
-                  <div className="area-detail">
-                    <p className="country">Central US</p>
-                    <p className="date">{cetDiff.format(dateFormat)}</p>
-                  </div>
-                </div>
-                <div className="area">
                   <p className="area-time">{jpDiff.format(timeFormat)}</p>
                   <div className="area-detail">
                     <p className="country">JAPAN</p>
@@ -233,30 +211,31 @@ export default function TimeSyncSection({
                     <p className="date">{pacificDiff.format(dateFormat)}</p>
                   </div>
                 </div>
-              </div>
-              <div className="flight-time active">
+
                 <div className="area">
-                  <p className="area-time">{londonCR.format(timeFormatS)}</p>
+                  <p className="area-time">{cetDiff.format(timeFormat)}</p>
                   <div className="area-detail">
-                    <p className="country">London</p>
-                    <p className="date">{londonCR.format(dateFormat)}</p>
-                  </div>
-                </div>
-                <div className="area">
-                  <p className="area-time">{germanyCR.format(timeFormatS)}</p>
-                  <div className="area-detail">
-                    <p className="country">Germany</p>
-                    <p className="date">{germanyCR.format(dateFormat)}</p>
+                    <p className="country">Central US</p>
+                    <p className="date">{cetDiff.format(dateFormat)}</p>
                   </div>
                 </div>
 
                 <div className="area">
-                  <p className="area-time">{centralCR.format(timeFormatS)}</p>
+                  <p className="area-time">{londonDiff.format(timeFormat)}</p>
                   <div className="area-detail">
-                    <p className="country">Central US</p>
-                    <p className="date">{centralCR.format(dateFormat)}</p>
+                    <p className="country">London</p>
+                    <p className="date">{londonDiff.format(dateFormat)}</p>
                   </div>
                 </div>
+                <div className="area">
+                  <p className="area-time">{germanyDiff.format(timeFormat)}</p>
+                  <div className="area-detail">
+                    <p className="country">Germany</p>
+                    <p className="date">{germanyDiff.format(dateFormat)}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flight-time active">
                 <div className="area">
                   <p className="area-time">{japanCR.format(timeFormatS)}</p>
                   <div className="area-detail">
@@ -269,6 +248,27 @@ export default function TimeSyncSection({
                   <div className="area-detail">
                     <p className="country">Pacific</p>
                     <p className="date">{pacificCR.format(dateFormat)}</p>
+                  </div>
+                </div>
+                <div className="area">
+                  <p className="area-time">{centralCR.format(timeFormatS)}</p>
+                  <div className="area-detail">
+                    <p className="country">Central US</p>
+                    <p className="date">{centralCR.format(dateFormat)}</p>
+                  </div>
+                </div>
+                <div className="area">
+                  <p className="area-time">{londonCR.format(timeFormatS)}</p>
+                  <div className="area-detail">
+                    <p className="country">London</p>
+                    <p className="date">{londonCR.format(dateFormat)}</p>
+                  </div>
+                </div>
+                <div className="area">
+                  <p className="area-time">{germanyCR.format(timeFormatS)}</p>
+                  <div className="area-detail">
+                    <p className="country">Germany</p>
+                    <p className="date">{germanyCR.format(dateFormat)}</p>
                   </div>
                 </div>
               </div>
