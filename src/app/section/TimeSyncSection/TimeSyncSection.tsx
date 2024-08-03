@@ -79,6 +79,12 @@ export default function TimeSyncSection({
 
   const ranOut = dst.asMilliseconds() < 0;
   const shouldShowcConnectionLost = onlyTime ? true : !ranOut && isActive;
+
+  useEffect(() => {
+    if (onlyTime) {
+      document.body.classList.add("nothing");
+    }
+  }, [onlyTime]);
   return (
     <section id="time-sync" className={onlyTime ? "only-time" : ""}>
       {!onlyTime && (

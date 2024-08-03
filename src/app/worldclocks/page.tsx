@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import HeroSection from "../section/HeroSection/HeroSection";
 import TimeSyncSection from "../section/TimeSyncSection/TimeSyncSection";
-import LiveViewSection from "../section/LiveViewSection/LiveViewSection";
 import LoadingSkip from "../components/LoadingSkip/LoadingSkip";
 import { fetchData } from "@/db/client";
 import { GeneralType } from "../page";
@@ -20,7 +18,6 @@ export default async function Stream({}: Props) {
   return (
     <main id="container_home" className="isOverlay">
       <LoadingSkip />
-      {/* <HeroSection activeNav='stream' /> */}
       <TimeSyncSection
         targetTime={generalData[0].time.date}
         isActive={generalData[0].time.active}
