@@ -76,7 +76,7 @@ export default async function Footer() {
               <p className="about">{">>>>"} </p>
               <div className="footer-socials">
                 <a
-                  href="https://discord.gg/dpXAAuKgaG"
+                  href="https://discord.gg/xPBEdgF5Zp"
                   target="_blank"
                   rel="noreferrer"
                   className="social"

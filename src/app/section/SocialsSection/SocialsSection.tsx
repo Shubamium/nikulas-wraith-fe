@@ -37,7 +37,7 @@ export default function SocialsSection() {
           <a
             className="socials"
             target="_blank"
-            href="https://discord.gg/dpXAAuKgaG"
+            href="https://discord.gg/xPBEdgF5Zp"
           >
             <div className="icon">
               <FaDiscord />

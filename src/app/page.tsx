@@ -16,6 +16,7 @@ export type GeneralType = {
   _id: string;
   preset: string;
   schedules: any;
+  sa: string;
   time: {
     date: string;
     active: boolean;
@@ -41,6 +42,7 @@ export default async function Home() {
 		_id,
 		preset,
 		schedules,
+		'sa': sa.asset -> url,
 		stats
 	}
 	`)) as GeneralType[]
@@ -82,7 +84,10 @@ export default async function Home() {
             };
           })}
         />
-        <ScheduleSection url={urlFor(generalData.schedules).url()} />
+        <ScheduleSection
+          url={urlFor(generalData.schedules).url()}
+          sa={generalData.sa}
+        />
         <ArtworksSection />
         <SetupSection />
         <SupportSection />
