@@ -110,7 +110,7 @@ export default async function ArtworksSection() {
           <ArtDisplayer
             images={[
               {
-                url: "/art/staff.png",
+                url: "/art/staff2.png",
                 link: "https://x.com/MynervaMythos",
                 name: "staff",
               },
@@ -120,11 +120,11 @@ export default async function ArtworksSection() {
                 <a href="https://x.com/MynervaMythos" target="_blank">
                   Mynerva Mythos
                 </a>{" "}
-                <FaExternalLinkAlt />| ----------- is a retired succubus who got
-                sick and tired of committing lewd acts and decided to suck at
-                something else -- like video games. She stumbled upon Nik's
-                stream on the now defunct V-Stream (RIP) because she has a
-                weakness to white-haired anime men and Christmas Tree hair.
+                <FaExternalLinkAlt />| ----------- A retired succubus (and now
+                retired streamer) who keeps watch over Nik and his streams to
+                make sure everything runs as smoothly as it can. Jokingly called
+                the "Mynager", but she seems to take her job too seriously
+                sometimes.
                 {/* <a href="https://x.com/MynervaMythos">More info ---</a> */}
               </p>
             }

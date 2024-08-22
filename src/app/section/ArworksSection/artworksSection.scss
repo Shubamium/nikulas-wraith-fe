@@ -27,8 +27,12 @@
   }
 
   .staff {
-    max-width: min(90%, 800px);
+    max-width: min(90%, 500px);
     margin: 100px auto;
+    .art-container img {
+      object-position: top;
+      object-fit: contain;
+    }
     .desc a {
       font-size: 2rem;
     }
