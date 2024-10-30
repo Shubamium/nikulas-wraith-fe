@@ -186,7 +186,7 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.481);
   backdrop-filter: blur(20px);
-  z-index: 100;
+  z-index: 1000;
 
   transition: all 500ms ease;
   text-align: center;

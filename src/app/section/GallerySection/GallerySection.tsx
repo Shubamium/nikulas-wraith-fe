@@ -6,8 +6,9 @@ import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import { IoReturnDownBack } from "react-icons/io5";
 import { FaFolder } from "react-icons/fa";
 import { createPortal } from "react-dom";
+import { urlFor } from "@/db/client";
 
-type Props = {};
+type Props = { data: GalleryData };
 
 // - Tab
 // -- folder
@@ -20,13 +21,11 @@ type Art = {
     link: string;
   };
   img: any;
+  activeImg?: string;
 };
 type Category = {
   name: string;
   art: Art[];
-};
-type Tab = {
-  [key: string]: Category[];
 };
 
 let art: Art = {
@@ -35,9 +34,11 @@ let art: Art = {
     link: "https://google.com",
     name: "@username_artist",
   },
-  img: "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+  img: "https://developers.elementor.com/docs/assets/img/elementor-data-image.png",
 };
-const placeholder: { [key: string]: Category[] } = {
+
+type GalleryData = { [key: string]: Category[] };
+const placeholder: GalleryData = {
   FanArt: [
     {
       name: "cat1",
@@ -84,23 +85,26 @@ const placeholder: { [key: string]: Category[] } = {
   ],
 };
 
-export default function GallerySection({}: Props) {
-  const tabList = Object.keys(placeholder);
+export default function GallerySection({ data }: Props) {
+  const tabList = Object.keys(data);
   const [selectedTab, setSelectedTab] = useState(
-    tabList.length > 1 ? tabList[0] : ""
+    tabList.length >= 1 ? tabList[0] : ""
   );
   const [selectedFolder, setSelectedFolder] = useState<null | number>(null);
   const [selectedImage, setSelectedImage] = useState<null | Art>(null);
 
   const shouldShowFolder =
-    selectedTab !== "" && placeholder[selectedTab] && selectedFolder === null;
+    selectedTab !== "" && data[selectedTab] && selectedFolder === null;
   const shouldShowFile = selectedTab !== "" && selectedFolder !== null;
   const clear = () => {
     setSelectedFolder(null);
     setSelectedImage(null);
   };
 
-  useEffect(() => {}, []);
+  const [load, setLoad] = useState(false);
+  useEffect(() => {
+    setLoad(true);
+  }, []);
   return (
     <div id="gallery">
       <section className="gallery-header">
@@ -140,7 +144,7 @@ export default function GallerySection({}: Props) {
                         setSelectedTab(tabs);
                         clear();
                       }}
-                      key={"tab-" + tabs}
+                      key={"tab-" + index}
                     >
                       {tabs}
                     </button>
@@ -159,7 +163,8 @@ export default function GallerySection({}: Props) {
           </div>
           <div className="gallery-list">
             {shouldShowFolder &&
-              placeholder[selectedTab].map((cat, index) => {
+              data[selectedTab] &&
+              data[selectedTab].map((cat, index) => {
                 return (
                   <button
                     className="folder"
@@ -175,20 +180,23 @@ export default function GallerySection({}: Props) {
               })}
 
             {shouldShowFile &&
-              placeholder[selectedTab][selectedFolder].art.map((art) => {
+              data[selectedTab][selectedFolder].art.map((art, index) => {
                 return (
                   <button
-                    // href="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                    // href="https://developers.elementor.com/docs/assets/img/elementor-data-image.png"
                     className="folder imagefile"
-                    key={"art" + art.name}
+                    key={"art-" + index}
                     onClick={() => {
-                      setSelectedImage(art);
+                      setSelectedImage({
+                        ...art,
+                        activeImg: urlFor(art.img)?.url(),
+                      });
                     }}
                   >
                     <img
                       src={
-                        art.img ??
-                        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                        (art.img && urlFor(art.img)?.size(130, 100).url()) ??
+                        "https://developers.elementor.com/docs/assets/img/elementor-data-image.png"
                       }
                       alt=""
                     />
@@ -206,7 +214,7 @@ export default function GallerySection({}: Props) {
                 );
               })}
 
-            {createPortal(
+            {/* {createPortal(
               <div
                 id="gallery-lightbox"
                 onClick={() => {
@@ -234,11 +242,11 @@ export default function GallerySection({}: Props) {
                 <p className="hint">Click anywhere to close</p>
               </div>,
               document.body
-            )}
+            )} */}
 
             {/* <button className="folder imagefile">
               <img
-                src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                src="https://developers.elementor.com/docs/assets/img/elementor-data-image.png"
                 alt=""
               />
               <p className="">Category.png </p>
@@ -248,7 +256,7 @@ export default function GallerySection({}: Props) {
             </button> */}
             {/* <button className="folder imagefile">
               <img
-                src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                src="https://developers.elementor.com/docs/assets/img/elementor-data-image.png"
                 alt=""
               />
               <p className="">Category.png </p>
@@ -259,6 +267,33 @@ export default function GallerySection({}: Props) {
           </div>
         </Window>
       </section>
+      {load &&
+        createPortal(
+          <div
+            id="gallery-lightbox"
+            onClick={() => {
+              setSelectedImage(null);
+            }}
+            className={selectedImage === null ? "hidden" : "visible"}
+          >
+            <a href={selectedImage?.activeImg} target="_blank">
+              <img src={selectedImage?.activeImg} alt="" className="full-img" />
+            </a>
+            {selectedImage && (
+              <p className="info">
+                {selectedImage.name}.png{" "}
+                {selectedImage.artist && (
+                  <a href={selectedImage.artist.link} className="credit">
+                    {selectedImage.artist.name}
+                  </a>
+                )}
+              </p>
+            )}
+            <p className="hint">Click anywhere to close</p>
+          </div>,
+          document.getElementById("gallery-head") || document.body,
+          "main"
+        )}
     </div>
   );
 }
