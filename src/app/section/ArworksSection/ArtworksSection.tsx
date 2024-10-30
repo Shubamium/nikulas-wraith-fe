@@ -60,7 +60,7 @@ export default async function ArtworksSection() {
             <ArtDisplayer
               images={fanArtData.map((art) => {
                 return {
-                  url: urlFor(art.artwork).url(),
+                  url: urlFor(art.artwork)?.url() || "",
                   link: art.link,
                   name: art.name,
                 };
@@ -82,7 +82,7 @@ export default async function ArtworksSection() {
             <ArtDisplayer
               images={nikArtData.map((art) => {
                 return {
-                  url: urlFor(art.artwork).url(),
+                  url: urlFor(art.artwork)?.url() || "",
                   link: art.link,
                   name: art.name,
                 };

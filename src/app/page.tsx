@@ -78,13 +78,13 @@ export default async function Home() {
               link: model.link,
               name: model.name,
               type: model.type,
-              large: urlFor(model.artwork_large).url(),
-              small: urlFor(model.artwork_small).url(),
+              large: urlFor(model.artwork_large)?.url(),
+              small: urlFor(model.artwork_small)?.url(),
             };
           })}
         />
         <ScheduleSection
-          url={urlFor(generalData.schedules).url()}
+          url={urlFor(generalData.schedules)?.url()}
           sa={generalData.sa}
         />
         <ArtworksSection />

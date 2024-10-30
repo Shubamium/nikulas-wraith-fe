@@ -166,7 +166,7 @@ export default async function Footer() {
                   {vipData.map((vip) =>
                     People(
                       vip.link,
-                      urlFor(vip.pfp).url(),
+                      urlFor(vip.pfp)?.url() || "",
                       vip.name,
                       vip.handle
                     )
