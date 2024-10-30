@@ -29,16 +29,20 @@ export default function ArtDisplayer({
   return (
     <div className="art-displayer">
       <div className="art-container">
-        <img src={images[imgId].url} alt="" />
+        <img src={images[imgId] && images[imgId].url} alt="" />
       </div>
-      {!description && images[imgId].link && images[imgId].name && (
-        <div className="credit">
-          <p>Artwork by </p>
-          <a href={images[imgId].link} target="_blank">
-            {images[imgId].name}
-          </a>
-        </div>
-      )}
+      {!description &&
+        images[imgId] &&
+        images[imgId].link &&
+        images[imgId] &&
+        images[imgId].name && (
+          <div className="credit">
+            <p>Artwork by </p>
+            <a href={images[imgId] && images[imgId].link} target="_blank">
+              {images[imgId] && images[imgId].name}
+            </a>
+          </div>
+        )}
       {description && (
         <div className="credit">
           <p>{description}</p>

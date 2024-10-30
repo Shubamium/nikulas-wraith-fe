@@ -24,6 +24,7 @@ export type GeneralType = {
     bad: number;
     good: number;
   };
+  models: ModelsType[];
 };
 
 type ModelsType = {
@@ -42,22 +43,21 @@ export default async function Home() {
 		preset,
 		schedules,
 		'sa': sa.asset -> url,
-		stats
-	}
-	`)) as GeneralType[]
-  )[0];
-
-  const modelsData = (await fetchData(`
-	*[_type == 'models']{
-		_id,
+		stats,
+		models[]->{
+			_id,
 		type,
 		name,
 		link,
 		artwork_large,
 		artwork_small
+		}
 	}
-	`)) as ModelsType[];
-  console.log(generalData.stats);
+	`)) as GeneralType[]
+  )[0];
+
+  const modelsData = generalData ? generalData.models : [];
+
   return (
     <>
       <LoadingScreen
