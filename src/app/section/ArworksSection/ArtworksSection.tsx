@@ -20,8 +20,8 @@ type NikArtType = {
 };
 export default async function ArtworksSection() {
   const artwork = await fetchData<{
-    fanart: NikArtType[];
-    nikart: NikArtType[];
+    fanart: FanArtType[];
+    nikart: FanArtType[];
   }>(`
 	*[_type == 'general' && preset == 'main']{
 		fanart[]->{
@@ -68,7 +68,7 @@ export default async function ArtworksSection() {
               }
             />
             <ArtDisplayer
-              images={artwork.fanart?.map((art: NikArtType) => {
+              images={artwork.fanart?.map((art) => {
                 return {
                   url: urlFor(art.artwork)?.url() || "",
                   link: art.link,
@@ -90,7 +90,7 @@ export default async function ArtworksSection() {
               }
             />
             <ArtDisplayer
-              images={artwork.nikart?.map((art: NikArtType) => {
+              images={artwork.nikart?.map((art) => {
                 return {
                   url: urlFor(art.artwork)?.url() || "",
                   link: art.link,
