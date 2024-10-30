@@ -127,6 +127,15 @@
           cursor: pointer;
           font-family: "Fira Code";
           font-size: 1.1rem;
+          .thumb {
+            background: #565684;
+            mask-image: url("/decor/folder.svg");
+            mask-size: 100% 100%;
+            scale: 1.1;
+            img {
+              opacity: 0.5;
+            }
+          }
           &:hover {
             background: #47474a1c;
           }

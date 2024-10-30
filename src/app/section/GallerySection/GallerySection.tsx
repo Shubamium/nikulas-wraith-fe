@@ -173,7 +173,17 @@ export default function GallerySection({ data }: Props) {
                     }}
                     key={"cat" + cat.name}
                   >
-                    <FaFolder />
+                    {cat.art.length >= 1 ? (
+                      <div className="thumb">
+                        <img
+                          src={urlFor(cat.art[0].img)?.size(130, 100).url()}
+                          alt=""
+                        />
+                      </div>
+                    ) : (
+                      <FaFolder />
+                    )}
+
                     <p className="">{cat.name} </p>
                   </button>
                 );
