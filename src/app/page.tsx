@@ -9,7 +9,6 @@ import ScheduleSection from "./section/ScheduleSection/ScheduleSection";
 import SetupSection from "./section/SetupSection/SetupSection";
 import SocialsSection from "./section/SocialsSection/SocialsSection";
 import SupportSection from "./section/SupportSection/SupportSection";
-import { groq } from "next-sanity";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
 export type GeneralType = {

@@ -130,6 +130,13 @@ export default function HeroSection({
           >
             Stream
           </Link>
+          ||
+          <Link
+            href="/gallery?skip=1"
+            className={`${activeNav === "gallery" ? "selected" : ""}`}
+          >
+            Gallery
+          </Link>
         </nav>
         <div className="wc"></div>
       </header>
