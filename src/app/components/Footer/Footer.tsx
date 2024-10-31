@@ -143,11 +143,11 @@ export default async function Footer() {
                   <h2> {">>"} Credits</h2>
                 </div>
                 <div className="list">
-                  <a className="credit" href="#">
+                  <a className="credit">
                     <p className="role">{">"} Model</p>
                     <p className="handle">Yoruhare</p>
                   </a>
-                  <a className="credit" href="#">
+                  <a className="credit">
                     <p className="role">{">"} Rigging</p>
                     <p className="handle">Adhle</p>
                   </a>

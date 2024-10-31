@@ -4,6 +4,7 @@ import "./globals.scss";
 import CursorEffect from "./components/CursorEffect/CursorEffect";
 import { Suspense } from "react";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
+import PopUpHeader from "./components/PopUpHeader/PopUpHeader";
 
 const fira = Fira_Code({ subsets: ["latin"] });
 
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body className={fira.className}>
         <div id="gallery-head"></div>
         <CursorEffect />
+        <PopUpHeader />
         {children}
         <div className="bg-grid"></div>
       </body>

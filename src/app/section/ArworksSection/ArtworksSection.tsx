@@ -5,7 +5,8 @@ import Window from "@/app/components/Window/Window";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import ArtDisplayer from "@/app/components/ArtDisplayer/ArtDisplayer";
 import { fetchData, urlFor } from "@/db/client";
-import { FaExternalLinkAlt, FaLink } from "react-icons/fa";
+import { FaArrowRight, FaExternalLinkAlt, FaLink } from "react-icons/fa";
+import Link from "next/link";
 
 type FanArtType = {
   _id: string;
@@ -55,6 +56,12 @@ export default async function ArtworksSection() {
       <h2 className="title glowText">
         {"<<"} Artwork {">>"}
       </h2>
+      <section className="art-point">
+        <p> Check out more art on the</p>
+        <Link href="/gallery?skip=1" className="btn btn-art">
+          Gallery <FaArrowRight />
+        </Link>
+      </section>
       <div className="artwork-list">
         <div className="fanart">
           <Window>

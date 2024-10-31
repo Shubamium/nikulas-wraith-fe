@@ -109,7 +109,7 @@ export default function GallerySection({ data }: Props) {
     <div id="gallery">
       <section className="gallery-header">
         <h2>Gallery</h2>
-
+        {/* <p>View more art here</p> */}
         <div className="confine">
           <SectionTitle
             directory="C:/Users/NikulasWraith/Project_Phantom/Nik.exe"

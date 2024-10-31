@@ -9,7 +9,35 @@
     );
     background-clip: text;
     color: transparent;
-    margin: 1em 0;
+    margin: 0.2em 0;
+  }
+
+  .art-point {
+    max-width: min(80%, 800px);
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Fira Code";
+    font-size: 1.2rem;
+    margin: 1em auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    .btn-art {
+      font-family: "Fira Code";
+      background: #393951;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25em 1em;
+      gap: 1em;
+    }
+
+    @media screen and (max-width: 420px) {
+      font-size: 1rem;
+    }
   }
   .artwork-list {
     display: flex;
