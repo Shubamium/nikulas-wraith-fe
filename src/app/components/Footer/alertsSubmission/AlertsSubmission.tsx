@@ -31,12 +31,15 @@ export default function AlertsSubmission({}: Props) {
       }
 
       let registration = await navigator.serviceWorker.ready;
+      alert("ServiceWorker Ready");
+
       let activeSubs = await registration.pushManager.getSubscription();
       if (!activeSubs) {
         let subscribtion = await registration.pushManager.subscribe({
           applicationServerKey: process.env.NEXT_PUBLIC_WEBPUSH,
           userVisibleOnly: true,
         });
+        alert("Push Manager Subscribed:" + subscribtion.endpoint);
 
         const key = subscribtion.getKey("p256dh"); // Publicy key
         const auth = subscribtion.getKey("auth"); // Auth secret
@@ -63,14 +66,15 @@ export default function AlertsSubmission({}: Props) {
           // console.log(subs);
           // Save the subscribtion info to the database to send the notif to
           alert(JSON.stringify(subs));
-          saveSubscribtion(subs);
+          await saveSubscribtion(subs);
           checkForRegis();
         } else {
+          alert("Auth And Key not found");
           return;
         }
         // Convert keys to base64 format for sending to the server
       } else {
-        console.log("already subscribed");
+        alert("Push Manager already subscribed");
       }
     }
     // Ask for notif permission
