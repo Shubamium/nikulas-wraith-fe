@@ -1,5 +1,5 @@
 "use server";
-import { mutateData, mutateSubscriber } from "./client";
+import { createData, mutateData, mutateSubscriber } from "./client";
 
 export const updatePath = async (path: string, good: number, bad: number) => {
   console.log("dataselected", good, bad);
@@ -12,17 +12,29 @@ export const updatePath = async (path: string, good: number, bad: number) => {
     console.log("path choosen");
   });
 };
-export const subscribe = async (target: string) => {
-  mutateSubscriber("add", target).then(() => {
-    console.log(" subscribe added");
-  });
 
-  return true;
-};
-export const unsubscribe = async (target: string) => {
-  mutateSubscriber("remove", target).then(() => {
-    console.log(" subscribe added");
-  });
+// DEPRECATED
+// =====================================================
+// export const subscribe = async (target: string) => {
+//   mutateSubscriber("add", target).then(() => {
+//     console.log(" subscribe added");
+//   });
 
-  return true;
+//   return true;
+// };
+// export const unsubscribe = async (target: string) => {
+//   mutateSubscriber("remove", target).then(() => {
+//     console.log(" subscribe added");
+//   });
+
+//   return true;
+// };
+
+export const saveSubscribtion = async (subscribtion: any) => {
+  try {
+    let subs = await createData("subscribtion", subscribtion);
+    console.log("subscribed success", subs);
+  } catch (err) {
+    console.log(err, "failed to save subscribtion info");
+  }
 };
