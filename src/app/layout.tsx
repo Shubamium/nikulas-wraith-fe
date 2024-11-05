@@ -39,6 +39,16 @@ export const metadata: Metadata = {
     images: [banner],
   },
   description: description,
+  manifest: {
+    name: "Nikulas Wraith Notification",
+    short_name: "Nikulas Wraith ",
+    theme_color: "#fff",
+    background_color: "#fff",
+    display: "browser",
+    orientation: "portrait",
+    scope: "/",
+    start_url: "/",
+  },
 };
 
 export default function RootLayout({

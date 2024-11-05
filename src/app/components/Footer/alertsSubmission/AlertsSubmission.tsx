@@ -15,7 +15,9 @@ export default function AlertsSubmission({}: Props) {
     // Register for service worker
     if ("serviceWorker" in navigator) {
       try {
-        let worker = await navigator.serviceWorker.register("/sw.js");
+        let worker = await navigator.serviceWorker.register("/sw.js", {
+          scope: "/",
+        });
         let permission = await Notification.requestPermission();
 
         if (Notification.permission === "denied") {
@@ -33,10 +35,9 @@ export default function AlertsSubmission({}: Props) {
       if (!activeSubs) {
         let subscribtion = await registration.pushManager.subscribe({
           applicationServerKey: process.env.NEXT_PUBLIC_WEBPUSH,
-          userVisibleOnly: false,
         });
 
-        const key = subscribtion.getKey("p256dh"); // Public key
+        const key = subscribtion.getKey("p256dh"); // Publicy key
         const auth = subscribtion.getKey("auth"); // Auth secret
 
         if (key && auth) {
