@@ -31,7 +31,7 @@ export default function AlertsSubmission({}: Props) {
       }
 
       let registration = await navigator.serviceWorker.ready;
-      alert("ServiceWorker Ready");
+      alert("Setting up notification, please wait...");
 
       let activeSubs = await registration.pushManager.getSubscription();
       if (!activeSubs) {
@@ -39,7 +39,8 @@ export default function AlertsSubmission({}: Props) {
           applicationServerKey: process.env.NEXT_PUBLIC_WEBPUSH,
           userVisibleOnly: true,
         });
-        alert("Push Manager Subscribed:" + subscribtion.endpoint);
+        // alert("Push Manager Subscribed:" + subscribtion.endpoint);
+        // alert("");
 
         const key = subscribtion.getKey("p256dh"); // Publicy key
         const auth = subscribtion.getKey("auth"); // Auth secret
@@ -65,8 +66,9 @@ export default function AlertsSubmission({}: Props) {
           };
           // console.log(subs);
           // Save the subscribtion info to the database to send the notif to
-          alert(JSON.stringify(subs));
+          // alert(JSON.stringify(subs));
           await saveSubscribtion(subs);
+          alert("Notification activated successfully!");
           checkForRegis();
         } else {
           alert("Auth And Key not found");
@@ -84,6 +86,7 @@ export default function AlertsSubmission({}: Props) {
       let regist = await navigator.serviceWorker.getRegistration();
       if (regist) {
         await regist.unregister();
+        alert("Notification disabled successfully!");
       }
     }
     checkForRegis();
