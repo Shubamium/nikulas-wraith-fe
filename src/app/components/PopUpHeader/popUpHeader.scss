@@ -3,7 +3,7 @@
   top: 20px;
   width: 100vw;
   z-index: 100;
-  display: flex;
+  // display: flex;
   justify-content: center;
   z-index: 10;
   transition: all 500ms ease;
@@ -100,6 +100,6 @@
 
 body.loaded {
   #popup-head {
-    display: block;
+    display: flex;
   }
 }
