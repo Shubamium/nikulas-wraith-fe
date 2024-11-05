@@ -111,6 +111,7 @@ export default function AlertsSubmission({}: Props) {
           If you would like to know when Nik goes LIVE, Allow notification to
           know when he streams!
         </p>
+
         {/* <input
           type="tel"
           placeholder="+1 000 000 000"
@@ -135,6 +136,9 @@ export default function AlertsSubmission({}: Props) {
             Disable <FaBellSlash />
           </button>
         </div>
+        <p className="warn">
+          {`If you're on IOS Safari, you need to add this page to home screen to get notified`}
+        </p>
       </div>
     </div>
   );

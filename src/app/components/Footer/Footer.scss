@@ -153,8 +153,13 @@
               opacity: 0.27;
             }
           }
-          .desc {
+          .desc,
+          .warn {
             font-size: 0.7rem;
+          }
+          .warn {
+            color: #3b693f;
+            margin: 1em 0;
           }
         }
       }
