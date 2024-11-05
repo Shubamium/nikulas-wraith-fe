@@ -62,7 +62,7 @@ export default function AlertsSubmission({}: Props) {
           };
           // console.log(subs);
           // Save the subscribtion info to the database to send the notif to
-          window.alert(subs);
+          alert(JSON.stringify(subs));
           saveSubscribtion(subs);
           checkForRegis();
         } else {
