@@ -2,12 +2,12 @@
   position: fixed;
   top: 20px;
   width: 100vw;
-  z-index: 100%;
+  z-index: 100;
   display: flex;
   justify-content: center;
   z-index: 10;
   transition: all 500ms ease;
-
+  display: none;
   &.hidden {
     top: -20vh;
   }
@@ -95,5 +95,11 @@
     span {
       display: none;
     }
+  }
+}
+
+body.loaded {
+  #popup-head {
+    display: block;
   }
 }
