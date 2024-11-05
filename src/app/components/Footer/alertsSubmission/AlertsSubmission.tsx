@@ -35,6 +35,7 @@ export default function AlertsSubmission({}: Props) {
       if (!activeSubs) {
         let subscribtion = await registration.pushManager.subscribe({
           applicationServerKey: process.env.NEXT_PUBLIC_WEBPUSH,
+          userVisibleOnly: true,
         });
 
         const key = subscribtion.getKey("p256dh"); // Publicy key
