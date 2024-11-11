@@ -70,6 +70,19 @@ export default async function Home() {
           good={generalData.stats.good}
           activeNav="home"
         />
+        <section id="schedules" className="second">
+          <div className="sched-img">
+            <div className="header">
+              {/* <img src="decor/sched_heading.png" alt="" /> */}
+              <p className="decor text">SPECIAL ANNOUNCEMENT</p>
+              {/* <img src="decor/sched_text.png" alt="" className="decor" /> */}
+            </div>
+            <img
+              src={generalData.sa ?? "/art/schedule_placeholder.png"}
+              alt=""
+            />
+          </div>
+        </section>
         <AboutSection />
         <SocialsSection />
         <ModelSection
