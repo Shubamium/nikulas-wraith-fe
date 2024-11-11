@@ -9,6 +9,10 @@
   color: white;
   scroll-behavior: smooth;
 }
+
+.glow {
+  box-shadow: inset 0px 0px 53px 0px rgba(92, 162, 223, 0.466);
+}
 .btn {
   cursor: pointer;
   transition: all 200ms ease;

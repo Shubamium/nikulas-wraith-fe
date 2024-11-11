@@ -5,9 +5,22 @@ import React from "react";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
 import TimeSyncSection from "../TimeSyncSection/TimeSyncSection";
 
-export default async function AboutSection() {
+type props = {
+  sa: any;
+};
+export default async function AboutSection({ sa }: props) {
   return (
     <section id="about">
+      <section id="schedules" className="second">
+        <div className="sched-img">
+          <div className="header">
+            {/* <img src="decor/sched_heading.png" alt="" /> */}
+            <p className="decor text">SPECIAL ANNOUNCEMENT</p>
+            {/* <img src="decor/sched_text.png" alt="" className="decor" /> */}
+          </div>
+          <img src={sa ?? "/art/schedule_placeholder.png"} alt="" />
+        </div>
+      </section>
       <div className="wc">
         <TimeSyncSection
           targetTime={new Date().toString()}

@@ -1,119 +1,117 @@
-#about{
-	// height: 800px;
-	// background-color: red;
-	box-shadow: inset 0px 0px 53px 0px rgba(92, 162, 223, 0.466);
-	// padding:/;
-	padding: 100px;
-	.container{
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1em;
-		height: 100%;
-		max-width: 1300px;
-		.art-container{
-			display: flex;
-			align-items: center;
-			align-items: center;
-			img{
-				height: 100%;
-				max-width: 100%;
-				object-fit: cover;
-			}
-			
-		}
-		.about-container{
-			padding: 2em;
-			.window-container{
-				max-width: 600px;
-			}
-		}
+#about {
+  // height: 800px;
+  // background-color: red;
+  box-shadow: inset 0px 0px 53px 0px rgba(92, 162, 223, 0.466);
+  // padding:/;
+  padding: 100px;
+  padding-left: 0;
+  padding-right: 0;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    height: 100%;
+    max-width: 1300px;
+    .art-container {
+      display: flex;
+      align-items: center;
+      align-items: center;
+      img {
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+    .about-container {
+      padding: 2em;
+      .window-container {
+        max-width: 600px;
+      }
+    }
 
-		.about-text{
-			display: flex;
-			flex-direction: column;
-			gap: 2em;
-			padding: 1em;
-			padding-bottom: 100px;
-			p{
-				font-size: 1rem;
-				color: #A5A5A5;
-				&::before{
-					content: '> ';
-				}
-			}
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      padding: 1em;
+      padding-bottom: 100px;
+      p {
+        font-size: 1rem;
+        color: #a5a5a5;
+        &::before {
+          content: "> ";
+        }
+      }
 
-			.wr{
-				color: #C9E5FD;
-			}
+      .wr {
+        color: #c9e5fd;
+      }
 
-			.cor{
-				color: #1A7824;
-			}
-		}
-	}
+      .cor {
+        color: #1a7824;
+      }
+    }
+  }
 }
 
 @media screen and (width <= 1024px) {
-	#about .container .art-container img{
-		object-fit: cover;
-		border: 4px solid #C9E5FD;
-	}
-	#about .container{
-		grid-template-columns: 1fr 2fr;
-		& .about-container{
-			padding:0;
-			max-width: 100%;
-			min-width: 0%;
-			& .section-title .directory{
-				font-size: .8rem;
-			}
-		}
-	}
-	
+  #about .container .art-container img {
+    object-fit: cover;
+    border: 4px solid #c9e5fd;
+  }
+  #about .container {
+    grid-template-columns: 1fr 2fr;
+    & .about-container {
+      padding: 0;
+      max-width: 100%;
+      min-width: 0%;
+      & .section-title .directory {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 
 @media screen and (width <= 768px) {
-	#about .container .art-container img{
-		object-fit: cover;
-		border: 4px solid #C9E5FD;
-		min-height: 400px;
-	}
-	#about .container{
-		grid-template-columns: 1fr;
-	}
-	#about .container .about-text{
+  #about .container .art-container img {
+    object-fit: cover;
+    border: 4px solid #c9e5fd;
+    min-height: 400px;
+  }
+  #about .container {
+    grid-template-columns: 1fr;
+  }
+  #about .container .about-text {
+    & p {
+      font-size: 0.9rem;
+    }
+  }
+  #about .container .about-container .section-title .directory {
+    font-size: 0.7rem;
+  }
 
-		& p{
-			font-size:  .9rem;
-		}
-	}
-	#about .container .about-container .section-title .directory{
-		font-size: .7rem;
-	}
-
-	#about{
-		padding: 80px;
-	}
+  #about {
+    padding: 80px;
+  }
 }
 @media screen and (width <= 505px) {
-	#about{
-		padding: 80px 15px;
-	}
-	
-	#about .container .about-text{
-		padding: 1em .25em;
-		& p{
-			font-size: .8rem;
-		}
-	}
-	#about .container .about-container .section-title .directory{
-		font-size: .7rem;
-	}
+  #about {
+    padding: 80px 15px;
+  }
+
+  #about .container .about-text {
+    padding: 1em 0.25em;
+    & p {
+      font-size: 0.8rem;
+    }
+  }
+  #about .container .about-container .section-title .directory {
+    font-size: 0.7rem;
+  }
 }
 
-
-@media screen and (width <= 375px ) {
-	#about .container .about-container .section-title .directory{
-		font-size: .6rem;
-	}
+@media screen and (width <= 375px) {
+  #about .container .about-container .section-title .directory {
+    font-size: 0.6rem;
+  }
 }
