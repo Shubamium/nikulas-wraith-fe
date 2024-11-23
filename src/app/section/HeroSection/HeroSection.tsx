@@ -137,6 +137,13 @@ export default function HeroSection({
           >
             Gallery
           </Link>
+          ||
+          <Link
+            href="/shop?skip=1"
+            className={`${activeNav === "shop" ? "selected" : ""}`}
+          >
+            Shop
+          </Link>
         </nav>
         <div className="wc"></div>
       </header>

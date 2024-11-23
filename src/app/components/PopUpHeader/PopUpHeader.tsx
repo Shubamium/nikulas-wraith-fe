@@ -2,15 +2,17 @@
 import Link from "next/link";
 import "./popUpHeader.scss";
 import { useEffect, useState } from "react";
-import { FaHamburger } from "react-icons/fa";
+import { FaHamburger, FaShoppingCart, FaStream } from "react-icons/fa";
 import {
   IoClose,
   IoCloseCircle,
+  IoImage,
   IoMenu,
   IoMenuOutline,
   IoRemove,
 } from "react-icons/io5";
-import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft, BsCameraVideo, BsRecord } from "react-icons/bs";
+import { TbPictureInPicture } from "react-icons/tb";
 export default function PopUpHeader() {
   let [showHeader, setShowHeader] = useState(false);
   let [collapse, setCollapse] = useState(false);
@@ -57,10 +59,14 @@ export default function PopUpHeader() {
           Setup
         </Link>
         <Link href="/stream?skip=1" className="btn btn-nav">
-          Stream
+          <BsCameraVideo />
         </Link>
         <Link href="/gallery?skip=1" className="btn btn-nav">
-          Gallery
+          {/* Gallery */}
+          <IoImage />
+        </Link>
+        <Link href="/shop?skip=1" className="btn btn-nav">
+          <FaShoppingCart />
         </Link>
         <span>{"<<"}</span>
       </nav>
