@@ -34,7 +34,6 @@ export default function Tracking({}: Props) {
             }}
           />
           <button className="btn btn-check" onClick={getTracking}>
-            {" "}
             {">"}Check{"<"}
           </button>
         </div>
@@ -57,7 +56,7 @@ export default function Tracking({}: Props) {
             <div className="breakdown">
               {orderDetail.products_ordered?.map((prod: any) => {
                 return (
-                  <div className="item">
+                  <div className="item" key={prod._key}>
                     <p className="name">
                       {prod.item.name}
                       <span className="q"> x{prod.quantity}</span>{" "}
