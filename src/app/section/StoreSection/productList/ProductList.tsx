@@ -44,7 +44,7 @@ export default function ProductList({}: Props) {
   useEffect(() => {
     const fetchProduct = async () => {
       const products = await getAllProducts();
-      setProductList(products);
+      setProductList(products.filter((prod) => prod.stock > 0));
     };
     fetchProduct();
   }, []);

@@ -1,0 +1,49 @@
+.success {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+  }
+  h2 {
+    color: #565684;
+    background: rgba(0, 0, 0, 0.444);
+    // box-shadow: 0px 0px 4px #c9e5fd;
+    padding: 0.25em 1em;
+    text-align: center;
+  }
+  .description {
+    color: #565684;
+  }
+  .info {
+    padding: 1em;
+    text-align: center;
+    text-shadow: 0px 0px 4px #c9e5fd83;
+
+    p {
+      color: rgba(255, 255, 255, 0.401);
+    }
+    .id {
+      color: rgba(255, 255, 255, 0.549);
+      font-weight: bold;
+      font-family: var(--fontMain);
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  .btn {
+    background: #c9e5fd;
+    color: #565684;
+    fill: #565684;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0px 0px 4px #c9e5fd;
+    padding: 0.25em 1em;
+  }
+}

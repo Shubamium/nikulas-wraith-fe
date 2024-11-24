@@ -75,3 +75,7 @@ export async function mutateSubscriber(type: "remove" | "add", target: string) {
     })
     .commit();
 }
+
+export async function updateData(id: string, data: any) {
+  return client.patch(id).set(data).commit();
+}

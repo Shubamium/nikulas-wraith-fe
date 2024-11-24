@@ -16,7 +16,7 @@ export default async function Stream({}: Props) {
 	}
 	`);
 
-  console.log(generalData[0]);
+  // console.log(generalData[0]);
   return (
     <main id="container_home">
       <LoadingSkip />

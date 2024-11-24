@@ -24,11 +24,10 @@ export default async function Gallery({}: Props) {
 	`);
 
   let galleryData = {};
-  console.log(gallery[0].categories[0].art);
+  // console.log(gallery[0].categories[0].art);
   let map = new Map();
   if (gallery) {
     for (let tabs of gallery) {
-      // galleryData[tabs.tab] = tabs;
       map.set(tabs.tab, tabs.categories);
     }
   }

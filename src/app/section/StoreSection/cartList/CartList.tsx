@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./cartList.scss";
 import { getAllProductsMap } from "@/db/productAction";
 import { urlFor } from "@/db/client";
+import { useRouter } from "next/navigation";
+import { createOrder } from "@/db/payment";
 type Props = any;
 
 export type Cart = {
@@ -16,14 +18,35 @@ export default function CartList({ switchTo }: Props) {
   const [prodMap, setProdMap] = useState<Map<string, any> | null>(null);
   const [total, setTotal] = useState(0);
 
-  const getCartFromLocalStorage = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
-    return cart;
+  const getCartFromLocalStorage = (prodMap: Map<string, any>) => {
+    const cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
+    return validateCart(cart, prodMap);
+  };
+
+  const validateCart = (cart: Cart[], prodMap: Map<string, any>) => {
+    // Validate amount if the stock on the server is lower than the current cart
+    const newCart = [];
+    for (let i = 0; i < cart.length; i++) {
+      const thisProd = prodMap.get(cart[i].id);
+      if (thisProd && thisProd.stock > 0) {
+        let cartItem = {
+          id: cart[i].id,
+          q: Math.max(1, Math.min(cart[i].q, thisProd.stock)),
+        };
+        newCart.push(cartItem);
+      }
+    }
+    return newCart;
   };
   const getProductMapFromServer = async () => {
     const data = await getAllProductsMap();
     setProdMap(data);
-    setActiveCart(getCartFromLocalStorage());
+
+    // Validate
+    let newCart = getCartFromLocalStorage(data);
+
+    // Show to user
+    setActiveCart(newCart);
   };
 
   const changeCart = (id: string, amount: number) => {
@@ -67,11 +90,29 @@ export default function CartList({ switchTo }: Props) {
   useEffect(() => {
     getProductMapFromServer();
   }, []);
+
   useEffect(() => {
     // Recalculate the total
     calculateTotal();
   }, [activeCart]);
 
+  const router = useRouter();
+
+  const checkout = async () => {
+    let cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
+    if (prodMap) {
+      let validatedCart = validateCart(cart, prodMap);
+      localStorage.setItem("cart", JSON.stringify(validatedCart));
+      if (validatedCart.length > 0) {
+        const checkoutURL = await createOrder(validatedCart);
+
+        // If order created successfully
+        if (checkoutURL) {
+          router.push(checkoutURL);
+        }
+      }
+    }
+  };
   return (
     <div id="cart-display">
       <div className="cart-list">
@@ -137,7 +178,9 @@ export default function CartList({ switchTo }: Props) {
               <p>Shipping: ${shipping_fee}</p>
             </div>
           </div>
-          <button className="btn btn-checkout">PROCEED TO CHECKOUT</button>
+          <button className="btn btn-checkout" onClick={checkout}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
       )}
     </div>

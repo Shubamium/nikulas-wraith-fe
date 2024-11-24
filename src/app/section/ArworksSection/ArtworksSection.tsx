@@ -38,7 +38,7 @@ export default async function ArtworksSection() {
 		}
 	}	[0]
 	`);
-  console.log(artwork);
+  // console.log(artwork);
   // const nikArtData = (await fetchData(
   //   `
   // 	*[_type == 'nik-art']{
