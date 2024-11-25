@@ -77,14 +77,35 @@
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    gap: 1em;
     .total {
       display: flex;
+      flex-direction: column-reverse;
       gap: 1em;
+      width: 100%;
       .breakdown {
-        opacity: 0.5;
+        // opacity: 0.9;
+        p {
+          color: rgba(255, 255, 255, 0.402);
+        }
         padding-bottom: 1em;
+        .discount {
+          color: rgba(255, 0, 0, 0.872);
+          span {
+            font-weight: bold;
+          }
+        }
       }
       .sum {
+        background: rgba(0, 0, 0, 0.159);
+        padding: 0.25em 1em;
+        // flex-direction: row-reverse;
+        .prev {
+          text-decoration: line-through;
+          font-size: 0.9rem;
+          font-weight: normal;
+          color: red;
+        }
         h2 {
           font-size: 1rem;
           font-weight: normal;
@@ -95,12 +116,47 @@
         }
       }
     }
-    .btn-checkout {
-      background: #93f4fd;
-      color: #3a3a65;
-      font-family: var(--fontMain);
-      font-weight: bold;
-      padding: 0.25em 1em;
+    .action {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      .btn-checkout {
+        background: #93f4fd;
+        color: #3a3a65;
+        font-family: var(--fontMain);
+        font-weight: bold;
+        padding: 0.25em 1em;
+      }
+      .codes {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .top {
+          display: flex;
+        }
+        .message {
+          padding: 0.25em 1em;
+          opacity: 0.8;
+        }
+        input {
+          background: rgba(0, 0, 0, 0.219);
+          padding: 0.25em 1em;
+          color: #93f4fd;
+          font-family: var(--fontMain);
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 1.1rem;
+
+          &::placeholder {
+            color: white;
+            opacity: 0.4;
+            font-family: var(--fontMain);
+            text-transform: none;
+            font-size: 0.9rem;
+            font-weight: normal;
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Cart } from "@/app/section/StoreSection/cartList/CartList";
 
+type CouponType = { amount: number; code: string };
 // Map a cart and sum the price with the quantity to get the total price
 export function sumCart(
   cart: Cart[],
@@ -11,7 +12,19 @@ export function sumCart(
     let currPrice = data.price * current.q;
     return prev + currPrice;
   }, shipping_fee);
+
   return total;
+}
+
+export function calculateDiscount(total: number, coupon?: CouponType | null) {
+  // If there is a coupon code
+  if (coupon && coupon.amount) {
+    // Calculate the percentage amount of price reduced
+    let discount = (total / 100) * coupon.amount;
+    let discountAmount = parseFloat(discount.toFixed(2));
+    return discountAmount;
+  }
+  return 0;
 }
 
 // Clean the cart of any missing data

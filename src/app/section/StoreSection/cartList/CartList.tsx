@@ -1,10 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./cartList.scss";
-import { getAllProductsMap } from "@/db/productAction";
+import {
+  getAllProductsMap,
+  getShippingFee,
+  searchCode,
+} from "@/db/productAction";
 import { urlFor } from "@/db/client";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/db/payment";
+import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
+import { calculateDiscount } from "@/db/util";
 type Props = any;
 
 export type Cart = {
@@ -12,12 +18,18 @@ export type Cart = {
   q: number;
 };
 
-const shipping_fee = 5;
 export default function CartList({ switchTo }: Props) {
   const [activeCart, setActiveCart] = useState<Cart[]>([]);
   const [prodMap, setProdMap] = useState<Map<string, any> | null>(null);
   const [total, setTotal] = useState(0);
-
+  const [shipping, setShipping] = useState(0);
+  const [discount, setDiscount] = useState<number | null>(null);
+  const [pcInput, setPCInput] = useState("");
+  const [coupon, setCoupon] = useState<{
+    code: string;
+    amount: number;
+  } | null>(null);
+  const [couponMessage, setCouponMessage] = useState<string | null>(null);
   const getCartFromLocalStorage = (prodMap: Map<string, any>) => {
     const cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
     return validateCart(cart, prodMap);
@@ -48,6 +60,10 @@ export default function CartList({ switchTo }: Props) {
     // Show to user
     setActiveCart(newCart);
   };
+  const getShipping = async () => {
+    let fee = await getShippingFee();
+    setShipping(fee ?? 5);
+  };
 
   const changeCart = (id: string, amount: number) => {
     let copyCart = [...activeCart];
@@ -77,35 +93,58 @@ export default function CartList({ switchTo }: Props) {
 
   const calculateTotal = () => {
     if (hasItem() && prodMap) {
+      // Tally up the price * quantity
       let total = activeCart.reduce((prev: number, curr: Cart) => {
         const productPrice = prodMap.get(curr.id).price;
         const subTotal = curr.q * productPrice;
         return prev + subTotal;
-      }, shipping_fee);
+      }, shipping);
 
-      setTotal(total);
+      let finalTotal = total;
+
+      let disc = calculateDiscount(total, coupon);
+      if (disc !== 0) {
+        finalTotal -= disc;
+        setDiscount(disc);
+      }
+      setTotal(finalTotal);
     }
   };
 
   useEffect(() => {
+    getShipping();
     getProductMapFromServer();
   }, []);
 
   useEffect(() => {
     // Recalculate the total
     calculateTotal();
-  }, [activeCart]);
+  }, [activeCart, coupon]);
 
   const router = useRouter();
 
+  const applyCode = async () => {
+    if (pcInput === "") {
+      setCouponMessage(null);
+      return;
+    }
+    const codeLookup = await searchCode(pcInput);
+    if (codeLookup) {
+      setCoupon({ amount: codeLookup.amount, code: codeLookup.code });
+      setCouponMessage("Coupon applied!");
+      // calculateTotal();
+    } else {
+      setCouponMessage(pcInput.toUpperCase() + " is " + "not a valid code");
+      console.log("No Coupon Found");
+    }
+  };
   const checkout = async () => {
     let cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
     if (prodMap) {
       let validatedCart = validateCart(cart, prodMap);
       localStorage.setItem("cart", JSON.stringify(validatedCart));
       if (validatedCart.length > 0) {
-        const checkoutURL = await createOrder(validatedCart);
-
+        const checkoutURL = await createOrder(validatedCart, coupon?.code);
         // If order created successfully
         if (checkoutURL) {
           router.push(checkoutURL);
@@ -113,6 +152,7 @@ export default function CartList({ switchTo }: Props) {
       }
     }
   };
+
   return (
     <div id="cart-display">
       <div className="cart-list">
@@ -171,16 +211,48 @@ export default function CartList({ switchTo }: Props) {
             <div className="sum">
               {" "}
               <h2>Total:</h2>
-              <p>${total}</p>
+              <p>
+                {discount && <span className="prev">${total + discount}</span>}{" "}
+                ${total} USD
+              </p>
             </div>
             <div className="breakdown">
-              <p>Subtotal: ${total - shipping_fee}</p>
-              <p>Shipping: ${shipping_fee}</p>
+              <p>
+                Subtotal: ${(total + (discount ?? 0) - shipping).toFixed(2)} USD
+              </p>
+              <p>Shipping: ${shipping} USD</p>
+              {discount && coupon?.code && (
+                <p className="discount">
+                  Discounts: -${discount} {">>"} {coupon.amount}% OFF with{" "}
+                  <span>{coupon.code.toUpperCase()} </span>
+                </p>
+              )}
             </div>
           </div>
-          <button className="btn btn-checkout" onClick={checkout}>
-            PROCEED TO CHECKOUT
-          </button>
+          <div className="action">
+            <div className="codes">
+              <div className="top">
+                <input
+                  type="text"
+                  placeholder="Enter your promo code here!"
+                  name="promo codes"
+                  value={pcInput}
+                  onChange={(e) => {
+                    setPCInput(e.target.value);
+                  }}
+                />
+                <button className="btn btn-checkout" onClick={applyCode}>
+                  {">"}APPLY{"<"}
+                </button>
+              </div>
+              <div className="message">
+                {couponMessage && <p>{couponMessage}</p>}
+              </div>
+            </div>
+            <button className="btn btn-checkout" onClick={checkout}>
+              PROCEED TO CHECKOUT {">>>>>>>>>>>>>"}
+            </button>
+          </div>
         </div>
       )}
     </div>

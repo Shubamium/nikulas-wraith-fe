@@ -1,9 +1,15 @@
 "use server";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
-import { cartToProductsMap, getAllProductsMap } from "./productAction";
+import {
+  cartToProductsMap,
+  getAllProductsMap,
+  getShippingFee,
+  searchCode,
+} from "./productAction";
 import { Cart } from "@/app/section/StoreSection/cartList/CartList";
 import {
+  calculateDiscount,
   cartToPaypalItemsPayload,
   cleanCart,
   itemsToCart,
@@ -15,7 +21,7 @@ import { sendOrderConfirmation } from "./email";
 
 const base_url = process.env.PAYPAL_BASE;
 const base_url2 = process.env.PAYPAL_BASE2;
-const shipping_fee = parseInt(process.env.SHIPPING_FEE ?? "5");
+// const shipping_fee = parseInt(process.env.SHIPPING_FEE ?? "5");
 
 // 1. Get the access token with the client id and secret
 async function getAccessToken() {
@@ -49,10 +55,14 @@ async function getAccessToken() {
 }
 
 // 2. Make the order and return the checkout link to user
-export async function createOrder(cart: any[]) {
+export async function createOrder(cart: any[], couponCode?: string) {
   let prodMap = await cartToProductsMap(cart);
+  const shipping_fee = await getShippingFee();
   let total = sumCart(cart, prodMap, shipping_fee);
-  // cart = cleanCart(cart,prodMap)
+  let code = await searchCode(couponCode ?? "EMPTY_CODE");
+  let discount = calculateDiscount(total, code);
+
+  cart = cleanCart(cart, prodMap);
   let token = await getAccessToken();
   // If succesfully get token
   console.log(total);
@@ -73,15 +83,19 @@ export async function createOrder(cart: any[]) {
             {
               amount: {
                 currency_code: "USD",
-                value: new String(total),
+                value: (total - discount).toFixed(2),
                 breakdown: {
                   item_total: {
                     currency_code: "USD",
-                    value: new String(total - shipping_fee),
+                    value: (total - shipping_fee).toFixed(2),
                   },
                   shipping: {
                     currency_code: "USD",
                     value: new String(shipping_fee),
+                  },
+                  discount: {
+                    currency_code: "USD",
+                    value: discount.toFixed(2),
                   },
                 },
               },

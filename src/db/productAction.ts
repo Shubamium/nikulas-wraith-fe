@@ -57,3 +57,40 @@ export async function getOrderDetail(id: string) {
   let orderDetail = await fetchData<any>(query);
   return orderDetail;
 }
+
+export async function getShippingFee() {
+  try {
+    let general = await fetchData<any>(`
+			*[_type == 'general' && preset == 'main']{
+				shipping_fee,
+		}[0]
+		`);
+    console.log(general);
+    return general.shipping_fee;
+  } catch (err) {
+    console.log("CANNOT_GET_SHIPPING_FEE", err);
+    return 0;
+  }
+}
+
+export async function searchCode(code: string) {
+  try {
+    let coupon = await fetchData<any>(`
+				*[_type == 'codes' && code == '${code.toUpperCase()}']{
+					_id,
+					code,
+					amount,
+				}[0]
+		`);
+    if (coupon && coupon._id) {
+      console.log("coupon found");
+      return coupon;
+    } else {
+      console.log("coupon not found");
+      return null;
+    }
+  } catch (err) {
+    console.log("Failed To get coupon", err);
+    console.log(code.toUpperCase());
+  }
+}
