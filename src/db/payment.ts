@@ -123,6 +123,10 @@ export async function createOrder(cart: any[]) {
 // 3. Capture the order by confirming it to the paypal api and then saving the order in sanity
 // Confirm the order to the paypal server
 export async function captureOrder(paymentToken: string, payerID: string) {
+  if (!paymentToken || !payerID) {
+    console.error("Payment Token Is not Being provided");
+    return null;
+  }
   const token = await getAccessToken();
   console.log("Capturing Order");
   if (token) {

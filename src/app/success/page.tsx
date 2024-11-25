@@ -25,8 +25,8 @@ export default async function Gallery({ searchParams }: Props) {
 
   const capture = await captureOrder(params.token, params.PayerID);
   if (!capture) {
-    redirect("/");
-    return;
+    // redirect("/");
+    // return;
   }
   return (
     <main id="container_home">
@@ -47,7 +47,7 @@ export default async function Gallery({ searchParams }: Props) {
             Your order tracking id is: <CopyCode code={params.token} />
           </p>
         </div>
-        <Link href={"/skip?=1"} className="btn">
+        <Link href={"/?skip=1"} className="btn">
           {"<<"} Back to home
         </Link>
       </div>
