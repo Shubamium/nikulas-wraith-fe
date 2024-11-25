@@ -13,7 +13,6 @@
     "@sanity/image-url": "^1.0.2",
     "axios": "^1.7.7",
     "dayjs": "^1.11.10",
-    "dotenv": "^16.4.5",
     "lightbox.js-react": "^1.1.7",
     "next": "14.0.3",
     "next-sanity": "^7.0.1",

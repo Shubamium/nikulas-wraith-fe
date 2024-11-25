@@ -55,7 +55,7 @@ export default function ProductList({}: Props) {
           <div className="product" key={prod._id}>
             <img
               className="prod-img"
-              src={urlFor(prod.image)?.width(300).url()}
+              src={urlFor(prod.image)?.width(500).url()}
               alt=""
             />
             <div className="infos">

@@ -1,8 +1,9 @@
 #product-list {
   display: flex;
   max-width: 1200px;
+  flex-wrap: wrap;
   gap: 2em;
-
+  padding-bottom: 200px;
   .product {
     background: linear-gradient(180deg, #3a3a65 0%, #211f27 100%);
     border: 3px solid #3a3a65;

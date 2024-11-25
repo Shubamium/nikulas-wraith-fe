@@ -19,16 +19,21 @@ const shipping_fee = parseInt(process.env.SHIPPING_FEE ?? "5");
 
 // 1. Get the access token with the client id and secret
 async function getAccessToken() {
+  const encodedCredentials = btoa(
+    `${process.env.PAYPAL_ID}:${process.env.PAYPAL_SECRET}`
+  );
+
   try {
     let response = await axios({
       url: base_url + "oauth2/token",
       method: "POST",
-      auth: {
-        username: process.env.PAYPAL_ID ?? "",
-        password: process.env.PAYPAL_SECRET ?? "",
-      },
+      // auth: {
+      //   username: process.env.PAYPAL_ID ?? "",
+      //   password: process.env.PAYPAL_SECRET ?? "",
+      // },
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${encodedCredentials}`,
       },
       data: {
         grant_type: "client_credentials",
