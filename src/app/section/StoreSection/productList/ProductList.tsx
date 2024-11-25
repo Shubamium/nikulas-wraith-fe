@@ -65,7 +65,11 @@ export default function ProductList({}: Props) {
             <div className="list">
               <p>
                 ${prod.price} <br />
-                <span> {prod.stock} left</span>
+                {prod.hide_stock === true ? (
+                  <></>
+                ) : (
+                  <span> {prod.stock} left</span>
+                )}
               </p>
               <button
                 className="btn add"

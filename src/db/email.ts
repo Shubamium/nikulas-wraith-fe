@@ -13,7 +13,7 @@ const mailer = nodemailer.createTransport({
   },
 } as TransportOptions);
 
-const mainEmail = "nikulaswraith@gmail.com";
+// const mainEmail = "business@vpe.digital";
 
 export async function sendOrderConfirmation(to: string, id: string) {
   const emailHtml = await render(ConfirmEmail({ id: id }));
@@ -21,7 +21,7 @@ export async function sendOrderConfirmation(to: string, id: string) {
     const orderMail = await mailer.sendMail({
       from: `The Phantom Realm <${process.env.SMTP_USER}>`,
       to: to,
-      cc: ["vicnet.video@gmail.com"].join(","),
+      cc: ["shuba.dev313@gmail.com"].join(","),
       subject: "[ORDER CONFIRMATION] Purchase Completed!",
       // text: `Thank you for your purchase! We greatly appreciate you choosing us to provide you with the best quality items!
       // \n\ Your purchase number for this order is in this email below.\n Your order tracking id is: ${id}`,
@@ -29,8 +29,9 @@ export async function sendOrderConfirmation(to: string, id: string) {
     });
     const nikMail = await mailer.sendMail({
       from: `The Phantom Realm <${process.env.SMTP_USER}>`,
-      to: mainEmail,
+      to: process.env.SMTP_USER,
       subject: `[NEW ORDER REQUEST] ${to} made a purchase!`,
+      cc: ["shuba.dev313@gmail.com"].join(","),
       text: `Someone made a purchase through your website, take action now!`,
     });
     console.log("Successfully send email");
