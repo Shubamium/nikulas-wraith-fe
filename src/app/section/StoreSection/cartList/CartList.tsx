@@ -4,6 +4,7 @@ import "./cartList.scss";
 import {
   getAllProductsMap,
   getShippingFee,
+  getTax,
   searchCode,
 } from "@/db/productAction";
 import { urlFor } from "@/db/client";
@@ -23,6 +24,7 @@ export default function CartList({ switchTo }: Props) {
   const [prodMap, setProdMap] = useState<Map<string, any> | null>(null);
   const [total, setTotal] = useState(0);
   const [shipping, setShipping] = useState(0);
+  const [tax, setTax] = useState<number>(0);
   const [discount, setDiscount] = useState<number | null>(null);
   const [pcInput, setPCInput] = useState("");
   const [coupon, setCoupon] = useState<{
@@ -64,7 +66,10 @@ export default function CartList({ switchTo }: Props) {
     let fee = await getShippingFee();
     setShipping(fee ?? 5);
   };
-
+  const getTaxAmount = async () => {
+    let tax = await getTax();
+    setTax(tax);
+  };
   const changeCart = (id: string, amount: number) => {
     let copyCart = [...activeCart];
     const selectedIndex = activeCart.findIndex((cart) => cart.id === id);
@@ -98,11 +103,10 @@ export default function CartList({ switchTo }: Props) {
         const productPrice = prodMap.get(curr.id).price;
         const subTotal = curr.q * productPrice;
         return prev + subTotal;
-      }, shipping);
-
-      let finalTotal = total;
+      }, 0);
 
       let disc = calculateDiscount(total, coupon);
+      let finalTotal = total + shipping;
       if (disc !== 0) {
         finalTotal -= disc;
         setDiscount(disc);
@@ -113,6 +117,7 @@ export default function CartList({ switchTo }: Props) {
 
   useEffect(() => {
     getShipping();
+    getTaxAmount();
     getProductMapFromServer();
   }, []);
 
@@ -153,6 +158,8 @@ export default function CartList({ switchTo }: Props) {
     }
   };
 
+  const subtotal = parseFloat((total + (discount ?? 0) - shipping).toFixed(2));
+  const taxAmount = parseFloat(((subtotal / 100) * tax).toFixed(2));
   return (
     <div id="cart-display">
       <div className="cart-list">
@@ -212,21 +219,32 @@ export default function CartList({ switchTo }: Props) {
               {" "}
               <h2>Total:</h2>
               <p>
-                {discount && <span className="prev">${total + discount}</span>}{" "}
-                ${total} USD
+                {discount && (
+                  <span className="prev">
+                    ${(total + taxAmount + discount).toFixed(2)}
+                  </span>
+                )}{" "}
+                ${(total + taxAmount).toFixed(2)} USD
               </p>
             </div>
             <div className="breakdown">
-              <p>
-                Subtotal: ${(total + (discount ?? 0) - shipping).toFixed(2)} USD
-              </p>
-              <p>Shipping: ${shipping} USD</p>
+              {/* Sub */}
+              <p>Subtotal: ${subtotal} USD</p>
+              {/* Discount */}
               {discount && coupon?.code && (
                 <p className="discount">
                   Discounts: -${discount} {">>"} {coupon.amount}% OFF with{" "}
                   <span>{coupon.code.toUpperCase()} </span>
                 </p>
               )}
+              {/* Tax */}
+              {tax !== undefined && (
+                <p>
+                  Tax: ${taxAmount} USD {tax}%
+                </p>
+              )}
+              {/* Ship */}
+              <p>Shipping: ${shipping} USD</p>
             </div>
           </div>
           <div className="action">

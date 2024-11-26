@@ -5,6 +5,7 @@ import {
   cartToProductsMap,
   getAllProductsMap,
   getShippingFee,
+  getTax,
   searchCode,
 } from "./productAction";
 import { Cart } from "@/app/section/StoreSection/cartList/CartList";
@@ -58,14 +59,14 @@ async function getAccessToken() {
 export async function createOrder(cart: any[], couponCode?: string) {
   let prodMap = await cartToProductsMap(cart);
   const shipping_fee = await getShippingFee();
-  let total = sumCart(cart, prodMap, shipping_fee);
-  let code = await searchCode(couponCode ?? "EMPTY_CODE");
-  let discount = calculateDiscount(total, code);
-
+  const tax = await getTax();
   cart = cleanCart(cart, prodMap);
+  let p = sumCart(cart, prodMap, shipping_fee, tax);
+  let code = await searchCode(couponCode ?? "EMPTY_CODE");
+  console.log(p);
+  let discount = calculateDiscount(p.subtotal, code);
   let token = await getAccessToken();
   // If succesfully get token
-  console.log(total);
   if (token) {
     try {
       // Create the order in the paypal api
@@ -83,20 +84,27 @@ export async function createOrder(cart: any[], couponCode?: string) {
             {
               amount: {
                 currency_code: "USD",
-                value: (total - discount).toFixed(2),
+                value: (p.total - discount).toFixed(2),
                 breakdown: {
                   item_total: {
                     currency_code: "USD",
-                    value: (total - shipping_fee).toFixed(2),
+                    value: p.subtotal.toFixed(2),
+                  },
+                  tax_total: {
+                    currency_code: "USD",
+                    value: p.taxAmount,
                   },
                   shipping: {
                     currency_code: "USD",
                     value: new String(shipping_fee),
                   },
-                  discount: {
-                    currency_code: "USD",
-                    value: discount.toFixed(2),
-                  },
+                  discount:
+                    discount !== 0
+                      ? {
+                          currency_code: "USD",
+                          value: discount.toFixed(2),
+                        }
+                      : undefined,
                 },
               },
               items: cartToPaypalItemsPayload(cart, prodMap),
@@ -111,7 +119,7 @@ export async function createOrder(cart: any[], couponCode?: string) {
                 landing_page: "GUEST_CHECKOUT",
                 user_action: "PAY_NOW",
                 return_url: process.env.SELF_URL + "success",
-                cancel_url: process.env.SELF_URL,
+                cancel_url: process.env.SELF_URL + "/shop?skip=1",
               },
             },
           },
@@ -128,7 +136,7 @@ export async function createOrder(cart: any[], couponCode?: string) {
 
       return action_link.href;
     } catch (err: any) {
-      console.log(err.response.data.details);
+      console.log(err.response.data?.details);
     }
   }
   return false;

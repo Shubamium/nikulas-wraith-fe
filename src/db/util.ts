@@ -5,15 +5,22 @@ type CouponType = { amount: number; code: string };
 export function sumCart(
   cart: Cart[],
   productsMap: Map<string, any>,
-  shipping_fee: number
+  shipping_fee: number,
+  taxRate: number
 ) {
-  let total = cart.reduce((prev: number, current: any) => {
+  let subtotal = cart.reduce((prev: number, current: any) => {
     let data = productsMap.get(current.id);
     let currPrice = data.price * current.q;
     return prev + currPrice;
-  }, shipping_fee);
+  }, 0);
 
-  return total;
+  let tax = parseFloat(((subtotal / 100) * taxRate).toFixed(2));
+  return {
+    subtotal: subtotal,
+    taxRate: taxRate,
+    taxAmount: tax,
+    total: subtotal + shipping_fee + tax,
+  };
 }
 
 export function calculateDiscount(total: number, coupon?: CouponType | null) {

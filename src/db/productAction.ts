@@ -72,7 +72,20 @@ export async function getShippingFee() {
     return 0;
   }
 }
-
+export async function getTax() {
+  try {
+    let general = await fetchData<any>(`
+			*[_type == 'general' && preset == 'main']{
+				tax,
+		}[0]
+		`);
+    console.log(general);
+    return general.tax;
+  } catch (err) {
+    console.log("CANNOT_GET_TAX", err);
+    return 0;
+  }
+}
 export async function searchCode(code: string) {
   try {
     let coupon = await fetchData<any>(`
