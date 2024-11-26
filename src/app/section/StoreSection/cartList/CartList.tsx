@@ -107,7 +107,7 @@ export default function CartList({ switchTo }: Props) {
         finalTotal -= disc;
         setDiscount(disc);
       }
-      setTotal(finalTotal);
+      setTotal(parseFloat(finalTotal.toFixed(2)));
     }
   };
 

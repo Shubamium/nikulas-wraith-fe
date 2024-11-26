@@ -108,7 +108,7 @@ export async function createOrder(cart: any[], couponCode?: string) {
                 payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
                 brand_name: "Nikulas Wraith",
                 locale: "en-US",
-                landing_page: "NO_PREFERENCE",
+                landing_page: "GUEST_CHECKOUT",
                 user_action: "PAY_NOW",
                 return_url: process.env.SELF_URL + "success",
                 cancel_url: process.env.SELF_URL,
