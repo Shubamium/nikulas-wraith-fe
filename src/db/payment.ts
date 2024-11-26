@@ -92,7 +92,7 @@ export async function createOrder(cart: any[], couponCode?: string) {
                   },
                   tax_total: {
                     currency_code: "USD",
-                    value: p.taxAmount,
+                    value: p.taxAmount.toFixed(2),
                   },
                   shipping: {
                     currency_code: "USD",
