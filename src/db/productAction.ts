@@ -1,7 +1,7 @@
 "use server";
 
 import { Cart } from "@/app/section/StoreSection/cartList/CartList";
-import { fetchData } from "./client";
+import { fetchData, updateData } from "./client";
 
 export async function getAllProducts() {
   const productList = await fetchData<any[]>(`
@@ -105,5 +105,18 @@ export async function searchCode(code: string) {
   } catch (err) {
     console.log("Failed To get coupon", err);
     console.log(code.toUpperCase());
+  }
+}
+
+export async function setOrderAsCompleted(_id: string) {
+  try {
+    await updateData(_id, {
+      status: "completed",
+    });
+    console.log("ORDER MARK AS COMPLETED:", _id);
+    return true;
+  } catch (err) {
+    console.log("ERROR_SET_COMPLETE", err);
+    return false;
   }
 }

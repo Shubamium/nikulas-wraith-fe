@@ -56,3 +56,16 @@ export async function sendOrderUpdateStatus(
     console.error("ERROR_SEND_MAIL (UPDATE_STATUS)", err);
   }
 }
+export async function sendOrderComplete(to: string, order_id: string) {
+  try {
+    const orderMail = await mailer.sendMail({
+      from: `The Phantom Realm <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
+      cc: ["shuba.dev313@gmail.com"].join(","),
+      subject: `[${order_id}] ${to} has confirmed their order!`,
+      text: `Buyer has confirmed that they received the item and have marked this order as completed`,
+    });
+  } catch (err) {
+    console.error("ERROR_SEND_MAIL (UPDATE_COMPLETE)", err);
+  }
+}

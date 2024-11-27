@@ -2,7 +2,7 @@
 import Window from "@/app/components/Window/Window";
 import React, { useState } from "react";
 import "./tracking.scss";
-import { getOrderDetail } from "@/db/productAction";
+import { getOrderDetail, setOrderAsCompleted } from "@/db/productAction";
 type Props = {};
 
 export default function Tracking({}: Props) {
@@ -11,6 +11,7 @@ export default function Tracking({}: Props) {
     any | null | { message: string }
   >(null);
 
+  const [completed, setCompleted] = useState(false);
   const getTracking = async () => {
     let detail = await getOrderDetail(tracking);
     if (detail && detail._id) {
@@ -18,6 +19,20 @@ export default function Tracking({}: Props) {
       console.log(detail);
     } else {
       setOrderDetail({ message: "Order not found! Your id is invalid" });
+    }
+  };
+
+  const completeOrder = async () => {
+    if (orderDetail._id) {
+      let res = await setOrderAsCompleted(orderDetail._id);
+
+      if (res) {
+        setCompleted(true);
+        setOrderDetail((od: any) => ({
+          ...od,
+          status: "completed",
+        }));
+      }
     }
   };
   return (
@@ -44,9 +59,15 @@ export default function Tracking({}: Props) {
               <h2>
                 ORDER {">>"} <span className="id">{orderDetail.order_id}</span>
               </h2>
-              <p className={`status`}>
+              <p
+                className={`status ${
+                  orderDetail.status == "complete" || completed
+                    ? "order-complete"
+                    : ""
+                }`}
+              >
                 <span>STATUS: </span>
-                {orderDetail.status?.toUpperCase()}
+                {completed ? "COMPLETED" : orderDetail.status?.toUpperCase()}
               </p>
             </div>
             <div className="status-text">
@@ -66,6 +87,23 @@ export default function Tracking({}: Props) {
                 );
               })}
             </div>
+
+            {orderDetail.status === "shipped" && completed == false && (
+              <div className="confirm">
+                <div className="left">
+                  <h2>Mark your order Complete</h2>
+                  <p>
+                    Your order has been shipped! Please carefully check your
+                    items before marking the order as completed.
+                  </p>
+                </div>
+                <div className="right">
+                  <button className="btn btn-check" onClick={completeOrder}>
+                    {"> Complete your order <"}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
         {orderDetail && orderDetail.message && (
