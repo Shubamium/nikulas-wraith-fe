@@ -23,6 +23,7 @@
     align-items: center;
     padding: 1em;
     flex-wrap: wrap;
+
     .btn.tab-btn {
       background: #232226;
       border: 2px solid #93f4fd;
@@ -34,6 +35,21 @@
       &.active {
         background: #93f4fd;
         color: #565684;
+      }
+    }
+    @media screen and (max-width: 550px) {
+      gap: 0.2em;
+      span {
+        opacity: 0.2;
+      }
+      .btn.tab-btn {
+        font-size: 1rem;
+        gap: 0.4em;
+      }
+    }
+    @media screen and (max-width: 320px) {
+      .btn.tab-btn {
+        font-size: 0.9rem;
       }
     }
   }

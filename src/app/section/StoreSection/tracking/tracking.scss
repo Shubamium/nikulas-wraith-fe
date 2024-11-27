@@ -1,5 +1,5 @@
 #tracking-container {
-  width: min(900px, 80%);
+  width: min(900px, 98%);
   .window-container {
     width: 100%;
     // padding-bottom: 1em;
@@ -12,6 +12,9 @@
       font-size: 1.4rem;
       &::placeholder {
         color: rgba(255, 255, 255, 0.309);
+      }
+      @media screen and (max-width: 440px) {
+        font-size: 1rem;
       }
     }
 
@@ -36,11 +39,24 @@
 
     .order-detail {
       padding: 1em;
+      @media screen and (max-width: 420px) {
+        padding: 0.25em;
+        padding-top: 1em;
+      }
       .order-heading {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1em;
+        @media screen and (max-width: 768px) {
+          gap: 0;
+          // display: flex;
+          flex-direction: column-reverse;
+          gap: 1em;
+          .status {
+            width: 100%;
+          }
+        }
         .status {
           background: linear-gradient(180deg, #3a3a65 0%, #211f27 100%);
           border: 3px solid #3a3a65;
@@ -60,6 +76,9 @@
 
         h2 {
           font-size: 1.5rem;
+          @media screen and (max-width: 550px) {
+            font-size: 1rem;
+          }
           span {
             text-transform: uppercase;
             // opacity: 0.5;
@@ -79,6 +98,15 @@
         p {
           opacity: 0.5;
         }
+
+        @media screen and (max-width: 550px) {
+          h2 {
+            font-size: 0.9rem;
+          }
+          p {
+            font-size: 0.8rem;
+          }
+        }
       }
 
       .breakdown {
@@ -86,6 +114,7 @@
         flex-direction: column;
         gap: 0.55em;
         padding: 1em 0;
+
         .item {
           padding: 0.55em 1em;
           border: 2px solid #3a3a65;
@@ -103,6 +132,12 @@
             color: #93f4fd;
           }
         }
+        @media screen and (max-width: 550px) {
+          padding: 0.25em 0;
+          .item {
+            font-size: 0.9rem;
+          }
+        }
       }
 
       .confirm {
@@ -110,14 +145,30 @@
         text-align: left;
         padding: 1em;
         margin: 1em 0;
+
         h2 {
           font-size: 1.2rem;
           font-weight: bold;
           text-transform: uppercase;
         }
+
+        @media screen and (max-width: 550px) {
+          h2 {
+            font-size: 1rem;
+            margin: 0.25em 0;
+          }
+          p {
+            opacity: 0.5;
+            font-size: 0.8rem;
+          }
+        }
       }
       .btn-check {
         margin: 1em 0;
+        @media screen and (max-width: 550px) {
+          font-size: 0.8rem;
+          padding: 1em 0.5em;
+        }
       }
     }
     .notfound {

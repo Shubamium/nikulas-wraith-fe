@@ -87,11 +87,11 @@ export default function Tracking({}: Props) {
                 );
               })}
             </div>
-
-            {orderDetail.status === "shipped" && completed == false && (
+            {/* (orderDetail.status === "shipped" && completed == false ) */}
+            {true && (
               <div className="confirm">
                 <div className="left">
-                  <h2>Mark your order Complete</h2>
+                  <h2>Confirm your order!</h2>
                   <p>
                     Your order has been shipped! Please carefully check your
                     items before marking the order as completed.

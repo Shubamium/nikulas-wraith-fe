@@ -10,7 +10,6 @@ import {
 import { urlFor } from "@/db/client";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/db/payment";
-import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 import { calculateDiscount } from "@/db/util";
 type Props = any;
 
@@ -254,7 +253,7 @@ export default function CartList({ switchTo }: Props) {
               <div className="top">
                 <input
                   type="text"
-                  placeholder="Enter your promo code here!"
+                  placeholder="Promo Code"
                   name="promo codes"
                   value={pcInput}
                   onChange={(e) => {

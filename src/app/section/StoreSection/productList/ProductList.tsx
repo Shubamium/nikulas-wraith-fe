@@ -5,6 +5,7 @@ import { urlFor } from "@/db/client";
 import { getAllProducts } from "@/db/productAction";
 import { switchTab } from "../StoreTabs";
 import Link from "next/link";
+import { FaShoppingCart } from "react-icons/fa";
 type Props = {};
 
 export default function ProductList({}: Props) {
@@ -82,7 +83,11 @@ export default function ProductList({}: Props) {
                     // window.scrollTo(0, 1000);
                   }}
                 >
-                  {">"} Add to Cart {"<"}
+                  <span>
+                    {" "}
+                    {">"} Add to Cart {"<"}
+                  </span>
+                  <FaShoppingCart />
                 </Link>
               </div>
             )}

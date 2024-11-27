@@ -37,7 +37,7 @@ export default function StoreTabs({ list, cart, track }: Props) {
         >
           List
         </button>{" "}
-        {">>"}
+        <span>{">>"}</span>
         <button
           className={`btn tab-btn ${active === "cart" ? "active" : ""}`}
           onClick={() => {
@@ -46,7 +46,7 @@ export default function StoreTabs({ list, cart, track }: Props) {
         >
           Cart
         </button>{" "}
-        {">>"}
+        <span>{">>"}</span>
         <button
           className={`btn tab-btn ${active === "track" ? "active" : ""}`}
           onClick={() => {
