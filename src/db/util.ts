@@ -14,7 +14,9 @@ export function sumCart(
     return prev + currPrice;
   }, 0);
 
-  let tax = parseFloat(((subtotal / 100) * taxRate).toFixed(2));
+  let tax = parseFloat(
+    (((subtotal + shipping_fee) / 100) * taxRate).toFixed(2)
+  );
   return {
     subtotal: subtotal,
     taxRate: taxRate,

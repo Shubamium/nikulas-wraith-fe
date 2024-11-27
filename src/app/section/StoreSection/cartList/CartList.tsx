@@ -159,7 +159,9 @@ export default function CartList({ switchTo }: Props) {
   };
 
   const subtotal = parseFloat((total + (discount ?? 0) - shipping).toFixed(2));
-  const taxAmount = parseFloat(((subtotal / 100) * tax).toFixed(2));
+  const taxAmount = parseFloat(
+    (((subtotal + shipping) / 100) * tax).toFixed(2)
+  );
   return (
     <div id="cart-display">
       <div className="cart-list">
