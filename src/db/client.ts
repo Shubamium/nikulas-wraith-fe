@@ -26,6 +26,9 @@ const config = {
 export function fetchData<T>(grocQuery: string) {
   return client.fetch<T>(grocQuery, undefined, { ...config });
 }
+export function fetchDataWithConfig<T>(grocQuery: string, option: any) {
+  return client.fetch<T>(grocQuery, undefined, { ...option });
+}
 
 export function createData(documentType: string, data: any) {
   const mutation = {

@@ -91,6 +91,7 @@ export default function TimeSyncSection({
   }, [noBg]);
   return (
     <section id="time-sync" className={onlyTime ? "only-time" : ""}>
+      <div id="stream" className="scroll"></div>
       {!onlyTime && (
         <>
           <div className="heading">

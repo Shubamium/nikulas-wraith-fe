@@ -119,7 +119,7 @@ export async function createOrder(cart: any[], couponCode?: string) {
                 landing_page: "GUEST_CHECKOUT",
                 user_action: "PAY_NOW",
                 return_url: process.env.SELF_URL + "success",
-                cancel_url: process.env.SELF_URL + "/shop?skip=1",
+                cancel_url: process.env.SELF_URL + "/shop?skip=1#shop-top",
               },
             },
           },

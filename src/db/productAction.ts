@@ -1,7 +1,7 @@
 "use server";
 
 import { Cart } from "@/app/section/StoreSection/cartList/CartList";
-import { fetchData, updateData } from "./client";
+import { fetchData, fetchDataWithConfig, updateData } from "./client";
 
 export async function getAllProducts() {
   const productList = await fetchData<any[]>(`
@@ -54,7 +54,10 @@ export async function getOrderDetail(id: string) {
 		}
 	}[0]`;
 
-  let orderDetail = await fetchData<any>(query);
+  let orderDetail = await fetchDataWithConfig<any>(query, {
+    cache: "reload",
+    next: { revalidate: 0 },
+  });
   return orderDetail;
 }
 

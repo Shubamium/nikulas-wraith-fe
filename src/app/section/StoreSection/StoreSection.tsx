@@ -10,7 +10,7 @@ type Props = {};
 export default function StoreSection({}: Props) {
   return (
     <div id="page_store">
-      <div className="shop-heading">
+      <div id="shop-top" className="shop-heading">
         <div className="top">
           <h2 className="font-nw">SHOP</h2>
         </div>

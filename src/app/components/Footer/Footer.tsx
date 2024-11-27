@@ -28,9 +28,15 @@ export default async function Footer() {
 		}
 	`)) as VIPData[];
 
-  const People = (link: string, pfp: string, name: string, handle: string) => {
+  const People = (
+    link: string,
+    pfp: string,
+    name: string,
+    handle: string,
+    index: number
+  ) => {
     return (
-      <a className="ppl" href={link} key={name}>
+      <a className="ppl" href={link} key={name + index}>
         <div className="pfp">
           <img src={pfp} alt="" />
         </div>
@@ -163,12 +169,13 @@ export default async function Footer() {
                   <h2> {">>"} VIP</h2>
                 </div>
                 <div className="list">
-                  {vipData.map((vip) =>
+                  {vipData.map((vip, index) =>
                     People(
                       vip.link,
                       urlFor(vip.pfp)?.url() || "",
                       vip.name,
-                      vip.handle
+                      vip.handle,
+                      index
                     )
                   )}
                   {/* 								

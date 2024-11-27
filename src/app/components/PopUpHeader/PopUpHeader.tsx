@@ -58,14 +58,14 @@ export default function PopUpHeader() {
         <Link href="/?skip=1#setup" className="btn btn-nav">
           Setup
         </Link>
-        <Link href="/stream?skip=1" className="btn btn-nav">
+        <Link href="/stream?skip=1#stream" className="btn btn-nav">
           <BsCameraVideo />
         </Link>
-        <Link href="/gallery?skip=1" className="btn btn-nav">
+        <Link href="/gallery?skip=1#gallery" className="btn btn-nav">
           {/* Gallery */}
           <IoImage />
         </Link>
-        <Link href="/shop?skip=1" className="btn btn-nav">
+        <Link href="/shop?skip=1#shop-top" className="btn btn-nav">
           <FaShoppingCart />
         </Link>
         <span>{"<<"}</span>

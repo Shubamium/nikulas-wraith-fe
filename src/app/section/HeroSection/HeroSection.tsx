@@ -125,21 +125,21 @@ export default function HeroSection({
           </Link>{" "}
           ||
           <Link
-            href="/stream?skip=1"
+            href="/stream?skip=1#stream"
             className={`${activeNav === "stream" ? "selected" : ""}`}
           >
             Stream
           </Link>
           ||
           <Link
-            href="/gallery?skip=1"
+            href="/gallery?skip=1#gallery#"
             className={`${activeNav === "gallery" ? "selected" : ""}`}
           >
             Gallery
           </Link>
           ||
           <Link
-            href="/shop?skip=1"
+            href="/shop?skip=1#shop-top"
             className={`${activeNav === "shop" ? "selected" : ""}`}
           >
             Shop

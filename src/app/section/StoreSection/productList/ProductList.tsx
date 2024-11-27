@@ -4,6 +4,7 @@ import "./productList.scss";
 import { urlFor } from "@/db/client";
 import { getAllProducts } from "@/db/productAction";
 import { switchTab } from "../StoreTabs";
+import Link from "next/link";
 type Props = {};
 
 export default function ProductList({}: Props) {
@@ -62,24 +63,29 @@ export default function ProductList({}: Props) {
               <h2 className="name">{prod.name}</h2>
               <p className="description">{prod.description}</p>
             </div>
-            <div className="list">
-              <p>
-                ${prod.price} <br />
-                {prod.hide_stock === true ? (
-                  <></>
-                ) : (
-                  <span> {prod.stock} left</span>
-                )}
-              </p>
-              <button
-                className="btn add"
-                onClick={() => {
-                  addCart(prod._id);
-                }}
-              >
-                {">"} Add to Cart {"<"}
-              </button>
-            </div>
+            {prod.price && (
+              <div className="list">
+                <p>
+                  ${prod.price} <br />
+                  {prod.hide_stock === true ? (
+                    <></>
+                  ) : (
+                    <span> {prod.stock} left</span>
+                  )}
+                </p>
+                <Link
+                  href={"#shop-top"}
+                  className="btn add"
+                  onClick={() => {
+                    addCart(prod._id);
+
+                    // window.scrollTo(0, 1000);
+                  }}
+                >
+                  {">"} Add to Cart {"<"}
+                </Link>
+              </div>
+            )}
           </div>
         );
       })}
