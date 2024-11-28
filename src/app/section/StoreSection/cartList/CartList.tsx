@@ -263,7 +263,7 @@ export default function CartList({ switchTo }: Props) {
                   name="promo codes"
                   value={pcInput}
                   onChange={(e) => {
-                    setNick(e.target.value);
+                    setPCinput(e.target.value);
                   }}
                 />
                 <button className="btn btn-checkout" onClick={applyCode}>
