@@ -61,14 +61,24 @@ export async function createOrder(
   couponCode?: string,
   nick?: string
 ) {
+  // Get the product info that is in the cart
   let prodMap = await cartToProductsMap(cart);
+
+  // Get order info
   const shipping_fee = await getShippingFee();
   const tax = await getTax();
+
+  // Validate the cart
   cart = cleanCart(cart, prodMap);
+
+  // Get the total price
   let p = sumCart(cart, prodMap, shipping_fee, tax);
+
+  // Apply discounts if any code is provided and is valid
   let code = await searchCode(couponCode ?? "EMPTY_CODE");
-  console.log(p);
-  let discount = calculateDiscount(p.subtotal, code);
+  let discount = calculateDiscount(p.total, code);
+
+  // Starts the request by getting the access token from paypal
   let token = await getAccessToken();
   // If succesfully get token
   if (token) {
@@ -140,8 +150,12 @@ export async function createOrder(
       );
 
       console.log(response.data.link, action_link);
-
-      return action_link.href;
+      if (action_link) {
+        return action_link.href;
+      } else {
+        console.log("ERROR CREATING THE ORDER");
+        return false;
+      }
     } catch (err: any) {
       console.log(err.response.data?.details);
     }

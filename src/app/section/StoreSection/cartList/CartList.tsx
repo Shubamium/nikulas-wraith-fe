@@ -23,7 +23,9 @@ export default function CartList({ switchTo }: Props) {
   const [prodMap, setProdMap] = useState<Map<string, any> | null>(null);
   const [total, setTotal] = useState(0);
   const [shipping, setShipping] = useState(0);
-  const [tax, setTax] = useState<number>(0);
+  const [taxRate, setTaxRate] = useState<number>(0);
+  const [taxAmount, setTaxAmount] = useState<number>(0);
+
   const [discount, setDiscount] = useState<number | null>(null);
   const [pcInput, setPCinput] = useState("");
   const [nick, setNick] = useState("");
@@ -32,11 +34,11 @@ export default function CartList({ switchTo }: Props) {
     amount: number;
   } | null>(null);
   const [couponMessage, setCouponMessage] = useState<string | null>(null);
+
   const getCartFromLocalStorage = (prodMap: Map<string, any>) => {
     const cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
     return validateCart(cart, prodMap);
   };
-
   const validateCart = (cart: Cart[], prodMap: Map<string, any>) => {
     // Validate amount if the stock on the server is lower than the current cart
     const newCart = [];
@@ -66,9 +68,9 @@ export default function CartList({ switchTo }: Props) {
     let fee = await getShippingFee();
     setShipping(fee ?? 5);
   };
-  const getTaxAmount = async () => {
+  const getTaxRate = async () => {
     let tax = await getTax();
-    setTax(tax);
+    setTaxRate(tax);
   };
   const changeCart = (id: string, amount: number) => {
     let copyCart = [...activeCart];
@@ -97,27 +99,37 @@ export default function CartList({ switchTo }: Props) {
   const hasItem = () => activeCart && activeCart.length > 0;
 
   const calculateTotal = () => {
+    // If there is an item on the cart and the product lookup is finished
     if (hasItem() && prodMap) {
-      // Tally up the price * quantity
+      // Tally up the price * quantity to get the subtotal
       let total = activeCart.reduce((prev: number, curr: Cart) => {
         const productPrice = prodMap.get(curr.id).price;
         const subTotal = curr.q * productPrice;
         return prev + subTotal;
       }, 0);
 
-      let disc = calculateDiscount(total, coupon);
+      // Item Subtotal + Shipping
       let finalTotal = total + shipping;
+
+      // Tax = % of Item subtotal + shipping
+      let tax = parseFloat(((finalTotal / 100) * taxRate).toFixed(2));
+
+      // Discount is % of Tax + Subtotal + shipping
+      let disc = calculateDiscount(finalTotal + tax, coupon);
+
       if (disc !== 0) {
         finalTotal -= disc;
         setDiscount(disc);
       }
+
+      setTaxAmount(tax);
       setTotal(parseFloat(finalTotal.toFixed(2)));
     }
   };
 
   useEffect(() => {
     getShipping();
-    getTaxAmount();
+    getTaxRate();
     getProductMapFromServer();
   }, []);
 
@@ -128,6 +140,7 @@ export default function CartList({ switchTo }: Props) {
 
   const router = useRouter();
 
+  // Fetch the coupon code from the database and apply the coupon
   const applyCode = async () => {
     if (pcInput === "") {
       setCouponMessage(null);
@@ -143,11 +156,21 @@ export default function CartList({ switchTo }: Props) {
       console.log("No Coupon Found");
     }
   };
+
+  // Send a checkout request to paypal API
   const checkout = async () => {
+    // Get the latest cart
     let cart = JSON.parse(localStorage.getItem("cart") ?? "[]") as Cart[];
+
+    // Check for product info data
     if (prodMap) {
+      // Check for the stock and everything before creating the order
       let validatedCart = validateCart(cart, prodMap);
+
+      // Update the validated stock back
       localStorage.setItem("cart", JSON.stringify(validatedCart));
+
+      // IF there are still product after being validated
       if (validatedCart.length > 0) {
         let nickname = nick === "" ? undefined : nick;
         const checkoutURL = await createOrder(
@@ -158,15 +181,21 @@ export default function CartList({ switchTo }: Props) {
         // If order created successfully
         if (checkoutURL) {
           router.push(checkoutURL);
+        } else {
+          alert("Failed to create checkout, please retry later!");
+          router.refresh();
         }
+      } else {
+        alert("Something went wrong, please retry your order!");
+        router.refresh();
       }
     }
   };
 
   const subtotal = parseFloat((total + (discount ?? 0) - shipping).toFixed(2));
-  const taxAmount = parseFloat(
-    (((subtotal + shipping) / 100) * tax).toFixed(2)
-  );
+  // const taxAmount = parseFloat(
+  //   (((subtotal + shipping) / 100) * tax).toFixed(2)
+  // );
   return (
     <div id="cart-display">
       <div className="cart-list">
@@ -245,9 +274,9 @@ export default function CartList({ switchTo }: Props) {
                 </p>
               )}
               {/* Tax */}
-              {tax !== undefined && (
+              {taxRate !== undefined && (
                 <p>
-                  Tax: ${taxAmount} USD {tax}%
+                  Tax: ${taxAmount} USD {taxRate}%
                 </p>
               )}
               {/* Ship */}
