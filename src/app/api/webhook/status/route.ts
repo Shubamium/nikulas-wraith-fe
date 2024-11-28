@@ -5,7 +5,7 @@ export async function POST(req: Request, res: Response) {
   console.log(body);
 
   if (body.status === "completed") {
-    await sendOrderComplete(body.buyer?.email, body.order_id);
+    await sendOrderComplete(body.buyer?.email, body.order_id, body.buyer?.nick);
   } else {
     await sendOrderUpdateStatus(
       body.buyer?.email,

@@ -25,7 +25,8 @@ export default function CartList({ switchTo }: Props) {
   const [shipping, setShipping] = useState(0);
   const [tax, setTax] = useState<number>(0);
   const [discount, setDiscount] = useState<number | null>(null);
-  const [pcInput, setPCInput] = useState("");
+  const [pcInput, setPCinput] = useState("");
+  const [nick, setNick] = useState("");
   const [coupon, setCoupon] = useState<{
     code: string;
     amount: number;
@@ -148,7 +149,12 @@ export default function CartList({ switchTo }: Props) {
       let validatedCart = validateCart(cart, prodMap);
       localStorage.setItem("cart", JSON.stringify(validatedCart));
       if (validatedCart.length > 0) {
-        const checkoutURL = await createOrder(validatedCart, coupon?.code);
+        let nickname = nick === "" ? undefined : nick;
+        const checkoutURL = await createOrder(
+          validatedCart,
+          coupon?.code,
+          nickname
+        );
         // If order created successfully
         if (checkoutURL) {
           router.push(checkoutURL);
@@ -257,12 +263,24 @@ export default function CartList({ switchTo }: Props) {
                   name="promo codes"
                   value={pcInput}
                   onChange={(e) => {
-                    setPCInput(e.target.value);
+                    setNick(e.target.value);
                   }}
                 />
                 <button className="btn btn-checkout" onClick={applyCode}>
                   {">"}APPLY{"<"}
                 </button>
+              </div>
+              <div className="top">
+                <input
+                  type="text"
+                  placeholder="Nickname"
+                  name="nickanme"
+                  className="nick"
+                  value={nick}
+                  onChange={(e) => {
+                    setNick(e.target.value);
+                  }}
+                />
               </div>
               <div className="message">
                 {couponMessage && <p>{couponMessage}</p>}

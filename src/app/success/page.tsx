@@ -17,15 +17,16 @@ type Props = {
   searchParams: Promise<{
     token: string;
     PayerID: string;
+    nick: string;
   }>;
 };
 
 export default async function Gallery({ searchParams }: Props) {
   const params = await searchParams;
 
-  const capture = await captureOrder(params.token, params.PayerID);
+  const capture = await captureOrder(params.token, params.PayerID, params.nick);
   if (!capture) {
-    // redirect("/");
+    redirect("/");
     // return;
   }
   return (

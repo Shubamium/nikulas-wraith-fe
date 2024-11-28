@@ -56,7 +56,11 @@ async function getAccessToken() {
 }
 
 // 2. Make the order and return the checkout link to user
-export async function createOrder(cart: any[], couponCode?: string) {
+export async function createOrder(
+  cart: any[],
+  couponCode?: string,
+  nick?: string
+) {
   let prodMap = await cartToProductsMap(cart);
   const shipping_fee = await getShippingFee();
   const tax = await getTax();
@@ -68,6 +72,9 @@ export async function createOrder(cart: any[], couponCode?: string) {
   let token = await getAccessToken();
   // If succesfully get token
   if (token) {
+    const returnUrl = new URL((process.env.SELF_URL ?? "") + "success");
+    if (nick) returnUrl.searchParams.append("nick", nick);
+
     try {
       // Create the order in the paypal api
       let response = await axios({
@@ -118,8 +125,8 @@ export async function createOrder(cart: any[], couponCode?: string) {
                 locale: "en-US",
                 landing_page: "GUEST_CHECKOUT",
                 user_action: "PAY_NOW",
-                return_url: process.env.SELF_URL + "success",
-                cancel_url: process.env.SELF_URL + "/shop?skip=1#shop-top",
+                return_url: returnUrl.toString(),
+                cancel_url: process.env.SELF_URL + "shop?skip=1#shop-top",
               },
             },
           },
@@ -144,7 +151,11 @@ export async function createOrder(cart: any[], couponCode?: string) {
 
 // 3. Capture the order by confirming it to the paypal api and then saving the order in sanity
 // Confirm the order to the paypal server
-export async function captureOrder(paymentToken: string, payerID: string) {
+export async function captureOrder(
+  paymentToken: string,
+  payerID: string,
+  nick?: string
+) {
   if (!paymentToken || !payerID) {
     console.error("Payment Token Is not Being provided");
     return null;
@@ -187,13 +198,18 @@ export async function captureOrder(paymentToken: string, payerID: string) {
 
         await reduceStock(cart);
         if (payer.email_address) {
-          await sendOrderConfirmation(payer.email_address, response.data.id);
+          await sendOrderConfirmation(
+            payer.email_address,
+            response.data.id,
+            nick
+          );
         }
         return await saveOrder(
           {
             orderId: paymentToken,
             buyer: {
               name: payer.name.given_name + " " + payer.name.surname,
+              nickname: nick ?? "",
               email: payer.email_address,
               address: paypalAddressToString(
                 shipping.address,
@@ -227,6 +243,7 @@ type OrderInfo = {
   status: string;
   buyer: {
     email: string;
+    nickname: string;
     name: string;
     address: string;
   };
@@ -243,6 +260,7 @@ export async function saveOrder(order: OrderInfo, total: number) {
       status_text: "Waiting for order to be confirmed and processed!",
       buyer: {
         name: order.buyer.name,
+        nickname: order.buyer.nickname,
         email: order.buyer.email,
         address: order.buyer.address,
       },

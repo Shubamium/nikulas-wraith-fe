@@ -171,6 +171,12 @@
       }
       .top {
         display: flex;
+        .nick {
+          width: 100%;
+          min-width: 360px;
+          margin: 1em 0;
+          max-width: 100%;
+        }
       }
       .message {
         padding: 0.25em 1em;
@@ -198,7 +204,7 @@
       }
       @media screen and (max-width: 550px) {
         input {
-          min-width: 0%;
+          min-width: 0% !important;
         }
       }
     }
