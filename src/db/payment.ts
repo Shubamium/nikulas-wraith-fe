@@ -18,7 +18,7 @@ import {
   sumCart,
 } from "./util";
 import { createData, updateData } from "./client";
-import { sendOrderConfirmation } from "./email";
+import { sendDigitalPurchase, sendOrderConfirmation } from "./email";
 
 const base_url = process.env.PAYPAL_BASE;
 const base_url2 = process.env.PAYPAL_BASE2;
@@ -212,6 +212,11 @@ export async function captureOrder(
 
         await reduceStock(cart);
         if (payer.email_address) {
+          await checkForDigitalProduct(
+            payer.email_address,
+            response.data.id,
+            cart
+          );
           await sendOrderConfirmation(
             payer.email_address,
             response.data.id,
@@ -295,6 +300,29 @@ export async function saveOrder(order: OrderInfo, total: number) {
   } catch (err) {
     console.log(err);
     return false;
+  }
+}
+
+// 4.5 Check if there are any digital item on the cart, if yes, send an email with the link.
+
+async function checkForDigitalProduct(to: string, id: string, cart: Cart[]) {
+  let allProductIncart = await cartToProductsMap(cart);
+
+  let downloadables = [];
+  for (let key of Array.from(allProductIncart.keys())) {
+    let thisProduct = allProductIncart.get(key);
+    console.log("checking:", key, thisProduct);
+    if (thisProduct && thisProduct.is_digital === true) {
+      downloadables.push({
+        name: thisProduct.name,
+        link: thisProduct.download,
+      });
+    }
+  }
+  console.log("checking for digital item");
+  // If there is a downloadables
+  if (downloadables.length > 0) {
+    await sendDigitalPurchase(id, to, downloadables);
   }
 }
 

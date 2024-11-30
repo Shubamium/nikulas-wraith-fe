@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Html, Hr, Img } from "@react-email/components";
 
-type Props = { id: string };
-export function OrderConfirmation({ id }: Props) {
+type Props = { id: string; downloadables?: { name: string; link: string }[] };
+export function OrderDelivery({ id, downloadables }: Props) {
   return (
     <Html lang="en">
       {/* <Button href={url}>Click me</Button> */}
@@ -12,6 +12,23 @@ export function OrderConfirmation({ id }: Props) {
       />
       <Hr />
 
+      {downloadables && (
+        <>
+          <p>You can access your purchased {"item(s)"} here:</p>
+          <ul>
+            {downloadables.map((dn: any) => {
+              return (
+                <li key={dn.name}>
+                  <p>{dn.name}</p>
+                  <a href={dn.link} target="_blank">
+                    {dn.link}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
       <p>
         Should you have any questions, please email us at (business@vpe.digital)
         and include your purchase number.

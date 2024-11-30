@@ -3,6 +3,7 @@
 import { render } from "@react-email/components";
 import nodemailer, { TransportOptions } from "nodemailer";
 import { OrderConfirmation as ConfirmEmail } from "@/app/components/Email/OrderConfirmation";
+import { OrderDelivery as DeliveryEmail } from "@/app/components/Email/OrderDelivery";
 const mailer = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: "465",
@@ -39,6 +40,30 @@ export async function sendOrderConfirmation(
       text: `Someone made a purchase through your website, take action now!`,
     });
     console.log("Successfully send email");
+  } catch (err) {
+    console.error("ERROR_SEND_MAIL", err);
+  }
+}
+export async function sendDigitalPurchase(
+  id: string,
+  to: string,
+  donwloadables: { name: string; link: string }[]
+) {
+  const emailHtml = await render(
+    DeliveryEmail({ id, downloadables: donwloadables })
+  );
+  try {
+    const orderMail = await mailer.sendMail({
+      from: `The Phantom Realm <${process.env.SMTP_USER}>`,
+      to: to,
+      cc: ["shuba.dev313@gmail.com"].join(","),
+      subject: "[ORDER DELIVERY] Your digital item!",
+      // text: `Thank you for your purchase! We greatly appreciate you choosing us to provide you with the best quality items!
+      //  \n\ Your purchase number for this order is in this email below.\n Your order tracking id is: ${id}`,
+      html: emailHtml,
+    });
+
+    console.log("Successfully send digital item ");
   } catch (err) {
     console.error("ERROR_SEND_MAIL", err);
   }
