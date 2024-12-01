@@ -8,20 +8,26 @@ export function sumCart(
   shipping_fee: number,
   taxRate: number
 ) {
+  let digital = true;
   let subtotal = cart.reduce((prev: number, current: any) => {
     let data = productsMap.get(current.id);
+    if (!data.is_digital) {
+      digital = false;
+    }
     let currPrice = data.price * current.q;
     return prev + currPrice;
   }, 0);
 
-  let tax = parseFloat(
-    (((subtotal + shipping_fee) / 100) * taxRate).toFixed(2)
-  );
+  // Remove Shipping if it's all digital item
+  let shipping = digital ? 0 : shipping_fee;
+  let tax = parseFloat((((subtotal + shipping) / 100) * taxRate).toFixed(2));
+
   return {
     subtotal: subtotal,
     taxRate: taxRate,
     taxAmount: tax,
-    total: subtotal + shipping_fee + tax,
+    digital: digital,
+    total: subtotal + shipping + tax,
   };
 }
 

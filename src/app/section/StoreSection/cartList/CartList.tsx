@@ -26,6 +26,7 @@ export default function CartList({ switchTo }: Props) {
   const [taxRate, setTaxRate] = useState<number>(0);
   const [taxAmount, setTaxAmount] = useState<number>(0);
 
+  const [allDigital, setAllDigital] = useState(false);
   const [discount, setDiscount] = useState<number | null>(null);
   const [pcInput, setPCinput] = useState("");
   const [nick, setNick] = useState("");
@@ -67,6 +68,7 @@ export default function CartList({ switchTo }: Props) {
   const getShipping = async () => {
     let fee = await getShippingFee();
     setShipping(fee ?? 5);
+    console.log(fee);
   };
   const getTaxRate = async () => {
     let tax = await getTax();
@@ -101,15 +103,24 @@ export default function CartList({ switchTo }: Props) {
   const calculateTotal = () => {
     // If there is an item on the cart and the product lookup is finished
     if (hasItem() && prodMap) {
+      let digital = true;
       // Tally up the price * quantity to get the subtotal
       let total = activeCart.reduce((prev: number, curr: Cart) => {
-        const productPrice = prodMap.get(curr.id).price;
+        let prodData = prodMap.get(curr.id);
+        const productPrice = prodData.price;
+        if (!prodData.is_digital) {
+          digital = false;
+        }
         const subTotal = curr.q * productPrice;
         return prev + subTotal;
       }, 0);
 
+      // If the item is all digital remove shipping
+      let newShipping = digital ? 0 : shipping;
+
+      setAllDigital(digital);
       // Item Subtotal + Shipping
-      let finalTotal = total + shipping;
+      let finalTotal = total + newShipping;
 
       // Tax = % of Item subtotal + shipping
       let tax = parseFloat(((finalTotal / 100) * taxRate).toFixed(2));
@@ -279,8 +290,8 @@ export default function CartList({ switchTo }: Props) {
                   Tax: ${taxAmount} USD {taxRate}%
                 </p>
               )}
-              {/* Ship */}
-              <p>Shipping: ${shipping} USD</p>
+              {/* Shipping */}
+              {!allDigital && <p>Shipping: ${shipping} USD</p>}
             </div>
           </div>
           <div className="action">

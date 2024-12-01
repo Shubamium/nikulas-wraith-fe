@@ -113,7 +113,7 @@ export async function createOrder(
                   },
                   shipping: {
                     currency_code: "USD",
-                    value: new String(shipping_fee),
+                    value: p.digital ? "0" : new String(shipping_fee),
                   },
                   discount:
                     discount !== 0
