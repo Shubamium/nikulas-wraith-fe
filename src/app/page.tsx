@@ -10,11 +10,13 @@ import SetupSection from "./section/SetupSection/SetupSection";
 import SocialsSection from "./section/SocialsSection/SocialsSection";
 import SupportSection from "./section/SupportSection/SupportSection";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
+import ClipsSection from "./section/ClipsSection/ClipsSection";
 
 export type GeneralType = {
   _id: string;
   preset: string;
   schedules: any;
+  video: string;
   sa: string;
   time: {
     date: string;
@@ -41,6 +43,7 @@ export default async function Home() {
 	*[_type == 'general' && preset == 'main']{
 		_id,
 		preset,
+		'video':video.asset->url,
 		schedules,
 		'sa': sa.asset -> url,
 		stats,
@@ -71,7 +74,7 @@ export default async function Home() {
           activeNav="home"
         />
 
-        <AboutSection sa={generalData.sa} />
+        <AboutSection sa={generalData.sa} video={generalData.video} />
         <SocialsSection />
         <ModelSection
           models={modelsData.map((model) => {
@@ -89,6 +92,7 @@ export default async function Home() {
           sa={generalData.sa}
         />
         <ArtworksSection />
+        <ClipsSection />
         <SetupSection />
         <SupportSection />
         <ContactSection />

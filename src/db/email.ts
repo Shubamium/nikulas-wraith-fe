@@ -4,13 +4,14 @@ import { render } from "@react-email/components";
 import nodemailer, { TransportOptions } from "nodemailer";
 import { OrderConfirmation as ConfirmEmail } from "@/app/components/Email/OrderConfirmation";
 import { OrderDelivery as DeliveryEmail } from "@/app/components/Email/OrderDelivery";
+
 const mailer = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
+  host: process.env.SMTP_HOST ?? "",
   port: "465",
   secure: true,
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.SMTP_USER ?? "",
+    pass: process.env.SMTP_PASS ?? "",
   },
 } as TransportOptions);
 

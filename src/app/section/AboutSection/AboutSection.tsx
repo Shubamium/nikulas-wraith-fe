@@ -7,10 +7,24 @@ import TimeSyncSection from "../TimeSyncSection/TimeSyncSection";
 
 type props = {
   sa: any;
+  video: any;
 };
-export default async function AboutSection({ sa }: props) {
+export default async function AboutSection({ sa, video }: props) {
   return (
     <section id="about">
+      {video && (
+        <section id="schedules" className="video">
+          <div className="sched-img">
+            <div className="header">
+              {/* <img src="decor/sched_heading.png" alt="" /> */}
+              {/* <p className="decor text">SPECIAL ANNOUNCEMENT</p> */}
+              {/* <img src="decor/sched_text.png" alt="" className="decor" /> */}
+            </div>
+            {/* <img src={sa ?? "/art/schedule_placeholder.png"} alt="" /> */}
+            <video src={video} controls autoPlay muted loop></video>
+          </div>
+        </section>
+      )}
       <section id="schedules" className="second">
         <div className="sched-img">
           <div className="header">
