@@ -163,4 +163,26 @@
       }
     }
   }
+
+  #world-map {
+    #chartdiv {
+      height: 600px;
+      background: rgba(0, 0, 0, 0.153);
+    }
+    .map-head {
+      text-align: center;
+
+      h2 {
+        font-size: 4rem;
+        font-family: "Nik";
+      }
+      margin-bottom: 1em;
+      margin-top: 100px;
+    }
+
+    .timezone-list {
+      display: flex;
+      min-height: 500px;
+    }
+  }
 }

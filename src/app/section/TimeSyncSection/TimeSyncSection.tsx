@@ -7,9 +7,15 @@ import tz from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import duration from "dayjs/plugin/duration";
 
+import * as am5 from "@amcharts/amcharts5";
+import * as am5map from "@amcharts/amcharts5/map";
+import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
+import am5themes_Animated from "@amcharts/amcharts5/themes/animated";
+import am5themes_Dark from "@amcharts/amcharts5/themes/dark";
 dayjs.extend(tz);
 dayjs.extend(utc);
 dayjs.extend(duration);
+
 const streamDateFormat = "HH:mm A - DD MMMM YYYY";
 type Props = {
   targetTime: string;
@@ -33,8 +39,10 @@ export default function TimeSyncSection({
   const [pacificCR, setPacificCR] = useState(dayjs());
 
   const [streamDate, setStreamDate] = useState(dayjs());
+
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   useEffect(() => {
-    const now = new Date();
+    // const now = new Date();
 
     if (targetTime !== null) {
       const target = dayjs(targetTime).tz("America/Chicago");
@@ -42,6 +50,105 @@ export default function TimeSyncSection({
       setStreamDate(target);
       console.log(target);
     }
+
+    // Instantiate Map Charts AM5 and embed it to #chartdiv
+    const setMapChart = () => {
+      am5.ready(function () {
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv");
+        root.interfaceColors.set("primaryButton", am5.color("#3a3a65"));
+        root.interfaceColors.set("primaryButtonDisabled", am5.color("#1f1f38"));
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root),
+          am5themes_Dark.new(root),
+        ]);
+
+        // Create the map chart
+        // https://www.amcharts.com/docs/v5/charts/map-chart/
+        var chart = root.container.children.push(
+          am5map.MapChart.new(root, {
+            panX: "translateX",
+            panY: "translateY",
+            projection: am5map.geoMercator(),
+          })
+        );
+
+        // Create main polygon series for countries
+        // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
+        var polygonSeries = chart.series.push(
+          am5map.MapPolygonSeries.new(root, {
+            geoJSON: am5geodata_worldLow,
+            exclude: ["AQ"],
+            fill: am5.color("#565684"),
+          })
+        );
+
+        polygonSeries.mapPolygons.template.setAll({
+          tooltipText: "[bold #fff fontVariant:small-caps]{name}",
+          toggleKey: "active",
+          interactive: true,
+        });
+
+        polygonSeries.mapPolygons.template.states.create("hover", {
+          fill: am5.color("#3b8046"),
+        });
+
+        polygonSeries.mapPolygons.template.states.create("active", {
+          fill: am5.color("#3b8046"),
+        });
+
+        var previousPolygon: any;
+
+        polygonSeries.mapPolygons.template.on(
+          "active",
+          function (active, target) {
+            if (previousPolygon && previousPolygon != target) {
+              previousPolygon.set("active", false);
+            }
+            if (target && target.get("active") && target.dataItem) {
+              // console.log(target.dataItem);
+              polygonSeries.zoomToDataItem(target.dataItem as any);
+              const country = target.dataItem.dataContext as any;
+              console.log(country.id);
+              setSelectedCountry(country.name);
+              // const timezoneList = ct.getCountry(country);
+              // console.log(timezoneList);
+            } else {
+              chart.goHome();
+            }
+            previousPolygon = target;
+          }
+        );
+
+        // Add zoom control
+        // https://www.amcharts.com/docs/v5/charts/map-chart/map-pan-zoom/#Zoom_control
+        var zoomControl = chart.set(
+          "zoomControl",
+          am5map.ZoomControl.new(root, {})
+        );
+        zoomControl.homeButton.set("visible", true);
+
+        const bg = chart.chartContainer.get("background");
+        // Set clicking on "water" to zoom out
+        bg?.events.on("click", function () {
+          chart.goHome();
+        });
+
+        // Make stuff animate on load
+        chart.appear(1000, 100);
+
+        const hovered = chart.chartContainer.get("hover" as any);
+        hovered?.events.on();
+      }); // end am5.ready()
+    };
+
+    if (!onlyTime) {
+      setMapChart();
+    }
+
     setInterval(() => {
       setUserCurrentLocalTime(dayjs());
       if (onlyTime) {
@@ -298,6 +405,29 @@ export default function TimeSyncSection({
             <p>Connection Lost . . .</p>
           </div>
         </>
+      )}
+
+      {!onlyTime && (
+        <div id="world-map">
+          <div className="map">
+            <div className="map-head confine">
+              <h2>WORLD CLOCK</h2>
+              <p>Select a country to view time</p>
+            </div>
+            <div id="chartdiv"></div>
+          </div>
+          <div className="tz-head">
+            <p>{selectedCountry?.toUpperCase()}</p>
+          </div>
+
+          <div className="timezone-list confine">
+            <div className="list">
+              <div className="timezone">
+                <p>Timezone list</p>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );
