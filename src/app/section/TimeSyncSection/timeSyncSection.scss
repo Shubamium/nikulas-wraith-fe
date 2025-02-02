@@ -166,16 +166,21 @@
 
   #world-map {
     #chartdiv {
-      height: 600px;
+      height: 540px;
 
       @media screen and (max-width: 550px) {
-        height: 330px;
+        height: 30vh;
       }
       background: rgba(0, 0, 0, 0.305);
     }
     .map-head {
       text-align: center;
-
+      @media screen and (max-width: 420px) {
+        font-size: 3rem;
+        p {
+          font-size: 20%;
+        }
+      }
       h2 {
         font-size: 4rem;
         font-family: "Nik";
