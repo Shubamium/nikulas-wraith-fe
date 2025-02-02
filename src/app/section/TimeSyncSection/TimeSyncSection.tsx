@@ -93,9 +93,9 @@ export default function TimeSyncSection({
           am5map.MapChart.new(root, {
             panX: "translateX",
             panY: "translateY",
-            wheelable: false,
-            wheelX: "none",
-            wheelY: "none",
+            // wheelable: false,
+            // wheelX: "none",
+            // wheelY: "none",
 
             projection: am5map.geoMercator(),
           })

@@ -166,10 +166,12 @@
 
   #world-map {
     #chartdiv {
-      height: 540px;
-
+      height: 550px;
+      max-width: 70%;
+      margin: 0 auto;
       @media screen and (max-width: 550px) {
         height: 30vh;
+        max-width: 100%;
       }
       background: rgba(0, 0, 0, 0.305);
     }
