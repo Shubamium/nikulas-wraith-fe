@@ -2,21 +2,28 @@
 import React, { useEffect, useState } from "react";
 import "./timeSyncSection.scss";
 import SectionTitle from "@/app/components/SectionTitle/SectionTitle";
-import dayjs from "dayjs";
+
+// Time Library
+import dayjs, { Dayjs } from "dayjs";
 import tz from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import duration from "dayjs/plugin/duration";
 
+// Charts Library
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/animated";
 import am5themes_Dark from "@amcharts/amcharts5/themes/dark";
+
+import * as ct from "countries-and-timezones";
+// Initialize DAYJS
 dayjs.extend(tz);
 dayjs.extend(utc);
 dayjs.extend(duration);
 
 const streamDateFormat = "HH:mm A - DD MMMM YYYY";
+
 type Props = {
   targetTime: string;
   isActive: boolean;
@@ -40,7 +47,21 @@ export default function TimeSyncSection({
 
   const [streamDate, setStreamDate] = useState(dayjs());
 
+  // WorldMap State
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [activeCountryData, setActiveCountryData] = useState<any | null>(null);
+  const [activeTzs, setActiveTzs] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      const data = ct.getCountry(selectedCountry);
+      console.log(data, selectedCountry);
+      setActiveCountryData(data);
+      if (data) {
+        setActiveTzs(data?.timezones);
+      }
+    }
+  }, [selectedCountry]);
   useEffect(() => {
     // const now = new Date();
 
@@ -113,7 +134,7 @@ export default function TimeSyncSection({
               polygonSeries.zoomToDataItem(target.dataItem as any);
               const country = target.dataItem.dataContext as any;
               console.log(country.id);
-              setSelectedCountry(country.name);
+              setSelectedCountry(country.id);
               // const timezoneList = ct.getCountry(country);
               // console.log(timezoneList);
             } else {
@@ -412,20 +433,43 @@ export default function TimeSyncSection({
           <div className="map">
             <div className="map-head confine">
               <h2>WORLD CLOCK</h2>
-              <p>Select a country to view time</p>
+              <p>
+                {" "}
+                {">>"} Select a country to view the current time {"<<"}
+              </p>
             </div>
             <div id="chartdiv"></div>
           </div>
-          <div className="tz-head">
-            <p>{selectedCountry?.toUpperCase()}</p>
+          <div className="tz-head ">
+            <h2>{activeCountryData?.name?.toUpperCase()}</h2>
           </div>
 
-          <div className="timezone-list confine">
-            <div className="list">
-              <div className="timezone">
-                <p>Timezone list</p>
-              </div>
-            </div>
+          <div className="timezone-list flight-time ">
+            {activeTzs.map((atz: string, index: number) => {
+              const thisCt = dayjs().tz(atz);
+              const thisCt_StreamTime = streamDate.tz(atz);
+
+              return (
+                <div className="area" key={atz}>
+                  <p className="area-time">{thisCt.format(timeFormat)}</p>
+                  <div className="area-detail">
+                    <p className="country">{atz}</p>
+                    <p className="date">{thisCt.format(dateFormat)}</p>
+                    {shouldShowcConnectionLost && (
+                      <p className="stream">
+                        Next Stream:
+                        <br />
+                        <span>
+                          {" "}
+                          {thisCt_StreamTime.format(timeFormat)} -{" "}
+                          {thisCt_StreamTime.format(dateFormat)}{" "}
+                        </span>
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

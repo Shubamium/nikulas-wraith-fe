@@ -180,9 +180,35 @@
       margin-top: 100px;
     }
 
-    .timezone-list {
-      display: flex;
-      min-height: 500px;
+    .tz-head {
+      background: #3a3a65;
+      border-top: 2px solid #93f4fd;
+      border-bottom: 2px solid #93f4fd;
+      min-height: 30px;
+      h2 {
+        text-align: center;
+        font-size: 2rem;
+      }
+    }
+    .timezone-list.flight-time {
+      // min-height: 500px;
+      margin: 0 auto;
+      align-items: flex-start;
+      justify-content: center;
+      justify-items: center;
+
+      .area {
+        min-width: 300px;
+      }
+      .stream {
+        background: rgba(0, 0, 0, 0.33);
+        text-align: right;
+        margin-top: 1em;
+        padding: 1em;
+        span {
+          color: #3b8046;
+        }
+      }
     }
   }
 }
