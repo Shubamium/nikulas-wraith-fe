@@ -167,7 +167,11 @@
   #world-map {
     #chartdiv {
       height: 600px;
-      background: rgba(0, 0, 0, 0.153);
+
+      @media screen and (max-width: 550px) {
+        height: 330px;
+      }
+      background: rgba(0, 0, 0, 0.305);
     }
     .map-head {
       text-align: center;
