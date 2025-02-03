@@ -308,7 +308,7 @@ export default function TimeSyncSection({
 
           {!onlyTime ? (
             <div className="confine">
-              <div className="flight-time">
+              {/* <div className="flight-time">
                 <div className="area">
                   <p className="area-time">{jpDiff.format(timeFormat)}</p>
                   <div className="area-detail">
@@ -358,7 +358,7 @@ export default function TimeSyncSection({
                     <p className="date">{estDiff.format(dateFormat)}</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           ) : (
             <div className="confine">
