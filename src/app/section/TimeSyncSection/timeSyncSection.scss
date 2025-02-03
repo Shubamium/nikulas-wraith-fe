@@ -201,15 +201,105 @@
         font-size: 2rem;
       }
     }
+
+    .setting {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1em;
+      #timezone-sel {
+        width: 50%;
+
+        @media screen and (max-width: 550px) {
+          width: 100%;
+        }
+
+        @media screen and (max-width: 420px) {
+          font-size: 1rem;
+        }
+        background: linear-gradient(to bottom, #3b8046, #211f27);
+        font-size: 1.5rem;
+        padding: 0.5em 0.5em;
+        border: 1px solid #3b8046;
+        // border-radius: 0.2em;
+        font-family: var(--fontM);
+        margin-top: 0.5em;
+        .opt:nth-child(even) {
+          // background: #3b8046;
+        }
+        .opt:nth-child(odd) {
+          // background: #17161d;
+        }
+        .opt {
+          font-family: var(--fontM);
+          background: #3b8046;
+
+          &:hover {
+            background: black;
+          }
+        }
+      }
+    }
+    .selectedTime {
+      width: 50%;
+      @media screen and (max-width: 720px) {
+        width: 80%;
+      }
+      @media screen and (max-width: 550px) {
+        width: 100%;
+      }
+      margin: 0 auto;
+      .area {
+        width: 100%;
+        .country {
+          padding-top: 0;
+          margin-top: 0;
+        }
+
+        .area-time {
+          text-align: center;
+          font-size: 4rem;
+          padding-left: 0;
+          @media screen and (max-width: 550px) {
+            font-size: 10vw;
+          }
+        }
+
+        .area-detail {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1em;
+
+          @media screen and (max-width: 550px) {
+            flex-direction: column;
+            text-align: center;
+          }
+          background: rgba(0, 0, 0, 0.301);
+          .stream {
+            text-align: right;
+            span {
+              color: #3b8046;
+            }
+            @media screen and (max-width: 550px) {
+              text-align: center;
+              margin: 1em 0;
+            }
+          }
+        }
+      }
+    }
+
     .timezone-list.flight-time {
       // min-height: 500px;
       margin: 0 auto;
       align-items: flex-start;
       justify-content: center;
       justify-items: center;
-
       .area {
         min-width: 300px;
+        // width: 100%;
       }
       .stream {
         background: rgba(0, 0, 0, 0.33);

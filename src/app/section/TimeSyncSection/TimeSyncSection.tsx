@@ -23,6 +23,9 @@ dayjs.extend(utc);
 dayjs.extend(duration);
 
 const streamDateFormat = "HH:mm A - DD MMMM YYYY";
+const dateFormat = "DD MMMM YYYY";
+const timeFormat = "hh:mm A ";
+const timeFormatS = "hh:mm:ss A ";
 
 type Props = {
   targetTime: string;
@@ -31,6 +34,27 @@ type Props = {
   noBg?: boolean;
   onlyWC?: boolean;
 };
+
+function exception(atz: any, country: string) {
+  const exceptions: { [key: string]: any } = {
+    SE: {
+      "Europe/Berlin": "Sweden/Stockholm",
+    },
+    NO: {
+      "Europe/Berlin": "Norway/Oslo",
+    },
+  };
+
+  // If the country has a list of exceptions
+  if (Object.hasOwn(exceptions, country)) {
+    // If the exceptions matched inside to be replaced
+    if (Object.hasOwn(exceptions[country], atz)) {
+      return exceptions[country][atz];
+    }
+  }
+  return atz;
+}
+
 export default function TimeSyncSection({
   targetTime,
   isActive,
@@ -51,6 +75,7 @@ export default function TimeSyncSection({
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [activeCountryData, setActiveCountryData] = useState<any | null>(null);
   const [activeTzs, setActiveTzs] = useState<string[]>([]);
+  const [activeTz, setActiveTz] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedCountry) {
@@ -58,7 +83,8 @@ export default function TimeSyncSection({
       console.log(data, selectedCountry);
       setActiveCountryData(data);
       if (data) {
-        setActiveTzs(data?.timezones);
+        setActiveTzs(data.timezones);
+        setActiveTz(data.timezones[0]);
       }
     }
   }, [selectedCountry]);
@@ -190,9 +216,6 @@ export default function TimeSyncSection({
 
   // let streamDate = dayjs('11:30 PM 20 March 2024',strex amDateFormat).tz('America/Chicago');
 
-  const dateFormat = "DD MMMM YYYY";
-  const timeFormat = "hh:mm A ";
-  const timeFormatS = "hh:mm:ss A ";
   // centralUsTime.d
   const dateFormatter = new Intl.DateTimeFormat();
   const resolvedOptions = dateFormatter.resolvedOptions();
@@ -432,6 +455,7 @@ export default function TimeSyncSection({
         </>
       )}
 
+      {/* World Map */}
       {!onlyTime && (
         <div id="world-map">
           <div className="map">
@@ -448,7 +472,42 @@ export default function TimeSyncSection({
             <h2>{activeCountryData?.name?.toUpperCase()}</h2>
           </div>
 
-          <div className="timezone-list flight-time ">
+          <div className="setting confine">
+            {activeTzs.length !== 0 && (
+              <>
+                <p>
+                  {">>"} Select a location {"<<"}
+                </p>
+                <select
+                  name="timezone-sel"
+                  id="timezone-sel"
+                  onChange={(ev) => {
+                    setActiveTz(ev.target.value);
+                  }}
+                >
+                  {activeTzs.map((tzs) => {
+                    return (
+                      <option value={tzs} key={tzs} className="opt">
+                        {exception(tzs, selectedCountry || "notavailable")}
+                      </option>
+                    );
+                  })}
+                </select>
+              </>
+            )}
+          </div>
+          {activeTz && (
+            <div className="selectedTime flight-time confine">
+              <SelectedTime
+                atz={activeTz}
+                streamDate={streamDate}
+                show={shouldShowcConnectionLost}
+                country={selectedCountry}
+              />
+            </div>
+          )}
+
+          {/* <div className="timezone-list flight-time ">
             {activeTzs.map((atz: string, index: number) => {
               const thisCt = dayjs().tz(atz);
               const thisCt_StreamTime = streamDate.tz(atz);
@@ -474,9 +533,49 @@ export default function TimeSyncSection({
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       )}
     </section>
+  );
+}
+
+function SelectedTime({ atz, streamDate, show, country }: any) {
+  // const thisCt = dayjs().tz(atz);
+  const [thisCt, setThisCt] = useState<any>(dayjs().tz(atz));
+
+  const thisCt_StreamTime = streamDate.tz(atz);
+  useEffect(() => {
+    const refreshTime = () => {
+      setThisCt(dayjs().tz(atz));
+    };
+    refreshTime();
+    const id = setInterval(refreshTime, 1000);
+    return () => {
+      window.clearInterval(id);
+    };
+  }, [atz]);
+
+  return (
+    <div className="area" key={atz}>
+      <p className="area-time">{thisCt.format(timeFormatS)}</p>
+      <div className="area-detail">
+        <div className="left">
+          <p className="country">{exception(atz, country)}</p>
+          <p className="date">{thisCt.format(dateFormat)}</p>
+        </div>
+        {show && (
+          <p className="stream">
+            Next Stream:
+            <br />
+            <span>
+              {" "}
+              {thisCt_StreamTime.format(timeFormat)} -{" "}
+              {thisCt_StreamTime.format(dateFormat)}{" "}
+            </span>
+          </p>
+        )}
+      </div>
+    </div>
   );
 }

@@ -3,10 +3,9 @@ import { Fira_Code, Inter } from "next/font/google";
 import "./globals.scss";
 import CursorEffect from "./components/CursorEffect/CursorEffect";
 import { Suspense } from "react";
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 import PopUpHeader from "./components/PopUpHeader/PopUpHeader";
 
-const fira = Fira_Code({ subsets: ["latin"] });
+const fira = Fira_Code({ subsets: ["latin"], variable: "--fontM" });
 
 // export const metadata: Metadata = {
 //   title: 'Nikulas Wraith',
