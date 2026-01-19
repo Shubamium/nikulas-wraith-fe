@@ -53,6 +53,7 @@ export default function RootLayout({
         <CursorEffect />
         <PopUpHeader />
         {children}
+        <></>
         <div className="bg-grid"></div>
       </body>
     </html>
