@@ -26,7 +26,7 @@ export default function LiveViewSection({}: Props) {
             <iframe
               width="100%"
               height="100%"
-              src="https://player.twitch.tv/?autoplay=false&channel=nikulaswraith&parent=nikulaswraith.com"
+              src="https://player.twitch.tv/?autoplay=false&channel=nikulaswraith&parent=classic.nikulaswraith.com"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             ></iframe>
           </div>
