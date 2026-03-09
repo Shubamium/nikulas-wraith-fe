@@ -27,6 +27,7 @@ export type GeneralType = {
     good: number;
   };
   models: ModelsType[];
+  discord: string;
 };
 
 type ModelsType = {
@@ -45,6 +46,7 @@ export default async function Home() {
 		preset,
 		'video':video.asset->url,
 		schedules,
+		discord,
 		'sa': sa.asset -> url,
 		stats,
 		models[]->{
@@ -75,7 +77,7 @@ export default async function Home() {
         />
 
         <AboutSection sa={generalData.sa} video={generalData.video} />
-        <SocialsSection />
+        <SocialsSection discord={generalData.discord} />
         <ModelSection
           models={modelsData.map((model) => {
             return {

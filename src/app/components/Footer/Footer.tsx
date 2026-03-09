@@ -29,11 +29,10 @@ export default async function Footer() {
 	`)) as VIPData[];
 
   const gd = (await fetchData(`
-		*[_type == 'general' && preset == 'main' ]{
+		*[_type == 'general' && preset == 'main' ][0]{
 		discord
 		}
 	`)) as any;
-
   const People = (
     link: string,
     pfp: string,
@@ -88,7 +87,7 @@ export default async function Footer() {
               <p className="about">{">>>>"} </p>
               <div className="footer-socials">
                 <a
-                  href={gd.discord ?? undefined}
+                  href={gd.discord}
                   target="_blank"
                   rel="noreferrer"
                   className="social"

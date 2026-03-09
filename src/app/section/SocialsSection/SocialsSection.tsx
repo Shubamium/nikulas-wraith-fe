@@ -11,13 +11,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { TbRectangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { fetchData } from "@/db/client";
-export default async function SocialsSection() {
-  const data = (await fetchData(`
-		*[_type == 'general' && preset == 'main']{
-			discord,
-		}
-	`)) as any;
-
+export default function SocialsSection({ discord }: { discord: any }) {
   return (
     <section id="socials">
       <div className="socials-header">
@@ -41,11 +35,7 @@ export default async function SocialsSection() {
         </div>
 
         <div className="socials-list">
-          <a
-            className="socials"
-            target="_blank"
-            href={data.discord ?? undefined}
-          >
+          <a className="socials" target="_blank" href={discord ?? undefined}>
             <div className="icon">
               <FaDiscord />
             </div>
