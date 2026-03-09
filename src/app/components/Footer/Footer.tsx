@@ -33,7 +33,7 @@ export default async function Footer() {
     pfp: string,
     name: string,
     handle: string,
-    index: number
+    index: number,
   ) => {
     return (
       <a className="ppl" href={link} key={name + index}>
@@ -82,7 +82,7 @@ export default async function Footer() {
               <p className="about">{">>>>"} </p>
               <div className="footer-socials">
                 <a
-                  href="https://discord.gg/xPBEdgF5Zp"
+                  href="discord.gg/ut3c7STFwU"
                   target="_blank"
                   rel="noreferrer"
                   className="social"
@@ -175,8 +175,8 @@ export default async function Footer() {
                       urlFor(vip.pfp)?.url() || "",
                       vip.name,
                       vip.handle,
-                      index
-                    )
+                      index,
+                    ),
                   )}
                   {/* 								
 								<a className="ppl" href="#" >
