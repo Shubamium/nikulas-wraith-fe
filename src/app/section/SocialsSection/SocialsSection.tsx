@@ -41,7 +41,11 @@ export default async function SocialsSection() {
         </div>
 
         <div className="socials-list">
-          <a className="socials" target="_blank" href={data.discord}>
+          <a
+            className="socials"
+            target="_blank"
+            href={data.discord ?? undefined}
+          >
             <div className="icon">
               <FaDiscord />
             </div>
